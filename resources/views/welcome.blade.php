@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<div id="app">
+    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center py-4 sm:pt-0">
+        <app> <app/>
+    </div>
+ </div>
+
+
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -129,4 +136,4 @@
             </div>
         </div>
     </body>
-</html>
+</html> --}}
