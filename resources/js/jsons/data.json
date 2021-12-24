@@ -1,0 +1,108 @@
+[
+    {"type":"header","version":"4.9.3","comment":"Export to JSON plugin for PHPMyAdmin"},
+    {"type":"database","name":"mengen_can"},
+    {"type":"table","name":"tbl_branches","database":"mengen_can","data":
+    [
+    {"id":"1","code":"H036","slug":"azulinda","title":"Azulinda"},
+    {"id":"2","code":"H037","slug":"laluce","title":"LaLuce"},
+    {"id":"3","code":"H038","slug":"sunan","title":"Sunan"},
+    {"id":"4","code":"H039","slug":"auma","title":"Auma"},
+    {"id":"5","code":"H040","slug":"maxal","title":"Maxal"}
+    ]
+    }
+    ,{"type":"table","name":"tbl_menu","database":"mengen_can","data":
+    [
+    {"id":"1","name":"Mobile (1)","type":"11","title":"","title2":"","subtitle":"","subtitle2":"","menu_price":"","footer_local":"","footer_notice":"There may be a risk associated with consuming raw shellfish as is the case with other raw protein products. Please consume at your own risk**","footer_notice2":"The products with an indicated price are not included in the all-inclusive package and are priced in mexican pesos, inclusing iva**","watermark":"","login":"CUNLI","branch":"H039","date":"2021-10-28 16:17:36","active":"1"}
+    ]
+    }
+    ,{"type":"table","name":"tbl_menu_file","database":"mengen_can","data":
+    [
+    
+    ]
+    }
+    ,{"type":"table","name":"tbl_menu_item","database":"mengen_can","data":
+    [
+    {"id":"1","id_section":"1","title":"CHARRED BEET CARPACCIO","subtitle":"Coal-Roasted Beets, Goat Cheese Ash,<br>Yucatan Orange, Sea Salt","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"0","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"2","id_section":"1","title":"PROVOLETA ASADO","subtitle":"Fire-Charred Piquillo Peppers,<br>Pistachio Chimichurri","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"1","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"3","id_section":"1","title":"GRILLED MUSSELS & SOURDOUGH","subtitle":"Grilled Pacific Mussels, Garlic Butter,<br>White Wine, Charred Torn Bread","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"2","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"4","id_section":"2","title":"CRISP WEDGE SALAD","subtitle":"Classic Wedge, Roasted Pancetta,<br> Blue Cheese Dressing","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"0","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"5","id_section":"2","title":"SMOKED CAESAR SALAD","subtitle":"Grilled Romaine, Parmesan Crisp,<br>White Anchovy, Grissini","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"1","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"6","id_section":"3","title":"BEEF SLIDERS","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"0","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"7","id_section":"3","title":"GRILLED QUESADILLA ","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"1","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"8","id_section":"3","title":"MAC & CHEESE","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"2","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"9","id_section":"3","title":"FISH & CHIPS","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"3","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"10","id_section":"4","title":"ROASTED BAKED POTATO","subtitle":"Sour cream & Chive","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"0","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"11","id_section":"4","title":"SEASONAL VEGETABLES","subtitle":"Grilled | Olive Oil","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"1","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"12","id_section":"4","title":"GRILLED ASPARAGUS","subtitle":"Charred hollandais","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"2","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"13","id_section":"4","title":"TRUFFLE PARMESAN FRIES","subtitle":"Rosemary Sea Salt","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"3","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"14","id_section":"4","title":"SWEET POTATO WEDGES","subtitle":"Romesco & lemon aioli ","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"4","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"15","id_section":"4","title":"CHARRED CORN COB","subtitle":"Garlic & lime","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"5","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"16","id_section":"5","title":"GRILLED ROCK SHRIMP","subtitle":"Fresh Thyme Butter","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"0","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"17","id_section":"5","title":"GRILLED AHI TUNA","subtitle":"Cracked Pepper, Lemon, Rosemary Olive Oil","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"1","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"18","id_section":"5","title":"PLANT BASED BURGER ","subtitle":"Plant Based Cheese Fondue,<br>Vegan Mayonnaise, Roasted Red Onions","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"2","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"19","id_section":"5","title":"WOOD-FIRED HALF CHICKEN","subtitle":"Half Chicken, Smoked Paprika,<br>Garlic Yogurt Sauce & Lime","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"3","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"20","id_section":"6","title":"PORK CHOP","subtitle":"Mesquite Smoked, Dijon Mustard","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"0","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"21","id_section":"6","title":"BEEF TENDERLOIN 7OZ ","subtitle":"Semi-boneless, natural pan jus, whipped potatoes","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"1","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"22","id_section":"6","title":"OVER EMBERS NY STRIP STEAK 12OZ","subtitle":"Seared & Roasted, Merlot Glazed Onions","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"2","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"23","id_section":"6","title":"GRILLED TOMAHAWAK FOR TWO","subtitle":"Coarse Salt & Black Pepper","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"3","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"24","id_section":"7","title":"CHARRED LEMON PIE","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"0","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"25","id_section":"7","title":"SEA SALT CARAMEL CHEESECAKE ","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"1","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"26","id_section":"7","title":"CHOCOLATE TRUFFLE TART","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"2","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"27","id_section":"8","title":"RED WINE DEMI GLACE","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"0","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"28","id_section":"8","title":"GARLIC MUSHROOM","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"1","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"29","id_section":"8","title":"SMOKED BERNAISE","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"2","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"30","id_section":"8","title":"GARLIC & BUTTER","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"3","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"31","id_section":"8","title":"GREEN PEPPERCORN SAUCE","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"4","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"32","id_section":"8","title":"CHIMICHURRI","subtitle":"","style":"No_Style","price":"","modifier":"","mod_text":"","notice":"","ordering":"5","date":"2021-10-28 16:17:36","active":"1"}
+    ]
+    }
+    ,{"type":"table","name":"tbl_menu_local","database":"mengen_can","data":
+    [
+    
+    ]
+    }
+    ,{"type":"table","name":"tbl_menu_section","database":"mengen_can","data":
+    [
+    {"id":"1","id_menu":"1","id_parent_section":"0","title":"Starters","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"0","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"2","id_menu":"1","id_parent_section":"0","title":"SALADS","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"1","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"3","id_menu":"1","id_parent_section":"0","title":"KIDS","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"2","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"4","id_menu":"1","id_parent_section":"0","title":"SIDES","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"3","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"5","id_menu":"1","id_parent_section":"0","title":"LAND &amp; SEA","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"4","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"6","id_menu":"1","id_parent_section":"0","title":"CHOPS &amp; STEAKS","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"4","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"7","id_menu":"1","id_parent_section":"0","title":"SWEETS","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"6","date":"2021-10-28 16:17:36","active":"1"},
+    {"id":"8","id_menu":"1","id_parent_section":"0","title":"SAUCES","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"7","date":"2021-10-28 16:17:36","active":"1"}
+    ]
+    }
+    ,{"type":"table","name":"tbl_menu_type","database":"mengen_can","data":
+    [
+    {"id":"1","name":"Azulinda | Snacks & Shared (US Letter \/ Half)","shortname":"azulinda_snacks_shared","template":"azulinda_half","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H036","active":"1"},
+    {"id":"2","name":"Azulinda | Drinks (US Letter)","shortname":"azulinda_drinks","template":"azulinda_full","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H036","active":"1"},
+    {"id":"3","name":"Azulinda | Mobile Menu","shortname":"azulinda_mobile","template":"azulinda_mobile","media":"mobile","width":"0","height":"0","paper":"Mobile","orientation":"Mobile","size":"short","specs":"No Spec","branch":"H036","active":"1"},
+    {"id":"4","name":"La Luce | Dinner (US Letter)","shortname":"laluce_dinner","template":"laluce_dinner","media":"print","width":"216","height":"356","paper":"Letter","orientation":"Portrait","size":"long","specs":"No Spec","branch":"H037","active":"1"},
+    {"id":"5","name":"La Luce | Drinks (US Letter)","shortname":"laluce_drinks","template":"laluce_drinks","media":"print","width":"216","height":"356","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H037","active":"1"},
+    {"id":"6","name":"La Luce | Mobile Menu","shortname":"laluce_mobile","template":"laluce_mobile","media":"mobile","width":"0","height":"0","paper":"Mobile","orientation":"Mobile","size":"short","specs":"No Spec","branch":"H037","active":"1"},
+    {"id":"7","name":"Sunan | Food (US Letter)","shortname":"sunan_food","template":"sunan_food","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H038","active":"1"},
+    {"id":"8","name":"Sunan | Drinks (US Letter)","shortname":"sunan_drinks","template":"sunan_drinks","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H038","active":"1"},
+    {"id":"9","name":"Sunan | Mobile Menu","shortname":"sunan_mobile","template":"sunan_mobile","media":"mobile","width":"0","height":"0","paper":"Mobile","orientation":"Mobile","size":"short","specs":"No Spec","branch":"H038","active":"1"},
+    {"id":"10","name":"Auma | Food","shortname":"auma_food","template":"auma_food","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H039","active":"1"},
+    {"id":"11","name":"Auma | Mobile Menu","shortname":"auma_mobile","template":"auma_mobile","media":"mobile","width":"0","height":"0","paper":"Mobile","orientation":"Mobile","size":"short","specs":"No Spec","branch":"H039","active":"1"},
+    {"id":"12","name":"Maxal | Breakfast\/Lunch (US Letter)","shortname":"maxal_breakfast_lunch","template":"maxal_breakfast_lunch","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H040","active":"1"},
+    {"id":"13","name":"Maxal | Dinner (US Letter)","shortname":"maxal_dinner","template":"maxal_dinner","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H040","active":"1"},
+    {"id":"14","name":"Maxal | Drinks (US Letter)","shortname":"maxal_drinks","template":"maxal_drinks","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H040","active":"1"},
+    {"id":"15","name":"Maxal | Mobile Menu","shortname":"maxal_mobile","template":"maxal_mobile","media":"mobile","width":"0","height":"0","paper":"Mobile","orientation":"Mobile","size":"short","specs":"No Spec","branch":"H040","active":"1"}
+    ]
+    }
+    ,{"type":"table","name":"tbl_users","database":"mengen_can","data":
+    [
+    {"id":"1","login":"admin","passw":"1adbb3178591fd5bb0c248518f39bf6d","name":"Admin User","email":"dev@madebyforward.com","scope":"A","branch":"H036,H037,H038,H039,H040","hash":null,"active":"1"},
+    {"id":"2","login":"CUNLI","passw":"7b020a6703f2612a43c34854e0bb4f12","name":"Cancun","email":"dev@madebyforward.com","scope":"S","branch":"H036,H037,H038,H039,H040","hash":null,"active":"1"}
+    ]
+    }
+    ,{"type":"table","name":"tbl_users_cookie","database":"mengen_can","data":
+    [
+    {"id":"105","login":"user","scope":"S","branch":"H036,H037,H038,H039,H040","ip":"","cookie":"d942be688f8eec962b237f926a9df3aa4c56e3a277356542e983f4085a544869","date":"2021-01-10 13:25:02","active":"1"},
+    {"id":"106","login":"CUNLI","scope":"S","branch":"H036,H037,H038,H039,H040","ip":"::1","cookie":"1b0683b243f3a68e0ff052c82447bc7e66f6618c690e3fbcfdc78b5a7cb95a14","date":"2021-10-29 16:17:29","active":"1"}
+    ]
+    }
+    ]
+    

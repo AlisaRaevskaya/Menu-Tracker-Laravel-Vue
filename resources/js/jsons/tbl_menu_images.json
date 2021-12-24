@@ -1,0 +1,17 @@
+{
+    "type": "table",
+    "name": "tbl_menu_file",
+    "database": "mengen_can",
+    "data": [
+        {
+            "id": "1",
+            "name": "azulinda.png",
+            "menu_type_id": 1
+        },
+        {
+            "id": "2",
+            "name": "sunan.png",
+            "menu_type_id": 2
+        }
+    ]
+}

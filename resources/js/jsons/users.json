@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1",
+    "login": "admin",
+    "passw": "1adbb3178591fd5bb0c248518f39bf6d",
+    "name": "Admin User",
+    "email": "dev@madebyforward.com",
+    "scope": "A",
+    "branch": "H036,H037,H038,H039,H040",
+    "hash": null,
+    "active": "1"
+  },
+  {
+    "id": "2",
+    "login": "CUNLI",
+    "passw": "7b020a6703f2612a43c34854e0bb4f12",
+    "name": "Cancun",
+    "email": "dev@madebyforward.com",
+    "scope": "S",
+    "branch": "H036,H037,H038,H039,H040",
+    "hash": null,
+    "active": "1"
+  }
+]

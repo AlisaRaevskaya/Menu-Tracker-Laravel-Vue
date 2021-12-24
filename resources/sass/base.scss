@@ -1,0 +1,81 @@
+
+/* reset styles */
+* {
+  color: inherit;
+  margin: 0;
+}
+html, body{
+  height: 100% !important;
+}
+
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+hr {
+  border: 0;
+  border-top: 1px dotted #efefef;
+}
+
+img {
+  max-width: 100%;
+}
+
+.test {
+  color: $primary;
+}
+.my-class{
+  color: purple;
+}
+
+nav a {
+  display:block;
+  text-align: center;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  margin-top: 60px;
+  text-align: center;
+}
+.wrapper{
+  min-height:100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+main.page-main{
+  flex: 1 1 auto !important;
+}
+.divider{
+    width: 70px;
+    height: 4px;
+    background: #000;
+    margin: 15px auto;
+}
+.text-uppercase{
+    text-transform: uppercase;
+}
+select{
+  background: #f8f8f8 !important;
+  margin-top: 8px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: "FFDINWebProLight",sans-serif;
+  padding: 0 12px 3px !important;
+  font-size: 12px;
+  border-radius: 0 !important;
+  border: 1px solid #979797 !important;
+  height: 41px !important;
+}
+.hidden{
+  display:none;
+}

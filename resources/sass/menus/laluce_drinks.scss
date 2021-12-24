@@ -1,0 +1,120 @@
+.laluce_drinks {
+
+    $padding-top: 345px;
+    $padding-bottom: 200px;
+    $padding-right: 330px;
+    $padding-left: 430px;
+  
+    .print-outter {
+
+    //   background-image: url("assets/laluce-menu-bg.jpg");
+  
+      .print-lines {
+        .row {
+          margin-left: ratio(-135px);
+          margin-right: ratio(-135px);
+        }
+      }
+  
+      .menu-headline {
+     font-weight:500;
+      }
+  
+      .menu_section_left {
+        padding-top: ratio(340px);
+      }
+  
+      .menu-section {
+        position: relative;
+        z-index: 999;
+  
+        .item-outter {
+          margin-top: ratio(60px);
+        }
+  
+        .item-title,
+        .item-desc,
+        .item-price {
+          width: auto;
+          display: inline-block;
+          vertical-align: middle;
+        }
+  
+        .item-title {
+          font-size: ratio(37.5px);
+          text-transform: uppercase;
+        }
+  
+        .item-desc,
+        .item-price {
+          font-size: ratio(33.3px);
+          line-height: 1.5;
+        }
+  
+        &.Short_Spaces {
+          .item-outter {
+            margin-top: ratio(30px);
+          }
+  
+          .item-price {
+            text-transform: uppercase;
+  
+            p {
+              &:before {
+                display: none;
+              }
+            }
+          }
+  
+          .item-desc {
+            p {
+              &::before {
+                content: "|";
+                display: inline-block;
+                margin: 0 3px;
+              }
+            }
+          }
+        }
+  
+        &.Boxed {
+          width: ratio(640px);
+          border: solid black ratio(25px);
+          text-align: center;
+          padding: ratio(80px) 0;
+          margin-left: ratio(-110px);
+  
+          .item-outter {
+            margin-top: ratio(40px);
+          }
+  
+          .item-title,
+          .item-price {
+font-style: italic;
+          }
+  
+          .item-title {
+            font-size: ratio(29.1px);
+          }
+          .item-price {
+            font-size: ratio(25px);
+          }
+        }
+      }
+  
+      .footer {
+        font-size: 8.3px;
+        left: 0;
+        padding: 0;
+  
+        .footer-icons {
+          font-size: 10px;
+  
+        }
+      }
+  
+      .menu_notice_wrap {
+        display: inline-block;
+      }
+    }
+  }
