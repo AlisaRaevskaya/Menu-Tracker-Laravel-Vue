@@ -3,7 +3,8 @@ import concepts_data from "../jsons/concepts.json";
 export default {
 	namespaced: true,
 	state: {
-		concepts: getConcepts()
+		concepts: getConcepts(),
+		branches:[]
 	},
 	getters: {
 		all: state => state.concepts,
@@ -16,14 +17,32 @@ export default {
 	},
     //computed
 	mutations: {
-		
+		updateBranches(state, branches) {
+            state.branches = branches;
+        },
 	},
     //methods
 	actions: {
-		
-	}
+        getBranches({commit}) {
+            // fetch the categories and attached products from the api
+            axios.get('/choose')
+                .then((response) => {
+                    commit('updateBranches', response.data);
+                })
+                .catch((error) => console.error(error));
+        },
+        // clearCart({commit}) {
+        //     commit('updateCart', []);
+        // }
+    }
     //async
 }
 function getConcepts(){
 return concepts_data;
 }
+
+// created() {
+// 	store.dispatch('getCategories')
+// 		.then(_ => {})
+// 		.catch((error) => console.error(error));
+// }
