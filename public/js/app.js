@@ -22546,7 +22546,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     chosen_menu: String,
     shortname: String,
-    concept_name: String
+    branch_name: String
   },
   data: function data() {
     return {
@@ -22616,7 +22616,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     chosen_menu: String,
     shortname: String,
-    concept_name: String
+    branch_name: String
   },
   methods: {
     close: function close() {
@@ -22626,7 +22626,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: 'menu_edit',
         params: {
-          concept: this.concept_name,
+          branch: this.branch_name,
           menu_name: this.shortname
         }
       });
@@ -22651,7 +22651,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addImagePath: function addImagePath(name) {
-      return "storage/images/MenuThumbnails" + name + ".png"; //name// ? require("../../../public/storage/images/MenuThumbnails/" + name + ".png") : "";
+      return "storage/images/MenuThumbnails/" + name + ".png"; //name// ? require("../../../public/storage/images/MenuThumbnails/" + name + ".png") : "";
     }
   }
 });
@@ -22747,16 +22747,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  methods: {
+  methods: _objectSpread({
     addImagePath: function addImagePath(name) {
       return "/storage/images/choose/" + name + ".png";
     }
-  },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("concepts", {
-    concepts: "all"
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('branches', ['getBranches'])),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("branches", {
+    branches: "all"
   })), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("menu_types", {
     types: "all"
-  })), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("concepts", ["getBranch"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("concepts", ["getConcept"]))
+  })),
+  created: function created() {
+    this.getBranches();
+  }
 });
 
 /***/ }),
@@ -22869,20 +22872,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       menus: [],
       selected: {},
-      concept_name: " ",
+      branch_name: " ",
       image_name: " "
     };
   },
-  methods: {
-    setMenus: function setMenus() {}
-  },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", {
+  methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)("menu_types", ["getAllMenuTypes"])),
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", {
     types: "all"
-  })), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", ["getAllMenuTypes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("concepts", ["getConcept"])), {}, {
+  })), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", ["getMenuTypes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("branches", ["getBranchName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("branches", ["getBranchId"])), {}, {
     //get menu objects
-    getMenus: function getMenus() {
-      return this.getAllMenuTypes(this.getConcept(this.$route.params.concept));
-    },
     setConceptName: function setConceptName() {
       return this.menus.find(function (item) {
         return item.name;
@@ -22890,9 +22888,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     isSelected: function isSelected() {
       return Object.keys(this.selected).length > 0;
+    },
+    strId: function strId() {
+      return this.getBranchId(this.$route.params.branch);
+    },
+    validId: function validId() {
+      return /^[1-9]+\d*$/.test(this.strId);
+    },
+    getId: function getId() {
+      return parseInt(this.strId);
+    },
+    getMenus: function getMenus() {
+      return this.getMenuTypes(this.getId);
+    },
+    setMenus: function setMenus() {
+      this.getMenus ? this.menus = this.getMenus : this.menus = "  ";
     }
   }),
   created: function created() {
+    this.getAllMenuTypes();
     this.menus = this.getMenus;
   }
 });
@@ -22982,10 +22996,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0,
     chosen_menu: $props.chosen_menu,
     shortname: $props.shortname,
-    concept_name: $props.concept_name
+    branch_name: $props.branch_name
   }, null, 8
   /* PROPS */
-  , ["chosen_menu", "shortname", "concept_name"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  , ["chosen_menu", "shortname", "branch_name"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     name: "menu_saved_design_add",
     "class": "btn btn-default btn-block biggerBtn",
@@ -23249,7 +23263,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.close && $options.close.apply($options, arguments);
     })
-  }, "x")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_10, _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.chosen_menu) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.concept_name), 1
+  }, "x")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_10, _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.chosen_menu) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.branch_name), 1
   /* TEXT */
   )]), _hoisted_13])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-primary",
@@ -23474,23 +23488,22 @@ var _hoisted_6 = ["src", "alt"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.concepts, function (concept) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.branches, function (branch) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
-      key: concept.id,
+      key: branch.id,
       "class": "col-4-xl gap-2"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
       to: {
         name: 'menu',
         params: {
-          concept: concept.slug,
-          branch: concept.code
+          branch: branch.slug
         }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-          src: $options.addImagePath(concept.slug),
-          alt: concept.slug
+          src: $options.addImagePath(branch.slug),
+          alt: branch.slug
         }, null, 8
         /* PROPS */
         , _hoisted_6)];
@@ -23671,9 +23684,6 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_6 = ["value"];
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("ß ");
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_app_breadcrumbs = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-breadcrumbs");
 
@@ -23681,7 +23691,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_template_image = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("template-image");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.menus) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getMenus) + " ", 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     id: "menu_type",
     name: "menu_type",
     "class": "form-control mt-2",
@@ -23701,17 +23713,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_6);
   }), 128
   /* KEYED_FRAGMENT */
-  )), _hoisted_7], 512
+  ))], 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selected]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Chosen: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.selected.menu_id), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_choose_table, {
     chosen_menu: $data.selected.name,
     shortname: $data.selected.shortname,
-    concept_name: this.$route.params.concept
+    branch_name: _ctx.getBranchName
   }, null, 8
   /* PROPS */
-  , ["chosen_menu", "shortname", "concept_name"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_template_image, {
+  , ["chosen_menu", "shortname", "branch_name"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_template_image, {
     menu_name: $data.selected.name,
     image_name: $data.selected.shortname
   }, null, 8
@@ -23776,6 +23788,7 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.withCredentials = true;
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -23834,12 +23847,12 @@ var routes = [{
   component: _views_MyMenus__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   name: "menu",
-  path: "/start/:concept",
+  path: "/start/:branch",
   component: _views_StartMenu__WEBPACK_IMPORTED_MODULE_4__["default"],
   props: true
 }, {
   name: "menu_edit",
-  path: "/menus/:concept/:menu_name",
+  path: "/menus/:branch/:menu_name",
   component: _views_EditMenu__WEBPACK_IMPORTED_MODULE_6__["default"],
   props: true
 }, {
@@ -23856,54 +23869,78 @@ var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_7__.createRouter)({
 
 /***/ }),
 
-/***/ "./resources/js/store/concepts.js":
+/***/ "./resources/js/store/branches.js":
 /*!****************************************!*\
-  !*** ./resources/js/store/concepts.js ***!
+  !*** ./resources/js/store/branches.js ***!
   \****************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _jsons_concepts_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../jsons/concepts.json */ "./resources/js/jsons/concepts.json");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
-    concepts: getConcepts()
+    branches: []
   },
   getters: {
     all: function all(state) {
-      return state.concepts;
+      return state.branches;
     },
-    getConcept: function getConcept(state) {
-      return function (concept) {
-        return state.concepts.find(function (item) {
-          return item.slug == concept;
-        }).code;
-      };
-    },
-    // indexById: state => id => state.items.findIndex(item => item.id == id),
-    //arr.reduce(function(sum, current) {return sum + current
-    //names.map(function(name) {return name.length;});
-    //arr.map(function (x) { return x * x });
-    getBranch: function getBranch(state, getters) {
-      return function (concept) {
-        return getters.getConcept(concept).find(function (item) {
-          return item == item.code;
+    indexById: function indexById(state) {
+      return function (id) {
+        return state.branches.findIndex(function (item) {
+          return item.id == id;
         });
       };
-    }
+    },
+    // getBranchBySlug: state=> slug =>state.branches.find(item=>item.slug == slug),
+    getBranchName: function getBranchName(state) {
+      return function (slug) {
+        return state.branches.find(function (item) {
+          return item.slug == slug;
+        }).name;
+      };
+    },
+    getBranchId: function getBranchId(state) {
+      return function (slug) {
+        return state.branches.find(function (item) {
+          return item.slug == slug;
+        }).id;
+      };
+    } //getBranch: (state, getters) => concept=> getters.getConcept(concept).find(item=>item == item.code)
+    // getBranch: (state, getters) => concept=> getters.getConcept(concept).find(item=>item == item.code)
+
   },
   //computed
-  mutations: {},
+  mutations: {
+    updateBranches: function updateBranches(state, branches) {
+      state.branches = branches;
+    }
+  },
   //methods
-  actions: {} //async
-
-});
-
-function getConcepts() {
-  return _jsons_concepts_json__WEBPACK_IMPORTED_MODULE_0__;
-}
+  actions: {
+    getBranches: function getBranches(_ref) {
+      var commit = _ref.commit;
+      // fetch branches
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/choose').then(function (response) {
+        commit('updateBranches', response.data);
+      })["catch"](function (error) {
+        return console.error(error);
+      });
+    }
+  }
+}); // this.$axios.get('/sanctum/csrf-cookie').then(response => {
+// 	this.$axios.post(`/api/books/update/${this.$route.params.id}`, this.book)
+// 		.then(response => {
+// 			this.$router.push({name: 'books'});
+// 		})
+// 		.catch(function (error) {
+// 			console.error(error);
+// 		});
+// })
 
 /***/ }),
 
@@ -23944,7 +23981,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _menu_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./menu_types */ "./resources/js/store/menu_types.js");
 /* harmony import */ var _files__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./files */ "./resources/js/store/files.js");
-/* harmony import */ var _concepts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./concepts */ "./resources/js/store/concepts.js");
+/* harmony import */ var _branches__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./branches */ "./resources/js/store/branches.js");
 
 
 
@@ -23953,7 +23990,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   modules: {
     menu_types: _menu_types__WEBPACK_IMPORTED_MODULE_0__["default"],
     files: _files__WEBPACK_IMPORTED_MODULE_1__["default"],
-    concepts: _concepts__WEBPACK_IMPORTED_MODULE_2__["default"]
+    branches: _branches__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   strict: "development" !== 'production'
 });
@@ -23969,12 +24006,10 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _jsons_tbl_menu_type_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../jsons/tbl_menu_type.json */ "./resources/js/jsons/tbl_menu_type.json");
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
-    types: getMenuTypes()
+    types: []
   },
   getters: {
     all: function all(state) {
@@ -23982,15 +24017,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     indexById: function indexById(state) {
       return function (id) {
-        return state.items.findIndex(function (item) {
-          return item.id == id;
+        return state.types.findIndex(function (item) {
+          return item.branch_id == id;
         });
       };
     },
-    getAllMenuTypes: function getAllMenuTypes(state) {
-      return function (code) {
+    getMenuTypes: function getMenuTypes(state) {
+      return function (id) {
         return state.types.filter(function (item) {
-          return item.branch == code;
+          return item.branch_id == id;
         });
       };
     },
@@ -24009,26 +24044,25 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   //computed
-  mutations: {},
+  mutations: {
+    updateMenuTypes: function updateMenuTypes(state, types) {
+      state.types = types;
+    }
+  },
   //methods
-  actions: {// getCategories({commit}) {
-    //     // fetch the categories and attached products from the api
-    //     axios.get('/api/products')
-    //         .then((response) => {
-    //             commit('updateProducts', response.data);
-    //         })
-    //         .catch((error) => console.error(error));
-    // },
-    // clearCart({commit}) {
-    //     commit('updateCart', []);
-    // }
+  actions: {
+    getAllMenuTypes: function getAllMenuTypes(_ref) {
+      var commit = _ref.commit;
+      // fetch types
+      axios.get('/api/start/{branch}').then(function (response) {
+        commit('updateMenuTypes', response.data);
+      })["catch"](function (error) {
+        return console.error(error);
+      });
+    }
   } //async
 
 });
-
-function getMenuTypes() {
-  return _jsons_tbl_menu_type_json__WEBPACK_IMPORTED_MODULE_0__;
-}
 
 /***/ }),
 
@@ -53043,17 +53077,6 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 
 /***/ }),
 
-/***/ "./resources/js/jsons/concepts.json":
-/*!******************************************!*\
-  !*** ./resources/js/jsons/concepts.json ***!
-  \******************************************/
-/***/ (function(module) {
-
-"use strict";
-module.exports = JSON.parse('[{"id":"1","code":"H036","slug":"azulinda","title":"Azulinda"},{"id":"2","code":"H037","slug":"laluce","title":"LaLuce"},{"id":"3","code":"H038","slug":"sunan","title":"Sunan"},{"id":"4","code":"H039","slug":"auma","title":"Auma"},{"id":"5","code":"H040","slug":"maxal","title":"Maxal"}]');
-
-/***/ }),
-
 /***/ "./resources/js/jsons/files.json":
 /*!***************************************!*\
   !*** ./resources/js/jsons/files.json ***!
@@ -53062,17 +53085,6 @@ module.exports = JSON.parse('[{"id":"1","code":"H036","slug":"azulinda","title":
 
 "use strict";
 module.exports = [];
-
-/***/ }),
-
-/***/ "./resources/js/jsons/tbl_menu_type.json":
-/*!***********************************************!*\
-  !*** ./resources/js/jsons/tbl_menu_type.json ***!
-  \***********************************************/
-/***/ (function(module) {
-
-"use strict";
-module.exports = JSON.parse('[{"id":"1","name":"Azulinda | Snacks & Shared (US Letter / Half)","shortname":"azulinda_snacks_shared","template":"AzulindaHalf","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H036","active":"1"},{"id":"2","name":"Azulinda | Drinks (US Letter)","shortname":"azulinda_drinks","template":"AzulindaFull","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H036","active":"1"},{"id":"3","name":"Azulinda | Mobile Menu","shortname":"azulinda_mobile","template":"AzulindaMobile","media":"mobile","width":"0","height":"0","paper":"Mobile","orientation":"Mobile","size":"short","specs":"No Spec","branch":"H036","active":"1"},{"id":"4","name":"La Luce | Dinner (US Letter)","shortname":"laluce_dinner","template":"LaluceDinner","media":"print","width":"216","height":"356","paper":"Letter","orientation":"Portrait","size":"long","specs":"No Spec","branch":"H037","active":"1"},{"id":"5","name":"La Luce | Drinks (US Letter)","shortname":"laluce_drinks","template":"LaluceDrinks","media":"print","width":"216","height":"356","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H037","active":"1"},{"id":"6","name":"La Luce | Mobile Menu","shortname":"laluce_mobile","template":"LaluceMobile","media":"mobile","width":"0","height":"0","paper":"Mobile","orientation":"Mobile","size":"short","specs":"No Spec","branch":"H037","active":"1"},{"id":"7","name":"Sunan | Food (US Letter)","shortname":"sunan_food","template":"SunanFood","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H038","active":"1"},{"id":"8","name":"Sunan | Drinks (US Letter)","shortname":"sunan_drinks","template":"SunanDrinks","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H038","active":"1"},{"id":"9","name":"Sunan | Mobile Menu","shortname":"sunan_mobile","template":"SunanMobile","media":"mobile","width":"0","height":"0","paper":"Mobile","orientation":"Mobile","size":"short","specs":"No Spec","branch":"H038","active":"1"},{"id":"10","name":"Auma | Food","shortname":"auma_food","template":"AumaFood","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H039","active":"1"},{"id":"11","name":"Auma | Mobile Menu","shortname":"auma_mobile","template":"AumaMobile","media":"mobile","width":"0","height":"0","paper":"Mobile","orientation":"Mobile","size":"short","specs":"No Spec","branch":"H039","active":"1"},{"id":"12","name":"Maxal | Breakfast/Lunch (US Letter)","shortname":"maxal_breakfast_lunch","template":"MaxalBreakfastLunch","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H040","active":"1"},{"id":"13","name":"Maxal | Dinner (US Letter)","shortname":"maxal_dinner","template":"MaxalDinner","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H040","active":"1"},{"id":"14","name":"Maxal | Drinks (US Letter)","shortname":"maxal_drinks","template":"MaxalDrinks","media":"print","width":"216","height":"279","paper":"Letter","orientation":"Portrait","size":"short","specs":"No Spec","branch":"H040","active":"1"},{"id":"15","name":"Maxal | Mobile Menu","shortname":"maxal_mobile","template":"MaxalMobile","media":"mobile","width":"0","height":"0","paper":"Mobile","orientation":"Mobile","size":"short","specs":"No Spec","branch":"H040","active":"1"}]');
 
 /***/ })
 

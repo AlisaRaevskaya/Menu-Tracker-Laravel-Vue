@@ -13,8 +13,8 @@ const routes = [
   { name: "choose", path: "/choose", component: Choose },
   { name: "account", path: "/account", component: Account },
   { name: "mymenus", path: "/mymenus", component: MyMenus },
-  { name: "menu", path: "/start/:concept", component: StartMenu, props: true },
-  { name: "menu_edit", path: "/menus/:concept/:menu_name", component: EditMenu, props: true },
+  { name: "menu", path: "/start/:branch", component: StartMenu, props: true },
+  { name: "menu_edit", path: "/menus/:branch/:menu_name", component: EditMenu, props: true },
   { path: "/:any(.*)", component: E404 },
 ];
 

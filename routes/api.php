@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\BranchController;
+use App\Http\Controllers\API\MenuTypeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,9 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-// use App\Http\Controllers\API\BookController;
-// use App\Http\Controllers\API\UserController;
+Route::get('/choose', [BranchController::class, 'index']);
+Route::get('/start/{branch}', [ MenuTypeController::class, 'index']);
 
 // Route::post('login', [UserController::class, 'login']);
 // Route::post('register', [UserController::class, 'register']);

@@ -2,14 +2,14 @@ import { createStore } from 'vuex'
 
 import menu_types from './menu_types';
 import files from './files';
-import concepts from './concepts';
+import branches from './branches';
 
 
 const store = createStore({
 	modules: {
 		menu_types,
 		files,
-		concepts
+		branches
 	},
 	strict: process.env.NODE_ENV !== 'production'
 });

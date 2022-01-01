@@ -1,40 +1,33 @@
-import menu_types from "../jsons/tbl_menu_type.json";
 
 export default {
 	namespaced: true,
 	state: {
-		types: getMenuTypes()
+		types: []
 	},
 	getters: {
 		all: state => state.types,
-		indexById: state => id => state.items.findIndex(item => item.id == id),
-		getAllMenuTypes: (state) => code => state.types.filter(item => item.branch == code),
+		indexById: state => id => state.types.findIndex(item => item.branch_id == id),
+		getMenuTypes: (state) => id => state.types.filter(item => item.branch_id == id),
 		getItemByShortName: (state) => shortname => state.types.find(item => item.shortname == shortname),
-		getTemplateName: (state, getters) => shortname => getters.getItemByShortName(shortname).template,
-		
+		getTemplateName: (state, getters) => shortname => getters.getItemByShortName(shortname).template,	
 		// indexById: state=>id 
 	},
     //computed
 	mutations: {
-		
+		updateMenuTypes(state, types) {
+            state.types = types;
+		}
 	},
     //methods
 	actions: {
-		// getCategories({commit}) {
-        //     // fetch the categories and attached products from the api
-        //     axios.get('/api/products')
-        //         .then((response) => {
-        //             commit('updateProducts', response.data);
-        //         })
-        //         .catch((error) => console.error(error));
-        // },
-        // clearCart({commit}) {
-        //     commit('updateCart', []);
-        // }
-		
+		getAllMenuTypes({commit}) {
+            // fetch types
+            axios.get('/api/start/{branch}')
+                .then((response) => {
+                    commit('updateMenuTypes', response.data);
+                })
+                .catch((error) => console.error(error));
+        },
 	}
     //async
-}
-function getMenuTypes(){
-return menu_types
 }

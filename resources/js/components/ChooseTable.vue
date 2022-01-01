@@ -1,5 +1,5 @@
 <template>
- <app-modal :chosen_menu="chosen_menu" v-if="isShown" :shortname="shortname" :concept_name="concept_name"></app-modal>
+ <app-modal :chosen_menu="chosen_menu" v-if="isShown" :shortname="shortname" :branch_name="branch_name"></app-modal>
   <div class="col-12-lg bordered mt-2" v-show="!isShown">
     <h5 class="pt-1">CHOOSE HOW TO BUILD YOUR MENU</h5>
     <div class="row pt-1">
@@ -49,7 +49,7 @@ export default {
     props: {
     chosen_menu: String,
     shortname: String,
-    concept_name:String,
+    branch_name:String,
   },
   data() {
     return {

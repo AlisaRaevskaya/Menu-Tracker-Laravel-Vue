@@ -15,7 +15,7 @@
             <h4>Confirm Meal Period And Name</h4>
             <div>
               <span class="control-label modal-title pr-2">Type</span><br />
-              <div class="bg-gray p-1 modal-field">{{chosen_menu}}{{concept_name}}</div>
+              <div class="bg-gray p-1 modal-field">{{chosen_menu}}{{branch_name}}</div>
             </div>
             <div class="mt-1 row">
               <label class="control-label modal-title pr-2" for="menu_name"
@@ -47,14 +47,14 @@ export default {
   props: {
     chosen_menu: String,
     shortname: String,
-    concept_name: String
+    branch_name: String
   },
   methods: {
     close() {
       this.$emit("close");
     },
     redirectPage(){
-      this.$router.push({ name:'menu_edit', params: { concept: this.concept_name, menu_name: this.shortname }});   
+      this.$router.push({ name:'menu_edit', params: { branch: this.branch_name, menu_name: this.shortname }});   
     }
   },
 };

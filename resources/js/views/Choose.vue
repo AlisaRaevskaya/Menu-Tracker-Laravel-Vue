@@ -4,14 +4,14 @@
     <hr class="divider" />
     <h3 class="mb-2 mt-2 text-uppercase">Choose your Concept</h3>
     <ul class="row justify-space-between mb-2">
-      <li v-for="concept in concepts" :key="concept.id" class="col-4-xl gap-2">
+      <li v-for="branch in branches" :key="branch.id" class="col-4-xl gap-2">
         <router-link
           :to="{
             name: 'menu',
-            params: { concept: concept.slug, branch: concept.code },
+            params: { branch: branch.slug },
           }"
         >
-          <img :src="addImagePath(concept.slug)" v-bind:alt="concept.slug" />
+          <img :src="addImagePath(branch.slug)" v-bind:alt="branch.slug" />
         </router-link>
       </li>
     </ul>
@@ -26,12 +26,14 @@ export default {
     addImagePath(name) {
       return "/storage/images/choose/" + name + ".png";
     },
+     ...mapActions('branches', ['getBranches'])
   },
   computed: {
-    ...mapGetters("concepts", { concepts: "all" }),
+    ...mapGetters("branches", { branches: "all" }),
     ...mapGetters("menu_types", { types: "all" }),
-    ...mapGetters("concepts", ["getBranch"]),
-    ...mapGetters("concepts", ["getConcept"]),
+  },
+  created() {
+    this.getBranches();
   },
 };
 </script>

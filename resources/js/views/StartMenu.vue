@@ -3,6 +3,8 @@
   <div class="container">
     <h2 class="mt-1 mb-1 text-uppercase">Choose New Menu</h2>
     <div>
+      {{ menus }}
+      {{ getMenus }}
       <div class="text-left">
         <label class="control-label" for="loja">Select Meal Period</label>
         <select
@@ -12,17 +14,32 @@
           v-model="selected"
         >
           <option disabled value="">Select Template</option>
-          <option v-for="menu in menus" :key="menu.id" :value="{ menu_id : menu.id, shortname : menu.shortname, name: menu.name}">
+          <option
+            v-for="menu in menus"
+            :key="menu.id"
+            :value="{
+              menu_id: menu.id,
+              shortname: menu.shortname,
+              name: menu.name,
+            }"
+          >
             {{ menu.name }}
-          </option>ß
+          </option>
         </select>
         <div>
           <span>Chosen: {{ selected.menu_id }}</span>
         </div>
       </div>
       <div v-show="isSelected">
-        <choose-table :chosen_menu="selected.name" :shortname="selected.shortname" :concept_name="this.$route.params.concept"></choose-table>
-        <template-image :menu_name="selected.name" :image_name="selected.shortname"></template-image>
+        <choose-table
+          :chosen_menu="selected.name"
+          :shortname="selected.shortname"
+          :branch_name="getBranchName"
+        ></choose-table>
+        <template-image
+          :menu_name="selected.name"
+          :image_name="selected.shortname"
+        ></template-image>
       </div>
     </div>
   </div>
@@ -38,36 +55,52 @@ export default {
   components: {
     AppBreadcrumbs,
     TemplateImage,
-    ChooseTable
+    ChooseTable,
   },
   data() {
     return {
       menus: [],
       selected: {},
-      concept_name:" ",
-      image_name:" "
+      branch_name: " ",
+      image_name: " ",
     };
   },
   methods: {
-    setMenus() {},
+    ...mapActions("menu_types", ["getAllMenuTypes"]),
   },
   computed: {
     ...mapGetters("menu_types", { types: "all" }),
-    ...mapGetters("menu_types", ["getAllMenuTypes"]),
-    ...mapGetters("concepts", ["getConcept"]),
+    ...mapGetters("menu_types", ["getMenuTypes"]),
+
+    ...mapGetters("branches", ["getBranchName"]),
+    ...mapGetters("branches", ["getBranchId"]),
     //get menu objects
-    getMenus() {
-      return this.getAllMenuTypes(this.getConcept(this.$route.params.concept));
+
+    setConceptName() {
+      return this.menus.find((item) => item.name);
     },
-    setConceptName(){
-      return this.menus.find(item=>item.name);
-    },
-    isSelected(){
+    isSelected() {
       return Object.keys(this.selected).length > 0;
+    },
+    strId() {
+      return this.getBranchId(this.$route.params.branch);
+    },
+    validId() {
+      return /^[1-9]+\d*$/.test(this.strId);
+    },
+    getId() {
+      return parseInt(this.strId);
+    },
+    getMenus() {
+      return this.getMenuTypes(this.getId);
+    },
+    setMenus() {
+      this.getMenus ? this.menus = this.getMenus: this.menus = "  ";
     },
   },
   created() {
+    this.getAllMenuTypes();
     this.menus = this.getMenus;
-  }
-  };
+  },
+};
 </script>
