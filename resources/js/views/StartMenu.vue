@@ -3,10 +3,10 @@
   <div class="container">
     <h2 class="mt-1 mb-1 text-uppercase">Choose New Menu</h2>
     <div>
-      {{ menus }}
-      {{ getMenus }}
+{{selected}}
       <div class="text-left">
         <label class="control-label" for="loja">Select Meal Period</label>
+              {{setMenus}}
         <select
           id="menu_type"
           name="menu_type"
@@ -14,6 +14,7 @@
           v-model="selected"
         >
           <option disabled value="">Select Template</option>
+
           <option
             v-for="menu in menus"
             :key="menu.id"
@@ -34,7 +35,7 @@
         <choose-table
           :chosen_menu="selected.name"
           :shortname="selected.shortname"
-          :branch_name="getBranchName"
+          :branch_name="this.$route.params.branch"
         ></choose-table>
         <template-image
           :menu_name="selected.name"
@@ -72,11 +73,11 @@ export default {
     ...mapGetters("menu_types", { types: "all" }),
     ...mapGetters("menu_types", ["getMenuTypes"]),
 
-    ...mapGetters("branches", ["getBranchName"]),
+    // ...mapGetters("branches", ["getBranchName"]),
     ...mapGetters("branches", ["getBranchId"]),
     //get menu objects
 
-    setConceptName() {
+    getBranchName() {
       return this.menus.find((item) => item.name);
     },
     isSelected() {
@@ -100,7 +101,6 @@ export default {
   },
   created() {
     this.getAllMenuTypes();
-    this.menus = this.getMenus;
   },
 };
 </script>

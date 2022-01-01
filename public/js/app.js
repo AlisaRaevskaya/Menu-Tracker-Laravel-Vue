@@ -22877,11 +22877,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)("menu_types", ["getAllMenuTypes"])),
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", {
     types: "all"
-  })), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", ["getMenuTypes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("branches", ["getBranchName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("branches", ["getBranchId"])), {}, {
+  })), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", ["getMenuTypes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("branches", ["getBranchId"])), {}, {
     //get menu objects
-    setConceptName: function setConceptName() {
+    getBranchName: function getBranchName() {
       return this.menus.find(function (item) {
         return item.name;
       });
@@ -22907,7 +22907,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   created: function created() {
     this.getAllMenuTypes();
-    this.menus = this.getMenus;
   }
 });
 
@@ -23691,9 +23690,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_template_image = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("template-image");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.menus) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getMenus) + " ", 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.selected) + " ", 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.setMenus) + " ", 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     id: "menu_type",
     name: "menu_type",
     "class": "form-control mt-2",
@@ -23720,7 +23721,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_choose_table, {
     chosen_menu: $data.selected.name,
     shortname: $data.selected.shortname,
-    branch_name: _ctx.getBranchName
+    branch_name: this.$route.params.branch
   }, null, 8
   /* PROPS */
   , ["chosen_menu", "shortname", "branch_name"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_template_image, {
