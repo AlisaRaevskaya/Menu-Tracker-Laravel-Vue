@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\BranchController;
 use App\Http\Controllers\API\MenuTypeController;
+use App\Http\Controllers\API\MenuSectionController;
+use App\Http\Controllers\API\MenuItemController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,20 +17,14 @@ use App\Http\Controllers\API\MenuTypeController;
 |
 */
 
+
 Route::get('/choose', [BranchController::class, 'index']);
-Route::get('/start/{branch}', [ MenuTypeController::class, 'index']);
-
-// Route::post('login', [UserController::class, 'login']);
-// Route::post('register', [UserController::class, 'register']);
-// Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
-
-// Route::group(['prefix' => 'books', 'middleware' => 'auth:sanctum'], function () {
-//     Route::get('/', [BookController::class, 'index']);
-//     Route::post('add', [BookController::class, 'add']);
-//     Route::get('edit/{id}', [BookController::class, 'edit']);
-//     Route::post('update/{id}', [BookController::class, 'update']);
-//     Route::delete('delete/{id}', [BookController::class, 'delete']);
-// });
+Route::get('/start/{branch}', [ MenuTypeController::class, 'index'])->name('menu-types.index');
+Route::get('/menu-sections/{id}', [ MenuSectionController::class, 'getById']);
+Route::get('/menu-section/index', [MenuSectionController::class, 'index'])->name('menu-sections.index');
+Route::resource('menu-sections', MenuSectionController::class);
+Route::resource('menu-types', MenuTypeController::class);
+Route::resource('menu-items', MenuItemController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -77,3 +73,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //         component: EditBook
 //     },
 // ];
+
+
+// Route::post('login', [UserController::class, 'login']);
+// Route::post('register', [UserController::class, 'register']);
+// Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
+
+// Route::group(['prefix' => 'books', 'middleware' => 'auth:sanctum'], function () {
+//     Route::get('/', [BookController::class, 'index']);
+//     Route::post('add', [BookController::class, 'add']);
+//     Route::get('edit/{id}', [BookController::class, 'edit']);
+//     Route::post('update/{id}', [BookController::class, 'update']);
+//     Route::delete('delete/{id}', [BookController::class, 'delete']);
+// });

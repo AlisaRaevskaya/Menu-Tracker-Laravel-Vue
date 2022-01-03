@@ -1,7 +1,6 @@
 <template>
-  <div class="laluce laluce_drinks container">
-      {{sections}}
-    <form
+  <div class="container">
+    <!-- <form
       method="POST"
       enctype="multipart/form-data"
       action="/php/runpdf.php"
@@ -12,7 +11,7 @@
       <input type="hidden" name="type" id="type" value="" />
       <input type="hidden" name="slug" id="slug" value="" />
       <input type="hidden" name="l" id="l" value="" />
-    </form>
+    </form> -->
     <div class="container-fluid formContainer">
       <form id="loader">
         <div class="print-box">
@@ -20,9 +19,75 @@
             <div class="print-lines">
               <div class="print-inner">
                 <!-- layout -->
-                <div class="menu-headline">LaLuce Drinks</div>
-                <div class="menu-bg"></div>
-                <div class="row">
+                {{getId}}
+                <div class="menu-headline">{{menu_name}}</div>
+                <div class="menu-bg">{{menu_item.name}}</div>
+                {{sections}}
+                {{getSections}}
+                <!-- layout.end -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="Action print-hide"></div>
+</template>
+
+<script>
+import { mapGetters, mapActions } from "vuex";
+
+export default {
+  props: {
+    menu_item: {},
+    menu_name: ""
+  },
+  data() {
+    return {
+      sections: [],
+      section_items: {},
+    }
+  },
+  methods:{
+      ...mapActions("menu_sections", ["getMenuSections"]),
+      ...mapActions("menu_sections", ["getAllMenuSections"])
+  },
+  computed: {
+      // ...mapGetters("menu_types", ["getTypeId"]),
+    // getSections(){
+    //   return this.getAllMenuSections(this.menu_item.id);
+    // }
+    getSections(){
+      // return this.getMenuSections(this.getId);
+      return this.getAllMenuSections;
+    },
+    validId() {
+      return /^[1-9]+\d*$/.test(this.strId);
+    },
+    getId() {
+      return parseInt(this.menu_item.id);
+    },
+  },
+  created() {
+    this.sections = this.getSections;
+  },
+   mounted() {
+            let id = this.menu_item.id;
+            axios.get('api/menu-sections/' + id)
+                .then(function (resp) {
+                  console.log(resp 
+                  + 'result')
+                    this.sections = resp.data;
+                })
+                .catch(function () {
+                    alert("Could not load your company")
+                });
+        },
+};
+</script>
+
+                <!-- <div class="row">
                   <div class="col-6-sm">
                     <div class="menu_section_left">
                       <div class="menu-section No_Style">
@@ -548,40 +613,4 @@
                       </div>
                     </div>
                   </div>
-                </div>
-
-                <!-- layout.end -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="Action print-hide"></div>
-</template>
-
-<script>
-import { mapGetters, mapActions } from "vuex";
-
-export default {
-  props: {
-    menu_item: {},
-  },
-  data() {
-    return {
-      sections: null,
-      section_items: {},
-    }
-  },
-  computed: {
-      ...mapGetters("menu_sections", ["getAllMenuSections"]),
-    getSections(){
-      return this.getAllMenuSections(this.menu_item.id);
-    }
-  },
-  created() {
-    this.sections = this.getSections;
-  },
-};
-</script>
+                </div> -->

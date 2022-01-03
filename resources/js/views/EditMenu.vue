@@ -12,19 +12,20 @@
 
     <!-- <button class="editBlock__close js-editBlock-close">Close</button> -->
   </div>
-<component v-bind:is="template" :menu_item="menu_item"></component>
+<component v-bind:is="template" :menu_item="menu_item" :menu_name ="getMenuName"></component>
 
 </template>
 
 <script>
 import AppBreadcrumbs from "../components/Breadcrumbs.vue";
 import { mapGetters, mapActions } from "vuex";
-import LaluceDrinks from "../templates/LaluceDrinks.vue";
+
+import azulindaHalf from "../templates/azulindaHalf.vue";
 
 export default {
   components: {
     AppBreadcrumbs,
-    LaluceDrinks
+    azulindaHalf
   },
   data() {
     return {
@@ -33,15 +34,19 @@ export default {
     };
   },
   methods:{
+       ...mapActions("menu_sections", ["getMenuSections"])
   },
   computed: {
     ...mapGetters("menu_types", ["getTemplateName"]),
     ...mapGetters("menu_types", ["getItemByShortName"]),
      ...mapGetters("menus", ["getMenuName"]),
+    ...mapGetters("menu_sections", { sections: "all" })
   },
   created() {
     this.template = this.getTemplateName(this.$route.params.menu_type_name);
     this.menu_item = this.getItemByShortName(this.$route.params.menu_type_name);
+    this.getMenuSections;
   },
+
 };
 </script>

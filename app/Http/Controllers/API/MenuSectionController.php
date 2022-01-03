@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\MenuSection;
+
 class MenuSectionController extends Controller
 {
     /**
@@ -12,11 +14,22 @@ class MenuSectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+
+    public function index(){
+        return MenuSection::all();
     }
 
+    public function getById($id)
+    {
+        $sections = MenuSection::where('menu_type_id', $id)->get();
+        var_dump($sections);
+        return $sections;
+    }
+
+    // comment = Post::find(1)->comments()
+    //                 ->where('title', 'foo')
+    //                 ->first();
+    
     /**
      * Show the form for creating a new resource.
      *

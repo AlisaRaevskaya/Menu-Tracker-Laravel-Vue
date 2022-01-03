@@ -1,9 +1,10 @@
-import menu_sections from "../jsons/tbl_menu_sections.json";
+import axios from 'axios';
 
 export default {
 	namespaced: true,
 	state: {
-		sections: getMenuSections()
+		sections: [],
+		chosen_sections: [],
 	},
 	getters: {
 		all: state => state.sections,
@@ -12,14 +13,32 @@ export default {
 	},
     //computed
 	mutations: {
-		
+		updateMenuSections(state, menu_sections) {
+            state.chosen_sections = menu_sections;
+        },
+		updateAllMenuSections(state, menu_sections) {
+            state.sections = menu_sections;
+        },
 	},
     //methods
 	actions: {
-		
+		getMenuSections({commit}, id) {
+            // fetch branches
+            axios.get(`api/menu-sections/${id}`)
+                .then((response) => {
+					console.log(response.data);
+                    commit('updateMenuSections', response.data);
+                })
+                .catch((error) => console.error(error));
+        },
+		getAllMenuSections({commit}) {
+            // fetch branches
+            axios.get('api/menu-section/index')
+                .then((response) => {
+					console.log(response.data);
+                    commit('updateAllMenuSections', response.data);
+                })
+                .catch((error) => console.error(error));
+        },
 	}
-    //async
-}
-function getMenuSections(){
-return menu_sections
 }

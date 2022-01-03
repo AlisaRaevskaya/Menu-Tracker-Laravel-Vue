@@ -32,14 +32,3 @@ export default {
         }
     }
 }
-
-
-// this.$axios.get('/sanctum/csrf-cookie').then(response => {
-// 	this.$axios.post(`/api/books/update/${this.$route.params.id}`, this.book)
-// 		.then(response => {
-// 			this.$router.push({name: 'books'});
-// 		})
-// 		.catch(function (error) {
-// 			console.error(error);
-// 		});
-// })

@@ -5,7 +5,8 @@
     <div>
       <div class="text-left">
         <label class="control-label" for="loja">Select Meal Period</label>
-              {{setMenus}}
+        {{ setMenus }}
+{{getTypeId}}
         <select
           id="menu_type"
           name="menu_type"
@@ -60,15 +61,17 @@ export default {
   data() {
     return {
       menus: [],
-      selected: {}
+      selected: {},
     };
   },
   methods: {
     ...mapActions("menu_types", ["getAllMenuTypes"]),
+    ...mapActions("menu_types", ["setMenuTypeId"]),
   },
   computed: {
     ...mapGetters("menu_types", { types: "all" }),
     ...mapGetters("menu_types", ["getMenuTypes"]),
+    ...mapGetters("menu_types", ["getTypeId"]),
 
     // ...mapGetters("branches", ["getBranchName"]),
     ...mapGetters("branches", ["getBranchId"]),
@@ -93,12 +96,16 @@ export default {
       return this.getMenuTypes(this.getId);
     },
     setMenus() {
-      this.getMenus ? this.menus = this.getMenus: this.menus = "  ";
+      this.getMenus ? (this.menus = this.getMenus) : (this.menus = "  ");
     },
   },
   created() {
     this.getAllMenuTypes();
     // this.setMenus;
   },
+  updated(){
+ this.setMenuTypeId(this.selected.menu_id);
+  }
+  
 };
 </script>

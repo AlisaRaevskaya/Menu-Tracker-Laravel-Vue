@@ -22640,7 +22640,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: "menu_edit",
         params: {
           branch: this.branch_name,
-          menu_name: this.shortname
+          menu_type_name: this.shortname
         }
       });
     }
@@ -22714,9 +22714,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/templates/LaluceDrinks.vue?vue&type=script&lang=js":
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/templates/azulindaHalf.vue?vue&type=script&lang=js":
 /*!*****************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/templates/LaluceDrinks.vue?vue&type=script&lang=js ***!
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/templates/azulindaHalf.vue?vue&type=script&lang=js ***!
   \*****************************************************************************************************************************************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -22732,21 +22732,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    menu_item: {}
+    menu_item: {},
+    menu_name: ""
   },
   data: function data() {
     return {
-      sections: null,
+      sections: [],
       section_items: {}
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("menu_sections", ["getAllMenuSections"])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("menu_sections", ["getMenuSections"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("menu_sections", ["getAllMenuSections"])),
+  computed: {
+    // ...mapGetters("menu_types", ["getTypeId"]),
+    // getSections(){
+    //   return this.getAllMenuSections(this.menu_item.id);
+    // }
     getSections: function getSections() {
-      return this.getAllMenuSections(this.menu_item.id);
+      // return this.getMenuSections(this.getId);
+      return this.getAllMenuSections;
+    },
+    validId: function validId() {
+      return /^[1-9]+\d*$/.test(this.strId);
+    },
+    getId: function getId() {
+      return parseInt(this.menu_item.id);
     }
-  }),
+  },
   created: function created() {
     this.sections = this.getSections;
+  },
+  mounted: function mounted() {
+    var id = this.menu_item.id;
+    axios.get('api/menu-sections/' + id).then(function (resp) {
+      console.log(resp + 'result');
+      this.sections = resp.data;
+    })["catch"](function () {
+      alert("Could not load your company");
+    });
   }
 });
 
@@ -22820,7 +22842,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Breadcrumbs_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Breadcrumbs.vue */ "./resources/js/components/Breadcrumbs.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var _templates_LaluceDrinks_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../templates/LaluceDrinks.vue */ "./resources/js/templates/LaluceDrinks.vue");
+/* harmony import */ var _templates_azulindaHalf_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../templates/azulindaHalf.vue */ "./resources/js/templates/azulindaHalf.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -22833,7 +22855,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppBreadcrumbs: _components_Breadcrumbs_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    LaluceDrinks: _templates_LaluceDrinks_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    azulindaHalf: _templates_azulindaHalf_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -22841,11 +22863,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       menu_item: ""
     };
   },
-  methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menus", ["getMenuName"])),
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menu_types", ["getTemplateName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menu_types", ["getItemByShortName"])),
+  methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)("menu_sections", ["getMenuSections"])),
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menu_types", ["getTemplateName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menu_types", ["getItemByShortName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menus", ["getMenuName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menu_sections", {
+    sections: "all"
+  })),
   created: function created() {
-    this.template = this.getTemplateName(this.$route.params.menu_name);
-    this.menu_item = this.getItemByShortName(this.$route.params.menu_name);
+    this.template = this.getTemplateName(this.$route.params.menu_type_name);
+    this.menu_item = this.getItemByShortName(this.$route.params.menu_type_name);
+    this.getMenuSections;
   }
 });
 
@@ -22909,10 +22934,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       selected: {}
     };
   },
-  methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)("menu_types", ["getAllMenuTypes"])),
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)("menu_types", ["getAllMenuTypes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)("menu_types", ["setMenuTypeId"])),
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", {
     types: "all"
-  })), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", ["getMenuTypes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("branches", ["getBranchId"])), {}, {
+  })), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", ["getMenuTypes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("menu_types", ["getTypeId"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("branches", ["getBranchId"])), {}, {
     //get menu objects
     getBranchName: function getBranchName() {
       return this.menus.find(function (item) {
@@ -22940,6 +22965,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   created: function created() {
     this.getAllMenuTypes(); // this.setMenus;
+  },
+  updated: function updated() {
+    this.setMenuTypeId(this.selected.menu_id);
   }
 });
 
@@ -23389,9 +23417,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/templates/LaluceDrinks.vue?vue&type=template&id=b7268762":
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/templates/azulindaHalf.vue?vue&type=template&id=fbc2144e":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/templates/LaluceDrinks.vue?vue&type=template&id=b7268762 ***!
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/templates/azulindaHalf.vue?vue&type=template&id=fbc2144e ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -23403,55 +23431,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "laluce laluce_drinks container"
+  "class": "container"
+};
+var _hoisted_2 = {
+  "class": "container-fluid formContainer"
+};
+var _hoisted_3 = {
+  id: "loader"
+};
+var _hoisted_4 = {
+  "class": "print-box"
+};
+var _hoisted_5 = {
+  "class": "print-outter"
+};
+var _hoisted_6 = {
+  "class": "print-lines"
+};
+var _hoisted_7 = {
+  "class": "print-inner"
+};
+var _hoisted_8 = {
+  "class": "menu-headline"
+};
+var _hoisted_9 = {
+  "class": "menu-bg"
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-  method: "POST",
-  enctype: "multipart/form-data",
-  action: "/php/runpdf.php",
-  id: "saveCapture"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "hidden",
-  name: "img_val",
-  id: "img_val",
-  value: ""
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "hidden",
-  name: "id",
-  id: "id",
-  value: ""
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "hidden",
-  name: "type",
-  id: "type",
-  value: ""
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "hidden",
-  name: "slug",
-  id: "slug",
-  value: ""
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "hidden",
-  name: "l",
-  id: "l",
-  value: ""
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container-fluid formContainer\"><form id=\"loader\"><div class=\"print-box\"><div class=\"print-outter\"><div class=\"print-lines\"><div class=\"print-inner\"><!-- layout --><div class=\"menu-headline\">LaLuce Drinks</div><div class=\"menu-bg\"></div><div class=\"row\"><div class=\"col-6-sm\"><div class=\"menu_section_left\"><div class=\"menu-section No_Style\"><div class=\"section-title\"><h3>Beer</h3></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Miller Lite | Bottle</p></div><div class=\"item-desc\"><p>Lorem, ipsum dolor.</p></div><div class=\"item-price\"><p>6</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Blue Moon | Bottle</p></div><div class=\"item-price\"><p>6</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Shiner Bock | Bottle</p></div><div class=\"item-price\"><p>6</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Michelob Ultra | Bottle</p></div><div class=\"item-price\"><p>6</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Corona | Bottle</p></div><div class=\"item-price\"><p>7</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Modelo Especial | Bottle</p></div><div class=\"item-price\"><p>7</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Stella Artois | Bottle</p></div><div class=\"item-price\"><p>7</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Paulaner | Bottle</p></div><div class=\"item-price\"><p>7</p></div></div></div><div class=\"menu-section No_Style\"><div class=\"section-title\"><h3>Red</h3></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Chehalem Three Vineyard Pinot Noir</p></div><div class=\"item-price\"><p>65</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Da Vinci Chianti Blend</p></div><div class=\"item-price\"><p>12 | 40</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Argyle Pinot Noir</p></div><div class=\"item-price\"><p>75</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Sean Minor Four Bears Cabernet Sauvignon</p></div><div class=\"item-price\"><p>14 | 45</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p> Barboursville Vineyards Cabernet Sauvignon (L) </p></div><div class=\"item-price\"><p>55</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Santa Cristina Toscana</p></div><div class=\"item-price\"><p>13 | 44</p></div></div></div><div class=\"menu-section No_Style\"><div class=\"section-title\"><h3>White</h3></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Barboursville Vineyards Pinot Grigio (L)</p></div><div class=\"item-price\"><p>65</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Sean Minor Four Bears Chardonnay</p></div><div class=\"item-price\"><p>13 | 40</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Barboursville Vineyards Pinot Grigio (L)</p></div><div class=\"item-price\"><p>65</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p> Chateau Ste. Michelle &amp; Dr. Loosen Eroica Riesling </p></div><div class=\"item-price\"><p>70</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Baileyana Firepeak Chardonnay</p></div><div class=\"item-price\"><p>65</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Erath Pinot Gris</p></div><div class=\"item-price\"><p>14 | 40</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Brancott Estate Sauvignon Blanc</p></div><div class=\"item-price\"><p>15 | 45</p></div></div></div><div class=\"menu-section No_Style\"><div class=\"section-title\"><h3>Rose</h3></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>A to Z Wineworks Rose Sangiovese</p></div><div class=\"item-price\"><p>55</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p> Castello Banfi Centine Rose Toscana Sangiovese </p></div><div class=\"item-price\"><p>13 | 40</p></div></div></div><div class=\"menu-section No_Style\"><div class=\"section-title\"><h3>Sparkling</h3></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Bellussi Brut Enrico Prosecco Glera</p></div><div class=\"item-price\"><p>35</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Rosatello Sparkling Rose Chardonnay</p></div><div class=\"item-price\"><p>45</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Perrier Jouet Grand Brut Champagne</p></div><div class=\"item-price\"><p>175</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Veuve Clicquot Ponsardin Brut Yellow Label</p></div><div class=\"item-price\"><p>210</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Mumm Napa Brut Prestige Champagne Blend</p></div><div class=\"item-price\"><p>21 | 75</p></div></div></div></div></div><div class=\"col-6-sm\"><div class=\"menu_section_right\"><div class=\"menu-section No_Style\"><div class=\"section-title\"><h3>Beer</h3></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Miller Lite | Bottle</p></div><div class=\"item-price\"><p>6</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Blue Moon | Bottle</p></div><div class=\"item-price\"><p>6</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Shiner Bock | Bottle</p></div><div class=\"item-price\"><p>6</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Michelob Ultra | Bottle</p></div><div class=\"item-price\"><p>6</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Corona | Bottle</p></div><div class=\"item-price\"><p>7</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Modelo Especial | Bottle</p></div><div class=\"item-price\"><p>7</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Stella Artois | Bottle</p></div><div class=\"item-price\"><p>7</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Paulaner | Bottle</p></div><div class=\"item-price\"><p>7</p></div></div></div><div class=\"menu-section No_Style\"><div class=\"section-title\"><h3>Red</h3></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Chehalem Three Vineyard Pinot Noir</p></div><div class=\"item-price\"><p>65</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Da Vinci Chianti Blend</p></div><div class=\"item-price\"><p>12 | 40</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Argyle Pinot Noir</p></div><div class=\"item-price\"><p>75</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Sean Minor Four Bears Cabernet Sauvignon</p></div><div class=\"item-price\"><p>14 | 45</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p> Barboursville Vineyards Cabernet Sauvignon (L) </p></div><div class=\"item-price\"><p>55</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Santa Cristina Toscana</p></div><div class=\"item-price\"><p>13 | 44</p></div></div></div><div class=\"menu-section No_Style\"><div class=\"section-title\"><h3>White</h3></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Barboursville Vineyards Pinot Grigio (L)</p></div><div class=\"item-price\"><p>65</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Sean Minor Four Bears Chardonnay</p></div><div class=\"item-price\"><p>13 | 40</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Barboursville Vineyards Pinot Grigio (L)</p></div><div class=\"item-price\"><p>65</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p> Chateau Ste. Michelle &amp; Dr. Loosen Eroica Riesling </p></div><div class=\"item-price\"><p>70</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Baileyana Firepeak Chardonnay</p></div><div class=\"item-price\"><p>65</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Erath Pinot Gris</p></div><div class=\"item-price\"><p>14 | 40</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Brancott Estate Sauvignon Blanc</p></div><div class=\"item-price\"><p>15 | 45</p></div></div></div><div class=\"menu-section No_Style\"><div class=\"section-title\"><h3>Rose</h3></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>A to Z Wineworks Rose Sangiovese</p></div><div class=\"item-price\"><p>55</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p> Castello Banfi Centine Rose Toscana Sangiovese </p></div><div class=\"item-price\"><p>13 | 40</p></div></div></div><div class=\"menu-section No_Style\"><div class=\"section-title\"><h3>Sparkling</h3></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Bellussi Brut Enrico Prosecco Glera</p></div><div class=\"item-price\"><p>35</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Rosatello Sparkling Rose Chardonnay</p></div><div class=\"item-price\"><p>45</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Perrier Jouet Grand Brut Champagne</p></div><div class=\"item-price\"><p>175</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Veuve Clicquot Ponsardin Brut Yellow Label</p></div><div class=\"item-price\"><p>210</p></div></div><div class=\"item-outter No_Style\"><div class=\"item-title\"><p>Mumm Napa Brut Prestige Champagne Blend</p></div><div class=\"item-price\"><p>21 | 75</p></div></div></div></div></div></div><!-- layout.end --></div></div></div></div></form></div>", 1);
-
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "Action print-hide"
 }, null, -1
 /* HOISTED */
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.sections) + " ", 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form\n      method=\"POST\"\n      enctype=\"multipart/form-data\"\n      action=\"/php/runpdf.php\"\n      id=\"saveCapture\"\n    >\n      <input type=\"hidden\" name=\"img_val\" id=\"img_val\" value=\"\" />\n      <input type=\"hidden\" name=\"id\" id=\"id\" value=\"\" />\n      <input type=\"hidden\" name=\"type\" id=\"type\" value=\"\" />\n      <input type=\"hidden\" name=\"slug\" id=\"slug\" value=\"\" />\n      <input type=\"hidden\" name=\"l\" id=\"l\" value=\"\" />\n    </form> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" layout "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getId) + " ", 1
   /* TEXT */
-  ), _hoisted_2, _hoisted_3]), _hoisted_4], 64
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.menu_name), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.menu_item.name), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.sections) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getSections), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" layout.end ")])])])])])])]), _hoisted_10], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -23623,10 +23645,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.getMenuName), 1
   /* TEXT */
   ), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"editBlock__close js-editBlock-close\">Close</button> ")]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.template), {
-    menu_item: $data.menu_item
+    menu_item: $data.menu_item,
+    menu_name: _ctx.getMenuName
   }, null, 8
   /* PROPS */
-  , ["menu_item"]))], 64
+  , ["menu_item", "menu_name"]))], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -23738,7 +23761,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_template_image = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("template-image");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.setMenus) + " ", 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.setMenus) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.getTypeId) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     id: "menu_type",
@@ -23899,7 +23922,7 @@ var routes = [{
   props: true
 }, {
   name: "menu_edit",
-  path: "/menus/:branch/:menu_name",
+  path: "/menus/:branch/:menu_type_name",
   component: _views_EditMenu__WEBPACK_IMPORTED_MODULE_6__["default"],
   props: true
 }, {
@@ -23979,15 +24002,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   }
-}); // this.$axios.get('/sanctum/csrf-cookie').then(response => {
-// 	this.$axios.post(`/api/books/update/${this.$route.params.id}`, this.book)
-// 		.then(response => {
-// 			this.$router.push({name: 'books'});
-// 		})
-// 		.catch(function (error) {
-// 			console.error(error);
-// 		});
-// })
+});
 
 /***/ }),
 
@@ -24073,12 +24088,14 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_6__.createStore)({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _jsons_tbl_menu_sections_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../jsons/tbl_menu_sections.json */ "./resources/js/jsons/tbl_menu_sections.json");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
-    sections: getMenuSections()
+    sections: [],
+    chosen_sections: []
   },
   getters: {
     all: function all(state) {
@@ -24100,15 +24117,38 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   //computed
-  mutations: {},
+  mutations: {
+    updateMenuSections: function updateMenuSections(state, menu_sections) {
+      state.chosen_sections = menu_sections;
+    },
+    updateAllMenuSections: function updateAllMenuSections(state, menu_sections) {
+      state.sections = menu_sections;
+    }
+  },
   //methods
-  actions: {} //async
-
+  actions: {
+    getMenuSections: function getMenuSections(_ref, id) {
+      var commit = _ref.commit;
+      // fetch branches
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("api/menu-sections/".concat(id)).then(function (response) {
+        console.log(response.data);
+        commit('updateMenuSections', response.data);
+      })["catch"](function (error) {
+        return console.error(error);
+      });
+    },
+    getAllMenuSections: function getAllMenuSections(_ref2) {
+      var commit = _ref2.commit;
+      // fetch branches
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/menu-section/index').then(function (response) {
+        console.log(response.data);
+        commit('updateAllMenuSections', response.data);
+      })["catch"](function (error) {
+        return console.error(error);
+      });
+    }
+  }
 });
-
-function getMenuSections() {
-  return _jsons_tbl_menu_sections_json__WEBPACK_IMPORTED_MODULE_0__;
-}
 
 /***/ }),
 
@@ -24123,7 +24163,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
-    types: []
+    types: [],
+    menu_type_id: ""
   },
   getters: {
     all: function all(state) {
@@ -24150,10 +24191,14 @@ __webpack_require__.r(__webpack_exports__);
         });
       };
     },
+    // getItemName: (state) => shortname => state.types.find(item => item.shortname == shortname).name,
     getTemplateName: function getTemplateName(state, getters) {
       return function (shortname) {
         return getters.getItemByShortName(shortname).template;
       };
+    },
+    getTypeId: function getTypeId(state) {
+      return state.menu_type_id;
     } // indexById: state=>id 
 
   },
@@ -24161,6 +24206,9 @@ __webpack_require__.r(__webpack_exports__);
   mutations: {
     updateMenuTypes: function updateMenuTypes(state, types) {
       state.types = types;
+    },
+    updateChosenMenuTypeId: function updateChosenMenuTypeId(state, id) {
+      state.menu_type_id = id;
     }
   },
   //methods
@@ -24173,6 +24221,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.error(error);
       });
+    },
+    setMenuTypeId: function setMenuTypeId(_ref2, id) {
+      var commit = _ref2.commit;
+      commit('updateChosenMenuTypeId', id);
     }
   } //async
 
@@ -47318,23 +47370,23 @@ if (false) {}
 
 /***/ }),
 
-/***/ "./resources/js/templates/LaluceDrinks.vue":
+/***/ "./resources/js/templates/azulindaHalf.vue":
 /*!*************************************************!*\
-  !*** ./resources/js/templates/LaluceDrinks.vue ***!
+  !*** ./resources/js/templates/azulindaHalf.vue ***!
   \*************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LaluceDrinks_vue_vue_type_template_id_b7268762__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LaluceDrinks.vue?vue&type=template&id=b7268762 */ "./resources/js/templates/LaluceDrinks.vue?vue&type=template&id=b7268762");
-/* harmony import */ var _LaluceDrinks_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LaluceDrinks.vue?vue&type=script&lang=js */ "./resources/js/templates/LaluceDrinks.vue?vue&type=script&lang=js");
+/* harmony import */ var _azulindaHalf_vue_vue_type_template_id_fbc2144e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./azulindaHalf.vue?vue&type=template&id=fbc2144e */ "./resources/js/templates/azulindaHalf.vue?vue&type=template&id=fbc2144e");
+/* harmony import */ var _azulindaHalf_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./azulindaHalf.vue?vue&type=script&lang=js */ "./resources/js/templates/azulindaHalf.vue?vue&type=script&lang=js");
 /* harmony import */ var _Users_macbook_Desktop_Pet_projects_menu_vue_laravel_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_Users_macbook_Desktop_Pet_projects_menu_vue_laravel_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_LaluceDrinks_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_LaluceDrinks_vue_vue_type_template_id_b7268762__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/templates/LaluceDrinks.vue"]])
+const __exports__ = /*#__PURE__*/(0,_Users_macbook_Desktop_Pet_projects_menu_vue_laravel_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_azulindaHalf_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_azulindaHalf_vue_vue_type_template_id_fbc2144e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/templates/azulindaHalf.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -47646,18 +47698,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/templates/LaluceDrinks.vue?vue&type=script&lang=js":
+/***/ "./resources/js/templates/azulindaHalf.vue?vue&type=script&lang=js":
 /*!*************************************************************************!*\
-  !*** ./resources/js/templates/LaluceDrinks.vue?vue&type=script&lang=js ***!
+  !*** ./resources/js/templates/azulindaHalf.vue?vue&type=script&lang=js ***!
   \*************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_LaluceDrinks_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]; }
+/* harmony export */   "default": function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_azulindaHalf_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]; }
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_LaluceDrinks_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./LaluceDrinks.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/templates/LaluceDrinks.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_azulindaHalf_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./azulindaHalf.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/templates/azulindaHalf.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -47902,18 +47954,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/templates/LaluceDrinks.vue?vue&type=template&id=b7268762":
+/***/ "./resources/js/templates/azulindaHalf.vue?vue&type=template&id=fbc2144e":
 /*!*******************************************************************************!*\
-  !*** ./resources/js/templates/LaluceDrinks.vue?vue&type=template&id=b7268762 ***!
+  !*** ./resources/js/templates/azulindaHalf.vue?vue&type=template&id=fbc2144e ***!
   \*******************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_LaluceDrinks_vue_vue_type_template_id_b7268762__WEBPACK_IMPORTED_MODULE_0__.render; }
+/* harmony export */   "render": function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_azulindaHalf_vue_vue_type_template_id_fbc2144e__WEBPACK_IMPORTED_MODULE_0__.render; }
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_LaluceDrinks_vue_vue_type_template_id_b7268762__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./LaluceDrinks.vue?vue&type=template&id=b7268762 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/templates/LaluceDrinks.vue?vue&type=template&id=b7268762");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_azulindaHalf_vue_vue_type_template_id_fbc2144e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./azulindaHalf.vue?vue&type=template&id=fbc2144e */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/templates/azulindaHalf.vue?vue&type=template&id=fbc2144e");
 
 
 /***/ }),
@@ -53263,17 +53315,6 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 
 "use strict";
 module.exports = [];
-
-/***/ }),
-
-/***/ "./resources/js/jsons/tbl_menu_sections.json":
-/*!***************************************************!*\
-  !*** ./resources/js/jsons/tbl_menu_sections.json ***!
-  \***************************************************/
-/***/ (function(module) {
-
-"use strict";
-module.exports = JSON.parse('[{"id":"1","id_menu":"1","id_parent_section":"0","title":"Starters","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"0","date":"2021-10-28 16:17:36","active":"1"},{"id":"2","id_menu":"1","id_parent_section":"0","title":"SALADS","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"1","date":"2021-10-28 16:17:36","active":"1"},{"id":"3","id_menu":"1","id_parent_section":"0","title":"KIDS","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"2","date":"2021-10-28 16:17:36","active":"1"},{"id":"4","id_menu":"1","id_parent_section":"0","title":"SIDES","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"3","date":"2021-10-28 16:17:36","active":"1"},{"id":"5","id_menu":"1","id_parent_section":"0","title":"LAND &amp; SEA","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"4","date":"2021-10-28 16:17:36","active":"1"},{"id":"6","id_menu":"1","id_parent_section":"0","title":"CHOPS &amp; STEAKS","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"4","date":"2021-10-28 16:17:36","active":"1"},{"id":"7","id_menu":"1","id_parent_section":"0","title":"SWEETS","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"6","date":"2021-10-28 16:17:36","active":"1"},{"id":"8","id_menu":"1","id_parent_section":"0","title":"SAUCES","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"7","date":"2021-10-28 16:17:36","active":"1"}]');
 
 /***/ })
 
