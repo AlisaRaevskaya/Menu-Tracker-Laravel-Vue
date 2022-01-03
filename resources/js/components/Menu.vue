@@ -5,7 +5,6 @@
       <div class="site-nav container-fluid">
         <div class="site-nav__logo">
           <router-link :to="{ name: 'home' }">
-            <!-- <img src="{{ asset('storage/images/HiltonLogo.png') }}"> -->
             <img src="storage/images/HiltonLogo.png" alt="hilton">
           </router-link>
         </div>

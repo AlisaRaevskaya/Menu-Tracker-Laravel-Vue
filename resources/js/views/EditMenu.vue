@@ -3,6 +3,7 @@
 
   <div class="editBlock">
     <h4>EDIT MENU</h4>
+    <h3>{{getMenuName}}</h3>
     <p>
       Click to edit the menu title and edit sections, use the icons to edit,
       move items, and delete.<br />
@@ -31,13 +32,16 @@ export default {
       menu_item: ""
     };
   },
+  methods:{
+  },
   computed: {
     ...mapGetters("menu_types", ["getTemplateName"]),
     ...mapGetters("menu_types", ["getItemByShortName"]),
+     ...mapGetters("menus", ["getMenuName"]),
   },
   created() {
-    this.template = this.getTemplateName(this.$route.params.menu_name);
-    this.menu_item = this.getItemByShortName(this.$route.params.menu_name);
+    this.template = this.getTemplateName(this.$route.params.menu_type_name);
+    this.menu_item = this.getItemByShortName(this.$route.params.menu_type_name);
   },
 };
 </script>

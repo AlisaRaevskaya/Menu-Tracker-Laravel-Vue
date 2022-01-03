@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     use HasFactory;
+    
+    protected $fillable = ['name','title','title2','subitle','subtitle2','menu_price','footer_local','footer_notice','footer_notice2','watermark'];
+    
     protected $guarded = [];
 
     public function menu_type(){

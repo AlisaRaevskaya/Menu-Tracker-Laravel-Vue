@@ -3,7 +3,8 @@
     <div class="menuHolder menuTemp" style="">
       <h5>TEMPLATE MENU</h5>
       <h6>{{ menu_name }}</h6>
-      <img :src="addImagePath(image_name)" />
+      <!-- <img :src="addImagePath(image_name)" /> -->
+    <img :src="'storage/images/' + image_name + '.png'" v-bind:alt="image_name">
       <br />
     </div>
   </div>
@@ -14,11 +15,24 @@ export default {
     menu_name: String,
     image_name: String,
   },
+  data() {
+    return {
+         image_url: ""
+    }
+  },
   methods: {
     addImagePath(name) {
-      return "storage/images/MenuThumbnails/" + name + ".png"; 
-     //name// ? require("../../../public/storage/images/MenuThumbnails/" + name + ".png") : "";
+      return "storage/images/MenuThumbnails/" + name + ".png";
+      //name// ? require("../../../public/storage/images/MenuThumbnails/" + name + ".png") : "";
     },
+  },
+  computed: {
+    imageInclude() {
+      this.image_url = "storage/images/" + this.image_name + ".png";
+    },
+    getImgUrl(pic) {
+    //  return require('../storage/images/MenuThumbnails/'+ pic + ".png")
+  }
   },
 };
 </script>

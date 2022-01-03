@@ -22612,25 +22612,47 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     chosen_menu: String,
     shortname: String,
     branch_name: String
   },
-  methods: {
+  data: function data() {
+    return {
+      menu_name: ""
+    };
+  },
+  methods: _objectSpread({
     close: function close() {
       this.$emit("close");
     },
     redirectPage: function redirectPage() {
       this.$router.push({
-        name: 'menu_edit',
+        name: "menu_edit",
         params: {
           branch: this.branch_name,
           menu_name: this.shortname
         }
       });
     }
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("menus", ["updateMenuName"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("menus", ["getMenuName"])),
+  watch: {
+    menu_name: function menu_name() {
+      console.log(this.menu_name);
+    }
+  },
+  updated: function updated() {
+    this.updateMenuName(this.menu_name);
   }
 });
 
@@ -22649,9 +22671,21 @@ __webpack_require__.r(__webpack_exports__);
     menu_name: String,
     image_name: String
   },
+  data: function data() {
+    return {
+      image_url: ""
+    };
+  },
   methods: {
     addImagePath: function addImagePath(name) {
       return "storage/images/MenuThumbnails/" + name + ".png"; //name// ? require("../../../public/storage/images/MenuThumbnails/" + name + ".png") : "";
+    }
+  },
+  computed: {
+    imageInclude: function imageInclude() {
+      this.image_url = "storage/images/" + this.image_name + ".png";
+    },
+    getImgUrl: function getImgUrl(pic) {//  return require('../storage/images/MenuThumbnails/'+ pic + ".png")
     }
   }
 });
@@ -22807,6 +22841,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       menu_item: ""
     };
   },
+  methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menus", ["getMenuName"])),
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menu_types", ["getTemplateName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menu_types", ["getItemByShortName"])),
   created: function created() {
     this.template = this.getTemplateName(this.$route.params.menu_name);
@@ -22871,9 +22906,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       menus: [],
-      selected: {},
-      branch_name: " ",
-      image_name: " "
+      selected: {}
     };
   },
   methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)("menu_types", ["getAllMenuTypes"])),
@@ -22906,7 +22939,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   created: function created() {
-    this.getAllMenuTypes();
+    this.getAllMenuTypes(); // this.setMenus;
   }
 });
 
@@ -23124,7 +23157,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img src=\"{{ asset('storage/images/HiltonLogo.png') }}\"> "), _hoisted_4];
+      return [_hoisted_4];
     }),
     _: 1
     /* STABLE */
@@ -23225,34 +23258,29 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_12 = {
-  "class": "bg-gray p-1 modal-field"
+  "class": "bg-light-gray p-1 modal-field"
+};
+var _hoisted_13 = {
+  "class": "mt-1 row"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "mt-1 row"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "control-label modal-title pr-2",
   "for": "menu_name"
-}, "Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "text",
-  id: "menu_name",
-  name: "menu_name",
-  "class": "form-control p-1 modal-field",
-  value: ""
-})], -1
+}, "Name", -1
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_15 = {
   "class": "modal-footer",
   style: {
     "display": "block"
   }
 };
-var _hoisted_15 = {
+var _hoisted_16 = {
   "class": "bootstrap-dialog-footer"
 };
-var _hoisted_16 = {
+var _hoisted_17 = {
   "class": "bootstrap-dialog-footer-buttons"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -23264,12 +23292,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, "x")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_10, _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.chosen_menu) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.branch_name), 1
   /* TEXT */
-  )]), _hoisted_13])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    id: "menu_name",
+    name: "menu_name",
+    "class": "form-control p-1 modal-field",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.menu_name = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.menu_name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.getMenuName), 1
+  /* TEXT */
+  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-primary",
-    onClick: _cache[1] || (_cache[1] = function () {
+    onClick: _cache[2] || (_cache[2] = function () {
       return $options.redirectPage && $options.redirectPage.apply($options, arguments);
     })
-  }, "Get Started")])])])])]);
+  }, " Get Started ")])])])])]);
 }
 
 /***/ }),
@@ -23299,7 +23339,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_4 = ["src"];
+var _hoisted_4 = ["src", "alt"];
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
@@ -23308,8 +23348,9 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.menu_name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: $options.addImagePath($props.image_name)
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img :src=\"addImagePath(image_name)\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: 'storage/images/' + $props.image_name + '.png',
+    alt: $props.image_name
   }, null, 8
   /* PROPS */
   , _hoisted_4), _hoisted_5])]);
@@ -23564,17 +23605,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_1 = {
   "class": "editBlock"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "EDIT MENU"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Click to edit the menu title and edit sections, use the icons to edit, move items, and delete."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To edit the header or footer, hover over the item for options. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"editBlock__close js-editBlock-close\">Close</button> ")], -1
+};
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "EDIT MENU", -1
+/* HOISTED */
+);
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Click to edit the menu title and edit sections, use the icons to edit, move items, and delete."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To edit the header or footer, hover over the item for options. ")], -1
 /* HOISTED */
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_app_breadcrumbs = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-breadcrumbs");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), _hoisted_1, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.template), {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.getMenuName), 1
+  /* TEXT */
+  ), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"editBlock__close js-editBlock-close\">Close</button> ")]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.template), {
     menu_item: $data.menu_item
   }, null, 8
   /* PROPS */
@@ -23690,9 +23738,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_template_image = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("template-image");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.selected) + " ", 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.setMenus) + " ", 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.setMenus) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     id: "menu_type",
@@ -23979,23 +24025,90 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _menu_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./menu_types */ "./resources/js/store/menu_types.js");
 /* harmony import */ var _files__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./files */ "./resources/js/store/files.js");
 /* harmony import */ var _branches__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./branches */ "./resources/js/store/branches.js");
+/* harmony import */ var _menus__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./menus */ "./resources/js/store/menus.js");
+/* harmony import */ var _menu_items__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./menu_items */ "./resources/js/store/menu_items.js");
+/* harmony import */ var _menu_items__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_menu_items__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _menu_sections__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./menu_sections */ "./resources/js/store/menu_sections.js");
 
 
 
 
-var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
+
+
+
+var store = (0,vuex__WEBPACK_IMPORTED_MODULE_6__.createStore)({
   modules: {
+    branches: _branches__WEBPACK_IMPORTED_MODULE_2__["default"],
     menu_types: _menu_types__WEBPACK_IMPORTED_MODULE_0__["default"],
-    files: _files__WEBPACK_IMPORTED_MODULE_1__["default"],
-    branches: _branches__WEBPACK_IMPORTED_MODULE_2__["default"]
+    menu_items: (_menu_items__WEBPACK_IMPORTED_MODULE_4___default()),
+    menu_sections: _menu_sections__WEBPACK_IMPORTED_MODULE_5__["default"],
+    menus: _menus__WEBPACK_IMPORTED_MODULE_3__["default"],
+    files: _files__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   strict: "development" !== 'production'
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./resources/js/store/menu_items.js":
+/*!******************************************!*\
+  !*** ./resources/js/store/menu_items.js ***!
+  \******************************************/
+/***/ (function() {
+
+
+
+/***/ }),
+
+/***/ "./resources/js/store/menu_sections.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/menu_sections.js ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _jsons_tbl_menu_sections_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../jsons/tbl_menu_sections.json */ "./resources/js/jsons/tbl_menu_sections.json");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    sections: getMenuSections()
+  },
+  getters: {
+    all: function all(state) {
+      return state.sections;
+    },
+    indexById: function indexById(state) {
+      return function (id) {
+        return state.sections.findIndex(function (item) {
+          return item.id == id;
+        });
+      };
+    },
+    getAllMenuSections: function getAllMenuSections(state) {
+      return function (id) {
+        return state.sections.filter(function (item) {
+          return item.id_menu == id;
+        });
+      };
+    }
+  },
+  //computed
+  mutations: {},
+  //methods
+  actions: {} //async
+
+});
+
+function getMenuSections() {
+  return _jsons_tbl_menu_sections_json__WEBPACK_IMPORTED_MODULE_0__;
+}
 
 /***/ }),
 
@@ -24063,6 +24176,70 @@ __webpack_require__.r(__webpack_exports__);
     }
   } //async
 
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/menus.js":
+/*!*************************************!*\
+  !*** ./resources/js/store/menus.js ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    menus: [],
+    menu_name: ""
+  },
+  getters: {
+    all: function all(state) {
+      return Object.values(state.menus);
+    },
+    oneById: function oneById(state) {
+      return function (id) {
+        return state.menus[id];
+      };
+    },
+    getMenuName: function getMenuName(state) {
+      return state.menu_name;
+    }
+  },
+  //computed
+  mutations: {
+    setItems: function setItems(state, menus) {
+      var map = {};
+      menus.forEach(function (pr) {
+        map[pr.id.toString()] = pr;
+      });
+      state.items = map;
+    },
+    updateMenuName: function updateMenuName(state, menu_name) {
+      state.menu_name = menu_name;
+    }
+  },
+  //methods
+  actions: {
+    // setMenuName({commit}) {
+    // axios.post('/menus/save_name', this.menu_name)
+    // .then((res) => {
+    // 	commit('updateMenuName', this.menu_name);
+    // })
+    // .catch((error) => {
+    // 	// error.response.status Check status code
+    // }).finally(() => {
+    // 	//Perform action in always
+    // })}
+    updateMenuName: function updateMenuName(_ref, menu_name) {
+      var commit = _ref.commit;
+      return commit('updateMenuName', menu_name);
+    }
+  }
 });
 
 /***/ }),
@@ -53086,6 +53263,17 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 
 "use strict";
 module.exports = [];
+
+/***/ }),
+
+/***/ "./resources/js/jsons/tbl_menu_sections.json":
+/*!***************************************************!*\
+  !*** ./resources/js/jsons/tbl_menu_sections.json ***!
+  \***************************************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = JSON.parse('[{"id":"1","id_menu":"1","id_parent_section":"0","title":"Starters","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"0","date":"2021-10-28 16:17:36","active":"1"},{"id":"2","id_menu":"1","id_parent_section":"0","title":"SALADS","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"1","date":"2021-10-28 16:17:36","active":"1"},{"id":"3","id_menu":"1","id_parent_section":"0","title":"KIDS","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"2","date":"2021-10-28 16:17:36","active":"1"},{"id":"4","id_menu":"1","id_parent_section":"0","title":"SIDES","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"3","date":"2021-10-28 16:17:36","active":"1"},{"id":"5","id_menu":"1","id_parent_section":"0","title":"LAND &amp; SEA","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"4","date":"2021-10-28 16:17:36","active":"1"},{"id":"6","id_menu":"1","id_parent_section":"0","title":"CHOPS &amp; STEAKS","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"4","date":"2021-10-28 16:17:36","active":"1"},{"id":"7","id_menu":"1","id_parent_section":"0","title":"SWEETS","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"6","date":"2021-10-28 16:17:36","active":"1"},{"id":"8","id_menu":"1","id_parent_section":"0","title":"SAUCES","subtitle":"","section_price":"","style":"No_Style","side":"left","field_order":"title,price,icons,subtitle,modifier,mod_text","ordering":"7","date":"2021-10-28 16:17:36","active":"1"}]');
 
 /***/ })
 

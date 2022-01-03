@@ -3,7 +3,6 @@
   <div class="container">
     <h2 class="mt-1 mb-1 text-uppercase">Choose New Menu</h2>
     <div>
-{{selected}}
       <div class="text-left">
         <label class="control-label" for="loja">Select Meal Period</label>
               {{setMenus}}
@@ -61,9 +60,7 @@ export default {
   data() {
     return {
       menus: [],
-      selected: {},
-      branch_name: " ",
-      image_name: " ",
+      selected: {}
     };
   },
   methods: {
@@ -101,6 +98,7 @@ export default {
   },
   created() {
     this.getAllMenuTypes();
+    // this.setMenus;
   },
 };
 </script>
