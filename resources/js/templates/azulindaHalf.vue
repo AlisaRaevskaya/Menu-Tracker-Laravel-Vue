@@ -23,7 +23,8 @@
                 <div class="menu-headline">{{menu_name}}</div>
                 <div class="menu-bg">{{menu_item.name}}</div>
                 {{sections}}
-                {{getSections}}
+                {{all}}
+                {{allChosen}}
                 <!-- layout.end -->
               </div>
             </div>
@@ -36,7 +37,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapState } from "vuex";
 
 export default {
   props: {
@@ -45,7 +46,6 @@ export default {
   },
   data() {
     return {
-      sections: [],
       section_items: {},
     }
   },
@@ -54,14 +54,16 @@ export default {
       ...mapActions("menu_sections", ["getAllMenuSections"])
   },
   computed: {
-      // ...mapGetters("menu_types", ["getTypeId"]),
-    // getSections(){
+       ...mapGetters("menu_sections", ["all"]),
+       ...mapGetters("menu_sections", ["allChosen"]),
+      //  ...mapState(['sections']),
+    // setSections(){
     //   return this.getAllMenuSections(this.menu_item.id);
     // }
-    getSections(){
-      // return this.getMenuSections(this.getId);
-      return this.getAllMenuSections;
-    },
+    // getSections(){
+    //   // return this.getMenuSections(this.getId);
+    //   return this.getAllMenuSections();
+    // },
     validId() {
       return /^[1-9]+\d*$/.test(this.strId);
     },
@@ -70,20 +72,9 @@ export default {
     },
   },
   created() {
-    this.sections = this.getSections;
-  },
-   mounted() {
-            let id = this.menu_item.id;
-            axios.get('api/menu-sections/' + id)
-                .then(function (resp) {
-                  console.log(resp 
-                  + 'result')
-                    this.sections = resp.data;
-                })
-                .catch(function () {
-                    alert("Could not load your company")
-                });
-        },
+     this.getAllMenuSections(),
+    this.getMenuSections(this.menu_item.id);
+  }
 };
 </script>
 

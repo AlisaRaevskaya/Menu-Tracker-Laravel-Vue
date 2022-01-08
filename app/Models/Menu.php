@@ -23,4 +23,8 @@ class Menu extends Model
     {
         return $this->hasOne(MenuFile::class);
     }
+    public function menu_sections()
+    {
+        return $this->hasMany(MenuSection::class);
+    }
 }

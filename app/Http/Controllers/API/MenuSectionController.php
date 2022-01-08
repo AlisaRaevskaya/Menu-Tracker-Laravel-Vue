@@ -15,14 +15,14 @@ class MenuSectionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(){
-        return MenuSection::all();
+    public function all(){
+        $sections = MenuSection::all();
+        return $sections;
     }
-
+    
     public function getById($id)
     {
-        $sections = MenuSection::where('menu_type_id', $id)->get();
-        var_dump($sections);
+        $sections = MenuSection::where('id', $id)->get();
         return $sections;
     }
 

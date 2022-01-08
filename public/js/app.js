@@ -22737,38 +22737,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      sections: [],
       section_items: {}
     };
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("menu_sections", ["getMenuSections"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("menu_sections", ["getAllMenuSections"])),
-  computed: {
-    // ...mapGetters("menu_types", ["getTypeId"]),
-    // getSections(){
+  computed: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("menu_sections", ["all"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("menu_sections", ["allChosen"])), {}, {
+    //  ...mapState(['sections']),
+    // setSections(){
     //   return this.getAllMenuSections(this.menu_item.id);
     // }
-    getSections: function getSections() {
-      // return this.getMenuSections(this.getId);
-      return this.getAllMenuSections;
-    },
+    // getSections(){
+    //   // return this.getMenuSections(this.getId);
+    //   return this.getAllMenuSections();
+    // },
     validId: function validId() {
       return /^[1-9]+\d*$/.test(this.strId);
     },
     getId: function getId() {
       return parseInt(this.menu_item.id);
     }
-  },
+  }),
   created: function created() {
-    this.sections = this.getSections;
-  },
-  mounted: function mounted() {
-    var id = this.menu_item.id;
-    axios.get('api/menu-sections/' + id).then(function (resp) {
-      console.log(resp + 'result');
-      this.sections = resp.data;
-    })["catch"](function () {
-      alert("Could not load your company");
-    });
+    this.getAllMenuSections(), this.getMenuSections(this.menu_item.id);
   }
 });
 
@@ -23471,7 +23461,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.menu_item.name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.sections) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getSections), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.sections) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.all) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.allChosen), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" layout.end ")])])])])])])]), _hoisted_10], 64
   /* STABLE_FRAGMENT */
@@ -24101,6 +24091,9 @@ __webpack_require__.r(__webpack_exports__);
     all: function all(state) {
       return state.sections;
     },
+    allChosen: function allChosen(state) {
+      return state.chosen_sections;
+    },
     indexById: function indexById(state) {
       return function (id) {
         return state.sections.findIndex(function (item) {
@@ -24108,7 +24101,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       };
     },
-    getAllMenuSections: function getAllMenuSections(state) {
+    getsAllMenuSections: function getsAllMenuSections(state) {
       return function (id) {
         return state.sections.filter(function (item) {
           return item.id_menu == id;
@@ -24130,25 +24123,43 @@ __webpack_require__.r(__webpack_exports__);
     getMenuSections: function getMenuSections(_ref, id) {
       var commit = _ref.commit;
       // fetch branches
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get("api/menu-sections/".concat(id)).then(function (response) {
-        console.log(response.data);
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/menu-sections/' + id, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function (response) {
+        console.log(response);
         commit('updateMenuSections', response.data);
       })["catch"](function (error) {
-        return console.error(error);
+        return console.log('IdSection error');
       });
     },
     getAllMenuSections: function getAllMenuSections(_ref2) {
       var commit = _ref2.commit;
-      // fetch branches
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/menu-section/index').then(function (response) {
+      // fetch branchess
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/menu-sections/all').then(function (response) {
         console.log(response.data);
         commit('updateAllMenuSections', response.data);
       })["catch"](function (error) {
-        return console.error(error);
+        return console.log('getAllSections error');
       });
     }
   }
-});
+}); // async  showData({commit}) {
+//  try {
+//   const res = await axios.get(
+//             `https://api.nytimes.com/svc/movies/v2/reviews/picks.json?api-key=${state.token}`
+//         );
+//   if (res.status == 200) {
+//       commit("getDataFromApi",res.data);
+//    }else {
+//     commit("setError",new Error("Something went wrong."));
+//    }
+// }
+// catch(e){
+//   commit("setError",e);
+// }
+// }
 
 /***/ }),
 

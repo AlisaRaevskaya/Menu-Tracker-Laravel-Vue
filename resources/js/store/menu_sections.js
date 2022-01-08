@@ -8,8 +8,9 @@ export default {
 	},
 	getters: {
 		all: state => state.sections,
+        allChosen:state=>state.chosen_sections,
 		indexById: state => id => state.sections.findIndex(item => item.id == id),
-		getAllMenuSections: (state) => id => state.sections.filter(item => item.id_menu == id)
+		getsAllMenuSections: (state) => id => state.sections.filter(item => item.id_menu == id)
 	},
     //computed
 	mutations: {
@@ -24,21 +25,40 @@ export default {
 	actions: {
 		getMenuSections({commit}, id) {
             // fetch branches
-            axios.get(`api/menu-sections/${id}`)
+            axios.get('/api/menu-sections/' + id ,{ headers: {
+                'Content-Type': 'application/json',
+            }})
                 .then((response) => {
-					console.log(response.data);
+                    console.log(response);
                     commit('updateMenuSections', response.data);
                 })
-                .catch((error) => console.error(error));
+                .catch((error) => console.log('IdSection error'));
         },
 		getAllMenuSections({commit}) {
-            // fetch branches
-            axios.get('api/menu-section/index')
+            // fetch branchess
+            axios.get('/api/menu-sections/all')
                 .then((response) => {
 					console.log(response.data);
                     commit('updateAllMenuSections', response.data);
                 })
-                .catch((error) => console.error(error));
+                .catch((error) => console.log('getAllSections error'));
         },
 	}
 }
+
+// async  showData({commit}) {
+
+//  try {
+//   const res = await axios.get(
+//             `https://api.nytimes.com/svc/movies/v2/reviews/picks.json?api-key=${state.token}`
+//         );
+//   if (res.status == 200) {
+//       commit("getDataFromApi",res.data);
+//    }else {
+//     commit("setError",new Error("Something went wrong."));
+//    }
+// }
+// catch(e){
+//   commit("setError",e);
+// }
+// }

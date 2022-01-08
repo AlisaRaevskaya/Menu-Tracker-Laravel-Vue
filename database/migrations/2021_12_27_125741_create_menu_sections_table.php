@@ -24,6 +24,7 @@ class CreateMenuSectionsTable extends Migration
             $table->string('field_order')->default('title,price,icons,subtitle,modifier,mod_text');
             $table->integer('ordering')->default(0);
             $table->foreignId('menu_type_id')->constrained('menu_types')->onDelete('cascade');
+            $table->foreignId('menu_id')->constrained('menus')->onDelete('cascade');
             $table->timestamps();
         });
     }
