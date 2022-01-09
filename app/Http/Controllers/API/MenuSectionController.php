@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\MenuSection;
+use App\Models\Menu;
 
 class MenuSectionController extends Controller
 {
@@ -15,21 +16,25 @@ class MenuSectionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function all(){
+    public function all()
+    {
         $sections = MenuSection::all();
         return $sections;
     }
-    
+
     public function getById($id)
     {
-        $sections = MenuSection::where('id', $id)->get();
+        $menu = Menu::where('menu_type_id', $id)->firstOrFail();
+        $menu_id = $menu->id;
+        $sections = MenuSection::where('menu_id', $menu_id)->get();
         return $sections;
     }
+    // Menu::findOrFail($id);
 
     // comment = Post::find(1)->comments()
     //                 ->where('title', 'foo')
     //                 ->first();
-    
+
     /**
      * Show the form for creating a new resource.
      *

@@ -7,9 +7,9 @@ use App\Models\Branch;
 
 use Illuminate\Http\Request;
 
-class MenuTypeController extends Controller
-{
-    public function index(){
+class MenuTypeController extends Controller{
+
+    public function getType(){
         $menu_types = MenuType::all();
         return $menu_types;
     }

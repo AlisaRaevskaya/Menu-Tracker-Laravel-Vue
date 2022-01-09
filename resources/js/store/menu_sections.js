@@ -9,6 +9,7 @@ export default {
 	getters: {
 		all: state => state.sections,
         allChosen:state=>state.chosen_sections,
+        allSectionIds: state=>state.chosen_sections.map(item =>item === item.id),
 		indexById: state => id => state.sections.findIndex(item => item.id == id),
 		getsAllMenuSections: (state) => id => state.sections.filter(item => item.id_menu == id)
 	},
@@ -25,9 +26,7 @@ export default {
 	actions: {
 		getMenuSections({commit}, id) {
             // fetch branches
-            axios.get('/api/menu-sections/' + id ,{ headers: {
-                'Content-Type': 'application/json',
-            }})
+            axios.get('/api/menu-sections/' + id )
                 .then((response) => {
                     console.log(response);
                     commit('updateMenuSections', response.data);

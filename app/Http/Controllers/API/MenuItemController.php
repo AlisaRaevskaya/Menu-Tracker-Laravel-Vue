@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\MenuItem;
 
 class MenuItemController extends Controller
 {
@@ -17,6 +18,11 @@ class MenuItemController extends Controller
         //
     }
 
+    public function getById($id)
+    {
+        $items = MenuItem::where('section_id', $id)->get();
+        return $items;
+    }
     /**
      * Show the form for creating a new resource.
      *

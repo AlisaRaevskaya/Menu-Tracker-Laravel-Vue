@@ -26,9 +26,9 @@ export default {
 	},
     //methods
 	actions: {
-		getAllMenuTypes({commit}) {
+		getAllMenuTypes({commit}, branch ) {
             // fetch types
-            axios.get('/api/start/{branch}')
+            axios.get('/api/start/'+ branch)
                 .then((response) => {
                     commit('updateMenuTypes', response.data);
                 })
