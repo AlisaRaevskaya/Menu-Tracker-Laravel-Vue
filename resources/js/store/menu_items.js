@@ -11,34 +11,22 @@ export default {
     },
     //computed
     mutations: {
-        updateMenuItems(state, menu_items) {
+        updateAllMenuItems(state, menu_items) {
             state.menu_items = menu_items;
-        },
+        }
     },
     //methods
     actions: {
-        getMenuItems({ commit }, id) {
-            // fetch branches
+        getAllMenuItems({ commit }) {
+            // fetch items
             axios
-                .get("/api/menu-items/" + id)
+                .get("/api/menu-items/all")
                 .then((response) => {
                     console.log(response);
-                    commit("updateMenuItems", response.data);
+                    commit("updateAllMenuItems", response.data);
                 })
-                .catch((error) => console.log("IdSection error"));
-        },
-        // async getMenuItems({ commit }) {
-        //     try {
-        //         const res = await axios.get("/api/menu-items/" + id);
-        //         if (res.status == 200) {
-        //             commit("updateMenuItems", res.data);
-        //         } else {
-        //             commit("setError", new Error("Something went wrong."));
-        //         }
-        //     } catch (e) {
-        //         commit("setError", e);
-        //     }
-        // },
+                .catch((error) => console.log("all error"));
+        }
     },
 };
 
@@ -58,3 +46,18 @@ export default {
 //   commit("setError",e);
 // }
 // }
+
+
+  
+        // async getMenuItems({ commit }) {
+        //     try {
+        //         const res = await axios.get("/api/menu-items/" + id);
+        //         if (res.status == 200) {
+        //             commit("updateMenuItems", res.data);
+        //         } else {
+        //             commit("setError", new Error("Something went wrong."));
+        //         }
+        //     } catch (e) {
+        //         commit("setError", e);
+        //     }
+        // },

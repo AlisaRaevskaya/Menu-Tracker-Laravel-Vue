@@ -22740,32 +22740,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       section_items: []
     };
   },
-  methods: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("menu_sections", ["getMenuSections"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("menu_sections", ["getAllMenuSections"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("menu_items", ["getMenuItems"])), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("menu_sections", ["getMenuSections"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("menu_sections", ["getAllMenuSections"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("menu_items", ["getAllMenuItems"])), {}, {
     setSectionClass: function setSectionClass(arg) {
       return "menu_section_" + arg;
     },
-    getItems: function getItems(arg) {
-      this.getMenuItems(arg);
+    getMenuItem: function getMenuItem(items, id) {
+      return items.filter(function (item) {
+        return item.id == id;
+      });
+    },
+    setId: function setId(id) {
+      return parseInt(id);
     }
   }),
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("menu_sections", ["all"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("menu_sections", {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("menu_sections", ["all"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("menu_sections", {
     sections: "allChosen"
-  })), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("menu_sections", ["allSectionIds"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("menu_items", {
+  })), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("menu_items", {
     menu_items: "all"
   })), {}, {
-    // setSectionStyleClass(){
-    //   // return "" +
-    //
-    // },
     validId: function validId() {
       return /^[1-9]+\d*$/.test(this.strId);
-    },
-    getId: function getId() {
-      return parseInt(this.menu_item.id);
     }
   }),
   created: function created() {
-    this.getAllMenuSections(), this.getMenuSections(this.menu_item.id);
+    this.getAllMenuSections();
+    this.getMenuSections(this.menu_item.id);
+    this.getAllMenuItems();
   }
 });
 
@@ -23487,18 +23487,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.menu_item.name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" layout.end "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.allSectionIds) + " ", 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.sections, function (section) {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" layout.end "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.sections, function (section) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: section.id
-    }, [section.side === 'left' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getMenuItem(_ctx.menu_items, $options.setId(section.id))) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(section.id) + " ", 1
+    /* TEXT */
+    ), section.side === 'left' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.setSectionClass(section.style))
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(section.title), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getItems(section.id)) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.menu_items), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getMenuItem(_ctx.menu_items, $options.setId(section.id))) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(section.id), 1
     /* TEXT */
-    )])], 2
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" {{menu_items}} ")])], 2
     /* CLASS */
     )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 128
@@ -23509,6 +23509,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [section.side === 'right' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.setSectionClass(section.style))
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(section.title), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getMenuItem(_ctx.menu_items, $options.setId(section.id))), 1
     /* TEXT */
     )])], 2
     /* CLASS */
@@ -24141,34 +24143,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   //computed
   mutations: {
-    updateMenuItems: function updateMenuItems(state, menu_items) {
+    updateAllMenuItems: function updateAllMenuItems(state, menu_items) {
       state.menu_items = menu_items;
     }
   },
   //methods
   actions: {
-    getMenuItems: function getMenuItems(_ref, id) {
+    getAllMenuItems: function getAllMenuItems(_ref) {
       var commit = _ref.commit;
-      // fetch branches
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/menu-items/" + id).then(function (response) {
+      // fetch items
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/menu-items/all").then(function (response) {
         console.log(response);
-        commit("updateMenuItems", response.data);
+        commit("updateAllMenuItems", response.data);
       })["catch"](function (error) {
-        return console.log("IdSection error");
+        return console.log("all error");
       });
-    } // async getMenuItems({ commit }) {
-    //     try {
-    //         const res = await axios.get("/api/menu-items/" + id);
-    //         if (res.status == 200) {
-    //             commit("updateMenuItems", res.data);
-    //         } else {
-    //             commit("setError", new Error("Something went wrong."));
-    //         }
-    //     } catch (e) {
-    //         commit("setError", e);
-    //     }
-    // },
-
+    }
   }
 }); // async  showData({commit}) {
 //  try {
@@ -24185,6 +24175,18 @@ __webpack_require__.r(__webpack_exports__);
 //   commit("setError",e);
 // }
 // }
+// async getMenuItems({ commit }) {
+//     try {
+//         const res = await axios.get("/api/menu-items/" + id);
+//         if (res.status == 200) {
+//             commit("updateMenuItems", res.data);
+//         } else {
+//             commit("setError", new Error("Something went wrong."));
+//         }
+//     } catch (e) {
+//         commit("setError", e);
+//     }
+// },
 
 /***/ }),
 

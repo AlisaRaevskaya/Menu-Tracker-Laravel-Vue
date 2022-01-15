@@ -15,14 +15,15 @@ class MenuItemController extends Controller
      */
     public function index()
     {
-        //
+      
     }
 
-    public function getById($id)
+    public function all()
     {
-        $items = MenuItem::where('section_id', $id)->get();
+        $items = MenuItem::all();
         return $items;
     }
+
     /**
      * Show the form for creating a new resource.
      *

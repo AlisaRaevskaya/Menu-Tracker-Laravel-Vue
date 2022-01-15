@@ -11,15 +11,15 @@
                 <div class="menu-bg">{{ menu_item.name }}</div>
                 <!-- layout.end -->
                 <div class="row">
-                  {{allSectionIds}}
                   <div class="col-6-md col-6-xl col-6-sm">
                     <div v-for="section in sections" :key="section.id">
                       <div v-if="section.side === 'left'">
                         <div :class="setSectionClass(section.style)">
                           <div class="section-title">
                             <h3>{{ section.title }}</h3>
-                            {{getItems(section.id)}}
-                            {{menu_items}}
+                            {{ getMenuItem(menu_items, setId(section.id)) }}
+                            {{section.id}}
+                            <!-- {{menu_items}} -->
                           </div>
                         </div>
                       </div>
@@ -28,9 +28,10 @@
                   <div class="col-6-md col-6-xl col-6-sm">
                     <div v-for="section in sections" :key="section.id">
                       <div v-if="section.side === 'right'">
-                        <div :class="setSectionClass(section.style)">
+                         <div :class="setSectionClass(section.style)">
                           <div class="section-title">
                             <h3>{{ section.title }}</h3>
+                            {{ getMenuItem(menu_items, setId(section.id)) }}
                           </div>
                         </div>
                       </div>
@@ -63,35 +64,30 @@ export default {
   methods: {
     ...mapActions("menu_sections", ["getMenuSections"]),
     ...mapActions("menu_sections", ["getAllMenuSections"]),
-    ...mapActions("menu_items", ["getMenuItems"]),
+    ...mapActions("menu_items", ["getAllMenuItems"]),
 
     setSectionClass(arg) {
       return "menu_section_" + arg;
     },
-    getItems(arg){
-     this.getMenuItems(arg);
-    }
+    getMenuItem(items, id) {
+     return items.filter((item) => item.id == id);
+    },
+    setId(id) {
+      return parseInt(id);
+    },
   },
   computed: {
     ...mapGetters("menu_sections", ["all"]),
     ...mapGetters("menu_sections", { sections: "allChosen" }),
-    ...mapGetters("menu_sections", ["allSectionIds"]),
     ...mapGetters("menu_items", { menu_items: "all" }),
-
-    // setSectionStyleClass(){
-    //   // return "" +
-    //
-    // },
     validId() {
       return /^[1-9]+\d*$/.test(this.strId);
     },
-    getId() {
-      return parseInt(this.menu_item.id);
-    },
   },
   created() {
-    this.getAllMenuSections(),
+    this.getAllMenuSections();
     this.getMenuSections(this.menu_item.id);
+    this.getAllMenuItems();
   },
 };
 </script>
