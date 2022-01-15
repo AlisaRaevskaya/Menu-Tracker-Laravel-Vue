@@ -72,7 +72,7 @@ export default {
       return "menu_section_" + arg;
     },
     getMenuItem(items, id) {
-      return items.filter((item) => item.section_id === id);
+      return items.filter((item) => item.section_id == id);
     },
     setId(id) {
       return parseInt(id);

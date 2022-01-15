@@ -6,7 +6,7 @@
       <div class="text-left">
         <label class="control-label" for="loja">Select Meal Period</label>
         {{ setMenus }}
-{{getTypeId}}
+        {{ getTypeId }}
         <select
           id="menu_type"
           name="menu_type"
@@ -19,7 +19,7 @@
             v-for="menu in menus"
             :key="menu.id"
             :value="{
-              menu_id: menu.id,
+              menu_id: setId(menu.id),
               shortname: menu.shortname,
               name: menu.name,
             }"
@@ -67,6 +67,9 @@ export default {
   methods: {
     ...mapActions("menu_types", ["getAllMenuTypes"]),
     ...mapActions("menu_types", ["setMenuTypeId"]),
+    setId(id) {
+      return parseInt(id);
+    },
   },
   computed: {
     ...mapGetters("menu_types", { types: "all" }),
@@ -83,17 +86,14 @@ export default {
     isSelected() {
       return Object.keys(this.selected).length > 0;
     },
-    strId() {
-      return this.getBranchId(this.$route.params.branch);
+    branchId() {
+      return parseInt(this.getBranchId(this.$route.params.branch));
     },
     validId() {
       return /^[1-9]+\d*$/.test(this.strId);
     },
-    getId() {
-      return parseInt(this.strId);
-    },
     getMenus() {
-      return this.getMenuTypes(this.getId);
+      return this.getMenuTypes(this.branchId);
     },
     setMenus() {
       this.getMenus ? (this.menus = this.getMenus) : (this.menus = "  ");
@@ -103,9 +103,8 @@ export default {
     this.getAllMenuTypes();
     // this.setMenus;
   },
-  updated(){
- this.setMenuTypeId(this.selected.menu_id);
-  }
-  
+  updated() {
+    this.setMenuTypeId(this.selected.menu_id);
+  },
 };
 </script>

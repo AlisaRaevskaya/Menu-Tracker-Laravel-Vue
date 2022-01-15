@@ -7,12 +7,12 @@ export default {
 	},
 	getters: {
 		all: state => state.types,
-		indexById: state => id => state.types.findIndex(item => item.branch_id == id),
-		getMenuTypes: (state) => id => state.types.filter(item => item.branch_id == id),
-		getItemByShortName: (state) => shortname => state.types.find(item => item.shortname == shortname),
-		// getItemName: (state) => shortname => state.types.find(item => item.shortname == shortname).name,
-		getTemplateName: (state, getters) => shortname => getters.getItemByShortName(shortname).template,
-		getTypeId: state=>state.menu_type_id	
+		indexById: state => id => state.types.findIndex(item => item.branch_id === id),
+		getMenuTypes: (state) => id => state.types.filter(item => item.branch_id === id),
+		getTypeByShortName: (state) => shortname => state.types.find(item => item.shortname == shortname),
+		//getTemplateName: (state, getters) => shortname => state.types.find(item => item.shortname == shortname).template,
+		getTemplateName: (state, getters) => shortname => getters.getTypeByShortName(shortname).template,
+		getTypeId: state=>state.menu_type_id
 		// indexById: state=>id 
 	},
     //computed

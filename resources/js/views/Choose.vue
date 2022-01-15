@@ -5,12 +5,7 @@
     <h3 class="mb-2 mt-2 text-uppercase">Choose your Concept</h3>
     <ul class="row justify-space-between mb-2">
       <li v-for="branch in branches" :key="branch.id" class="col-4-xl gap-2">
-        <router-link
-          :to="{
-            name: 'menu',
-            params: { branch: branch.slug },
-          }"
-        >
+        <router-link :to="{ name: 'menu', params: { branch: branch.slug }}">
           <img :src="addImagePath(branch.slug)" v-bind:alt="branch.slug" />
         </router-link>
       </li>
@@ -30,7 +25,6 @@ export default {
   },
   computed: {
     ...mapGetters("branches", { branches: "all" }),
-    ...mapGetters("menu_types", { types: "all" }),
   },
   created() {
     this.getBranches();

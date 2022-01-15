@@ -16,7 +16,7 @@
             <div>
               <span class="control-label modal-title pr-2">Type</span><br />
               <div class="bg-light-gray p-1 modal-field">
-                {{ chosen_menu }}{{ branch_name }}
+                {{ chosen_menu }}
               </div>
             </div>
             <div class="mt-1 row">
@@ -34,6 +34,7 @@
           </div>
         </form>
       </div>
+
       <div class="modal-footer" style="display: block">
         <div class="bootstrap-dialog-footer">
           <div class="bootstrap-dialog-footer-buttons">
@@ -71,7 +72,7 @@ export default {
     redirectPage() {
       this.$router.push({
         name: "menu_edit",
-        params: { branch: this.branch_name, menu_type_name: this.shortname },
+        params: { branch: this.branch_name, menu_shortname: this.shortname },
       });
     },
     ...mapActions("menus", ["updateMenuName"]),

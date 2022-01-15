@@ -14,7 +14,7 @@ const routes = [
   { name: "account", path: "/account", component: Account },
   { name: "mymenus", path: "/mymenus", component: MyMenus },
   { name: "menu", path: "/start/:branch", component: StartMenu, props: true },
-  { name: "menu_edit", path: "/menus/:branch/:menu_type_name", component: EditMenu, props: true },
+  { name: "menu_edit", path: "/menus/:branch/:menu_shortname", component: EditMenu, props: true },
   { path: "/:any(.*)", component: E404 },
 ];
 
