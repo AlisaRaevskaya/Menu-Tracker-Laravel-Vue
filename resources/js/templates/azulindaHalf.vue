@@ -7,33 +7,21 @@
             <div class="print-lines">
               <div class="print-inner">
                 <!-- layout -->
-                <div class="menu-headline">{{ menu_name }}</div>
-                <div class="menu-bg">{{ menu_item.name }}</div>
+                <div class="menu-headline">Menu Name: {{ menu_name }}</div>
+                <div class="menu-bg">Menu Type: {{ menu_item.name }}</div>
                 <!-- layout.end -->
                 <div class="row">
                   <div class="col-6-md col-6-xl col-6-sm">
                     <div v-for="section in sections" :key="section.id">
                       <div v-if="section.side === 'left'">
-                        <div :class="setSectionClass(section.style)">
-                          <div class="section-title">
-                            <h3>{{ section.title }}</h3>
-                            {{ getMenuItem(menu_items, setId(section.id)) }}
-                            {{section.id}}
-                            <!-- {{menu_items}} -->
-                          </div>
-                        </div>
+                        <app-section :menu_items_array = "getMenuItem(menu_items, setId(section.id))" :section="section"></app-section>
                       </div>
                     </div>
                   </div>
                   <div class="col-6-md col-6-xl col-6-sm">
                     <div v-for="section in sections" :key="section.id">
                       <div v-if="section.side === 'right'">
-                         <div :class="setSectionClass(section.style)">
-                          <div class="section-title">
-                            <h3>{{ section.title }}</h3>
-                            {{ getMenuItem(menu_items, setId(section.id)) }}
-                          </div>
-                        </div>
+                        <app-section :menu_items_array = "getMenuItem(menu_items, setId(section.id))" :section="section"></app-section>
                       </div>
                     </div>
                   </div>
@@ -50,15 +38,20 @@
 
 <script>
 import { mapGetters, mapActions, mapState } from "vuex";
+import AppSection from "../components/Section.vue";
 
 export default {
   props: {
     menu_item: {},
     menu_name: "",
   },
+  components:{
+AppSection
+  },
   data() {
     return {
       section_items: [],
+      items: [],
     };
   },
   methods: {
@@ -70,7 +63,7 @@ export default {
       return "menu_section_" + arg;
     },
     getMenuItem(items, id) {
-     return items.filter((item) => item.id == id);
+      return items.filter((item) => item.section_id == id);
     },
     setId(id) {
       return parseInt(id);
@@ -88,6 +81,7 @@ export default {
     this.getAllMenuSections();
     this.getMenuSections(this.menu_item.id);
     this.getAllMenuItems();
+    this.items = this.menu_items;
   },
 };
 </script>
