@@ -46,7 +46,7 @@
       <ul class="footer-icons">
         <li>
           <span class="bullet veg"></span>
-          <font-awesome-icon icon="phone" />VEGETARIAN
+          <font-awesome-icon icon="apple-alt" />VEGETARIAN
         </li>
         <li><span class="bullet gf"></span> Gluten-free</li>
       </ul>

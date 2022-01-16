@@ -25,7 +25,6 @@ import AppBreadcrumbs from "../components/Breadcrumbs.vue";
 import AppActionFooter from "../components/ActionFooter.vue";
 
 import { mapGetters, mapActions } from "vuex";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 import azulindaHalf from "../templates/azulindaHalf.vue";
 import azulindaFull from "../templates/azulindaFull.vue";

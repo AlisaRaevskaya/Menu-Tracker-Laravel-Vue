@@ -19,7 +19,7 @@
 export default {
   props: {
     menu_item: {},
-    field_order: [],
+    field_order: String,
   },
 };
 </script>
