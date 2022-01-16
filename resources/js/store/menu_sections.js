@@ -4,43 +4,30 @@ export default {
 	namespaced: true,
 	state: {
 		sections: [],
-		chosen_sections: [],
+        menu: {}
 	},
 	getters: {
 		all: state => state.sections,
-        allChosen:state=>state.chosen_sections,
-        allSectionIds: state=>state.chosen_sections.map(item =>item === item.id),
 		indexById: state => id => state.sections.findIndex(item => item.id == id),
-		getsAllMenuSections: (state) => id => state.sections.filter(item => item.id_menu == id)
+        getMenu: state=>state.menu
 	},
     //computed
 	mutations: {
-		updateMenuSections(state, menu_sections) {
-            state.chosen_sections = menu_sections;
-        },
-		updateAllMenuSections(state, menu_sections) {
-            state.sections = menu_sections;
+		updateMenuSections(state, data) {
+            state.sections = data.sections;
+            state.menu = data.menu;
         },
 	},
     //methods
 	actions: {
 		getMenuSections({commit}, id) {
-            // fetch branches
+            // fetch sections
             axios.get('/api/menu-sections/' + id )
                 .then((response) => {
                     console.log(response);
                     commit('updateMenuSections', response.data);
                 })
-                .catch((error) => console.log('IdSection error'));
-        },
-		getAllMenuSections({commit}) {
-            // fetch branchess
-            axios.get('/api/menu-sections/all')
-                .then((response) => {
-					console.log(response.data);
-                    commit('updateAllMenuSections', response.data);
-                })
-                .catch((error) => console.log('getAllSections error'));
+                .catch((error) => console.log('Section error'));
         },
 	}
 }
@@ -60,4 +47,4 @@ export default {
 // catch(e){
 //   commit("setError",e);
 // }
-// }
+// } run dev

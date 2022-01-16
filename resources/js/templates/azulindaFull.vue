@@ -7,17 +7,17 @@
             <div class="print-lines">
               <div class="print-inner">
                 <!-- layout -->
-                <div class="menu-headline">Menu Name: {{ menu_name }}</div>
+                <div class="menu-headline">Menu Title: {{ menu_name }}</div>
+                <div class="menu-subtitle">Menu Title 2: {{ menu.title2 }}</div>
                 <div class="menu-bg">Menu Type: {{ menu_type.name }}</div>
                 <!-- layout.end -->
+
                 <div class="row">
                   <div class="col-6-md col-6-xl col-6-sm">
                     <div v-for="section in sections" :key="section.id">
                       <div v-if="section.side === 'left'">
                         <app-section
-                          :menu_items_array="
-                            getMenuItem(menu_items, setId(section.id))
-                          "
+                          :menu_items_array="getMenuItem(menu_items, setId(section.id))"
                           :section="section"
                         ></app-section>
                       </div>
@@ -26,10 +26,7 @@
                   <div class="col-6-md col-6-xl col-6-sm">
                     <div v-for="section in sections" :key="section.id">
                       <div v-if="section.side === 'right'">
-                        <app-section
-                          :menu_items_array="
-                            getMenuItem(menu_items, setId(section.id))
-                          "
+                        <app-section :menu_items_array="getMenuItem(menu_items, setId(section.id))"
                           :section="section"
                         ></app-section>
                       </div>
@@ -43,12 +40,49 @@
       </form>
     </div>
   </div>
-  <div class="Action print-hide"></div>
+
+  <div class="col-sm-6 col-sm-push-6">
+    <div class="footer-inner">
+      <ul class="footer-icons">
+        <li>
+          <span class="bullet veg"></span>
+          <font-awesome-icon icon="phone" />VEGETARIAN
+        </li>
+        <li><span class="bullet gf"></span> Gluten-free</li>
+      </ul>
+      <div class="menu_notice_wrap outter-edit rel style1">
+        <div class="menu_footer_notice">
+          {{ menu.footer_notice }}
+        </div>
+
+        <span class="inner-edit"
+          ><span
+            class="flaticon-write"
+            onclick="edit_menu2('12', 'footer_notice', 'textarea');"
+          ></span
+        ></span>
+      </div>
+
+      <div class="menu_notice_wrap2 outter-edit rel style1">
+        <div class="menu_footer_notice2">
+          {{ menu.footer_notice2 }}
+          <span class="inner-edit"
+            ><span
+              class="flaticon-write"
+              onclick="edit_menu2('12', 'footer_notice2', 'textarea');"
+            ></span
+          ></span>
+        </div>
+
+        <div class="menu_watermark"> Menu-Watermark: {{ menu.watermark }}</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import { mapGetters, mapActions, mapState } from "vuex";
-import AppSection from "../components/Section.vue";
+import AppSection from "../components/EditMenucomponents/Section.vue";
 
 export default {
   props: {
@@ -65,7 +99,6 @@ export default {
   },
   methods: {
     ...mapActions("menu_sections", ["getMenuSections"]),
-    ...mapActions("menu_sections", ["getAllMenuSections"]),
     ...mapActions("menu_items", ["getAllMenuItems"]),
 
     setSectionClass(arg) {
@@ -79,15 +112,15 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("menu_sections", ["all"]),
-    ...mapGetters("menu_sections", { sections: "allChosen" }),
+    ...mapGetters("menu_sections", { sections: "all" }),
     ...mapGetters("menu_items", { menu_items: "all" }),
+    ...mapGetters("menu_sections", { menu: "getMenu" }),
+
     validId() {
       return /^[1-9]+\d*$/.test(this.strId);
     },
   },
   created() {
-    this.getAllMenuSections();
     this.getMenuSections(this.menu_type.id);
     this.getAllMenuItems();
   },

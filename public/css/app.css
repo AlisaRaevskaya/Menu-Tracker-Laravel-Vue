@@ -3679,6 +3679,22 @@ select {
   padding: 0 40px;
 }
 
+.Action {
+  position: fixed;
+  background-color: #333;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 63px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: flex-end;
+  padding-left: 30px;
+  padding-right: 30px;
+  z-index: 9999;
+}
+
 .control-label {
   display: block;
 }

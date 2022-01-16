@@ -27,7 +27,10 @@ class MenuSectionController extends Controller
         $menu = Menu::where('menu_type_id', $id)->firstOrFail();
         $menu_id = $menu->id;
         $sections = MenuSection::where('menu_id', $menu_id)->get();
-        return $sections;
+        return response()->json([
+            'sections' => $sections,
+            'menu' => $menu,
+        ]);
     }
     // Menu::findOrFail($id);
 
@@ -35,6 +38,11 @@ class MenuSectionController extends Controller
     //                 ->where('title', 'foo')
     //                 ->first();
 
+
+    // return response()->json([
+    //     'name' => 'Abigail',
+    //     'state' => 'CA',
+    // ]);
     /**
      * Show the form for creating a new resource.
      *
