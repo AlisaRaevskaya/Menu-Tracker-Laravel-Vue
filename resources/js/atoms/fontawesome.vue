@@ -12,6 +12,6 @@ library.add(faUserSecret);
 library.add(faFlag);
 library.add(faAppleAlt);
 
-export default FontAwesomeIcon;
+
 
 </script>

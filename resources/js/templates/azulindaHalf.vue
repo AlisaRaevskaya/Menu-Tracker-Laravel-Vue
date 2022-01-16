@@ -48,7 +48,7 @@
           <span class="bullet veg"></span>
           <font-awesome-icon icon="apple-alt" />VEGETARIAN
         </li>
-        <li><span class="bullet gf"></span> Gluten-free</li>
+        <li><span class="bullet gf"></span>  <font-awesome-icon icon="bread-slice"/>Gluten-free</li>
       </ul>
       <div class="menu_notice_wrap outter-edit rel style1">
         <div class="menu_footer_notice">
@@ -84,6 +84,14 @@
 import { mapGetters, mapActions, mapState } from "vuex";
 import AppSection from "../components/EditMenucomponents/Section.vue";
 
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faAppleAlt } from "@fortawesome/free-solid-svg-icons";
+import { faBreadSlice } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faAppleAlt);
+library.add(faBreadSlice);
+
 export default {
   props: {
     menu_type: {},
@@ -91,6 +99,7 @@ export default {
   },
   components: {
     AppSection,
+     FontAwesomeIcon
   },
   data() {
     return {
