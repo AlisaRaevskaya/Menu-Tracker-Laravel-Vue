@@ -126,5 +126,24 @@
 </template>
 
 <script>
-export default {};
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faLongArrowAltDown } from "@fortawesome/free-solid-svg-icons";
+import { faCopy} from "@fortawesome/free-solid-svg-icons";
+
+library.add(faAppleAlt);
+library.add(faBreadSlice);
+library.add(faEdit);
+library.add(faTrashAlt);
+library.add(faLongArrowAltDown);
+library.add(faCopy);
+
+export default {
+components:{
+    FontAwesomeIcon
+}
+};
 </script>

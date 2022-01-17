@@ -86,15 +86,22 @@ import AppSection from "../components/EditMenucomponents/Section.vue";
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { faAppleAlt } from "@fortawesome/free-solid-svg-icons";
 import { faBreadSlice } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faLongArrowAltDown } from "@fortawesome/free-solid-svg-icons";
+import { faCopy} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faPhone);
-library.add(faUserSecret);
 library.add(faAppleAlt);
 library.add(faBreadSlice);
+library.add(faEdit);
+library.add(faTrashAlt);
+library.add(faLongArrowAltDown);
+library.add(faCopy);
+library.add(faAppleAlt);
+library.add(faBreadSlice);
+
 
 export default {
   props: {

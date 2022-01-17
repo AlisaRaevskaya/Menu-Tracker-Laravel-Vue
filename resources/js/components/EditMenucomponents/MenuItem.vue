@@ -1,4 +1,23 @@
 <template>
+  <div class="row justify-flex-end" v-show="!isShown">
+    <span class="flaticon-write" onclick="section_edit('103');">
+      <font-awesome-icon icon="edit"
+    /></span>
+    <span class="flaticon-paper" onclick="section_clone('103', 'left', '0');">
+      <font-awesome-icon icon="copy"
+    /></span>
+    <span
+      class="flaticon-download"
+      onclick="section_movedown('103', 'left', '0');"
+    >
+      <font-awesome-icon icon="long-arrow-alt-down"
+    /></span>
+    <span
+      class="flaticon-rubbish-bin"
+      onclick="section_remove('103', 'left', '0');"
+      ><font-awesome-icon icon="trash-alt"
+    /></span>
+  </div>
   <div class="item-title">
     <p>{{ menu_item.title }}</p>
   </div>
@@ -15,11 +34,32 @@
     <p>{{ menu_item.mod_text }}</p>
   </div>
 </template>
+
 <script>
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faLongArrowAltDown } from "@fortawesome/free-solid-svg-icons";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faEdit);
+library.add(faTrashAlt);
+library.add(faLongArrowAltDown);
+library.add(faCopy);
+
 export default {
+  components: {
+    FontAwesomeIcon,
+  },
   props: {
     menu_item: {},
     field_order: String,
   },
+  data(){
+    return{
+      isShown : false
+    }
+  }
 };
 </script>

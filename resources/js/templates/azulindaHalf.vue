@@ -50,6 +50,7 @@
         </li>
         <li><span class="bullet gf"></span>  <font-awesome-icon icon="bread-slice"/>Gluten-free</li>
       </ul>
+
       <div class="menu_notice_wrap outter-edit rel style1">
         <div class="menu_footer_notice">
           {{ menu.footer_notice }}
@@ -63,12 +64,11 @@
         ></span>
       </div>
 
-      <div class="menu_notice_wrap2 outter-edit rel style1">
+      <div class="menu_notice_wrap2 outter-edit rel style1 ">
         <div class="menu_footer_notice2">
           {{ menu.footer_notice2 }}
           <span class="inner-edit"
-            ><span
-              class="flaticon-write"
+            ><span class="flaticon-write"
               onclick="edit_menu2('12', 'footer_notice2', 'textarea');"
             ></span
           ></span>
@@ -76,6 +76,7 @@
 
         <div class="menu_watermark"> Menu-Watermark: {{ menu.watermark }}</div>
       </div>
+   
     </div>
   </div>
 </template>
@@ -88,7 +89,17 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAppleAlt } from "@fortawesome/free-solid-svg-icons";
 import { faBreadSlice } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faLongArrowAltDown } from "@fortawesome/free-solid-svg-icons";
+import { faCopy} from "@fortawesome/free-solid-svg-icons";
 
+library.add(faAppleAlt);
+library.add(faBreadSlice);
+library.add(faEdit);
+library.add(faTrashAlt);
+library.add(faLongArrowAltDown);
+library.add(faCopy);
 library.add(faAppleAlt);
 library.add(faBreadSlice);
 
