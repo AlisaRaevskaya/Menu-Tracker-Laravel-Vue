@@ -1,49 +1,39 @@
 <template>
-    <div :class="setSectionClass(section.style)">
-        <div
-            class="row justify-flex-end"
-            v-show="!isShown"
-        >
-            <span class="flaticon-write" onclick="section_edit('103');">
-                <font-awesome-icon icon="edit"
-            /></span>
-            <span
-                class="flaticon-paper"
-                onclick="section_clone('103', 'left', '0');"
-            >
-                <font-awesome-icon icon="copy"
-            /></span>
-            <span
-                class="flaticon-download"
-                onclick="section_movedown('103', 'left', '0');"
-            >
-                <font-awesome-icon icon="long-arrow-alt-down"
-            /></span>
-            <span
-                class="flaticon-rubbish-bin"
-                onclick="section_remove('103', 'left', '0');"
-                ><font-awesome-icon icon="trash-alt"
-            /></span>
-        </div>
-        <div class="section-title">
-            <h3>{{ section.title }}</h3>
-            <h4>{{ section.subtitle }}</h4>
-            <!-- {{section.field_order}} -->
-            <div
-                v-for="menu_item in menu_items_array"
-                :key="menu_item.id"
-                :class="setItemClass(menu_item.style)"
-            >
-                <app-menu-item
-                    :menu_item="menu_item"
-                    :field_order="section.field_order"
-                ></app-menu-item>
-            </div>
-        </div>
+  <div :class="setSectionClass(section.style)">
+    <div class="row justify-flex-end">
+      <span class="flaticon-write">
+        <font-awesome-icon icon="edit" @click="showModal(section.id)"
+      /></span>
+      <span class="flaticon-paper" @click="showModal">
+        <font-awesome-icon icon="copy"
+      /></span>
+      <span class="flaticon-download" @click="showModal">
+        <font-awesome-icon icon="long-arrow-alt-down"
+      /></span>
+      <span class="flaticon-rubbish-bin" @click="showModal"
+        ><font-awesome-icon icon="trash-alt"
+      /></span>
     </div>
+    <div class="section-title">
+      <h3>{{ section.title }}</h3>
+      <h4>{{ section.subtitle }}</h4>
+      <!-- {{section.field_order}} -->
+      <div
+        v-for="menu_item in menu_items_array"
+        :key="menu_item.id"
+        :class="setItemClass(menu_item.style)"
+      >
+        <app-menu-item
+          :menu_item="menu_item"
+          :field_order="section.field_order"
+        ></app-menu-item>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import AppMenuItem from "../EditMenucomponents/MenuItem.vue";
+import { mapGetters, mapActions } from "vuex";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -58,31 +48,29 @@ library.add(faLongArrowAltDown);
 library.add(faCopy);
 
 export default {
-    components: {
-        AppMenuItem,
-        FontAwesomeIcon,
+  components: {
+    AppMenuItem,
+    FontAwesomeIcon,
+  },
+  props: {
+    menu_items_array: Array,
+    section: {},
+  },
+  methods: {
+    ...mapActions("modal", ["setSectionId"]),
+    ...mapActions("modal", ["setModalStatus"]),
+
+    setItemClass(arg) {
+      return "item-outter_" + arg;
     },
-    props: {
-        menu_items_array: Array,
-        section: {},
+    setSectionClass(arg) {
+      return "menu_section_" + arg;
     },
-    data() {
-        return {
-            isShown: false,
-        };
+    showModal(id) {
+      this.setSectionId(id);
+      this.setModalStatus(1);
     },
-    methods: {
-        setItemClass(arg) {
-            return "item-outter_" + arg;
-        },
-        setSectionClass(arg) {
-            return "menu_section_" + arg;
-        },
-        computed: {
-            setShownAsTrue() {
-                this.isShown = !this.isShown;
-            },
-        },
-    },
+  },
+  computed: {},
 };
 </script>

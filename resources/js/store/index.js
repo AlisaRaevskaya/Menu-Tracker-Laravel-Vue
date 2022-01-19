@@ -6,6 +6,7 @@ import branches from './branches';
 import menus from './menus';
 import menu_items from './menu_items';
 import menu_sections from './menu_sections';
+import modal from './modal';
 
 const store = createStore({
 	modules: {
@@ -15,6 +16,7 @@ const store = createStore({
 		menu_sections,
 		menus,
 		files,
+		modal
 	},
 	strict: process.env.NODE_ENV !== 'production'
 });

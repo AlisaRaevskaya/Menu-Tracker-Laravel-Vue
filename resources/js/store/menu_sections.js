@@ -1,36 +1,38 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-	namespaced: true,
-	state: {
-		sections: [],
-        menu: {}
-	},
-	getters: {
-		all: state => state.sections,
-		indexById: state => id => state.sections.findIndex(item => item.id == id),
-        getMenu: state=>state.menu
-	},
+    namespaced: true,
+    state: {
+        sections: [],
+        menu: {},
+    },
+    getters: {
+        all: (state) => state.sections,
+        indexById: (state) => (id) =>
+            state.sections.findIndex((item) => item.id == id),
+        getMenu: (state) => state.menu,
+    },
     //computed
-	mutations: {
-		updateMenuSections(state, data) {
+    mutations: {
+        updateMenuSections(state, data) {
             state.sections = data.sections;
             state.menu = data.menu;
-        },
-	},
+        }
+    },
     //methods
-	actions: {
-		getMenuSections({commit}, id) {
+    actions: {
+        getMenuSections({ commit }, id) {
             // fetch sections
-            axios.get('/api/menu-sections/' + id )
+            axios
+                .get("/api/menu-sections/" + id)
                 .then((response) => {
                     console.log(response);
-                    commit('updateMenuSections', response.data);
+                    commit("updateMenuSections", response.data);
                 })
-                .catch((error) => console.log('Section error'));
+                .catch((error) => console.log("Section error"));
         },
-	}
-}
+    },
+};
 
 // async  showData({commit}) {
 

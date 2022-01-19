@@ -1,20 +1,18 @@
 <template>
-  <div class="row justify-flex-end" v-show="!isShown">
-    <span class="flaticon-write" onclick="section_edit('103');">
+  <div class="row justify-flex-end">
+    <span class="flaticon-write" >
       <font-awesome-icon icon="edit"
     /></span>
-    <span class="flaticon-paper" onclick="section_clone('103', 'left', '0');">
+    <span class="flaticon-paper">
       <font-awesome-icon icon="copy"
     /></span>
     <span
       class="flaticon-download"
-      onclick="section_movedown('103', 'left', '0');"
     >
       <font-awesome-icon icon="long-arrow-alt-down"
     /></span>
     <span
       class="flaticon-rubbish-bin"
-      onclick="section_remove('103', 'left', '0');"
       ><font-awesome-icon icon="trash-alt"
     /></span>
   </div>
