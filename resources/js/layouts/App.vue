@@ -8,7 +8,9 @@
       v-show="ModalStatus"
       @close="closeModal"
       :section_id="section_id"
-    ></app-modal>
+    >
+      <template v-slot:body> This is a new modal body. </template>
+    </app-modal>
     <app-footer></app-footer>
   </div>
 </template>
@@ -16,7 +18,7 @@
 <script>
 import AppHeader from "../components/Header.vue";
 import AppFooter from "../components/Footer.vue";
-import AppModal from "../components/Modals/ModalSection.vue";
+import AppModal from "../components/Modals/Modal.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {

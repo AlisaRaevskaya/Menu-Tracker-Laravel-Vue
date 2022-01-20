@@ -18,13 +18,10 @@
         </div>
         <div class="modal-footer" style="display: block">
           <div class="dialog-footer">
-            <slot name="footer">
-              This is the default footer!
-              <div class="dialog-footer-buttons">
-                <button class="btn btn-default" @click="cancel">Cancel</button>
-                <button class="btn btn-primary" @click="ok">Ok</button>
-              </div>
-            </slot>
+            <slot name="footer"> <div class="dialog-footer-buttons">
+              <button class="btn btn-default" @click="cancel">Cancel</button>
+              <button class="btn btn-primary" @click="ok">Ok</button>
+            </div></slot>
           </div>
         </div>
       </div>
@@ -67,13 +64,13 @@ export default {
 </script>
 
 <style>
-  .modal-fade-enter,
-  .modal-fade-leave-to {
-    opacity: 0;
-  }
+.modal-fade-enter,
+.modal-fade-leave-to {
+  opacity: 0;
+}
 
-  .modal-fade-enter-active,
-  .modal-fade-leave-active {
-    transition: opacity .5s ease;
-  }
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.5s ease;
+}
 </style>
