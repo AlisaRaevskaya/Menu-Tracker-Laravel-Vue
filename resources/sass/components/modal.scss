@@ -56,8 +56,16 @@
     background: transparent;
   }
 
-  .choose-table{
+  .choose-modal{
     .modal-backdrop {
       margin:0 auto;
+    }
+    .modal{
+      width: 600px;
+    }
+  }
+  .edit-modal{
+    .modal{
+      width: 600px;
     }
   }

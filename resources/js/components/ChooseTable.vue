@@ -1,38 +1,39 @@
 <template>
-  <app-modal v-show="isShown" @close="closeModal">
-
-    <template v-slot:body>
-      <form name="design_add">
-        <div class="modalPadding">
-          <h4>Confirm Meal Period And Name</h4>
-          <div>
-            <span class="control-label modal-title pr-2">Type</span><br />
-            <div class="bg-light-gray p-1 modal-field">
-              {{ chosen_menu }}
+  <div class="choose-modal">
+    <app-modal v-show="isShown" @close="closeModal">
+      <template v-slot:body>
+        <form name="design_add">
+          <div class="modalPadding">
+            <h4>Confirm Meal Period And Name</h4>
+            <div>
+              <span class="control-label modal-title pr-2">Type</span><br />
+              <div class="bg-light-gray p-1 modal-field">
+                {{ chosen_menu }}
+              </div>
             </div>
+            <div class="mt-1 row">
+              <label class="control-label modal-title pr-2" for="{{menu_name}}"
+                >Name</label
+              ><input
+                type="text"
+                id="menu_name"
+                name="menu_name"
+                class="form-control p-1 modal-field"
+                v-model="menu_name"
+              />
+            </div>
+            {{ getMenuName }}
           </div>
-          <div class="mt-1 row">
-            <label class="control-label modal-title pr-2" for="{{menu_name}}"
-              >Name</label
-            ><input
-              type="text"
-              id="menu_name"
-              name="menu_name"
-              class="form-control p-1 modal-field"
-              v-model="menu_name"
-            />
-          </div>
-          {{ getMenuName }}
-        </div>
-      </form>
-    </template>
+        </form>
+      </template>
 
-    <template v-slot:footer>
-      <button class="btn btn-primary" @click="redirectPage">
-        Get Started
-      </button></template>
-  </app-modal>
-
+      <template v-slot:footer>
+        <button class="btn btn-primary" @click="redirectPage">
+          Get Started
+        </button></template
+      >
+    </app-modal>
+  </div>
   <div class="col-12-lg bordered mt-2" v-show="!isShown">
     <h5 class="pt-1">CHOOSE HOW TO BUILD YOUR MENU</h5>
     <div class="row pt-1">
@@ -104,11 +105,11 @@ export default {
   computed: {
     ...mapGetters("menus", ["getMenuName"]),
 
-      showModal() {
+    showModal() {
       this.isShown = true;
     },
-     closeModal() {
-     this.isShown = false;
+    closeModal() {
+      this.isShown = false;
     },
   },
   updated() {

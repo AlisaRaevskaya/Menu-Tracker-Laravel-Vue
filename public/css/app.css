@@ -3820,8 +3820,15 @@ select {
   background: transparent;
 }
 
-.choose-table .modal-backdrop {
+.choose-modal .modal-backdrop {
   margin: 0 auto;
+}
+.choose-modal .modal {
+  width: 600px;
+}
+
+.edit-modal .modal {
+  width: 600px;
 }
 
 .bordered {

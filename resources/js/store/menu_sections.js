@@ -5,19 +5,24 @@ export default {
     state: {
         sections: [],
         menu: {},
+        section_id: Number,
     },
     getters: {
         all: (state) => state.sections,
-        indexById: (state) => (id) =>
-            state.sections.findIndex((item) => item.id == id),
+        indexById: (state) => (id) => state.sections.findIndex((item) => item.id == id),
+        sectionById:(state)=>(id)=>state.sections.filter((item) => item.id == id),
         getMenu: (state) => state.menu,
+        sectionId: (state) => state.section_id,
     },
     //computed
     mutations: {
         updateMenuSections(state, data) {
             state.sections = data.sections;
             state.menu = data.menu;
-        }
+        },
+        setSectionId(state, id) {
+            state.section_id = id;
+        },
     },
     //methods
     actions: {
@@ -30,6 +35,9 @@ export default {
                     commit("updateMenuSections", response.data);
                 })
                 .catch((error) => console.log("Section error"));
+        },
+        setSectionId({ commit }, id) {
+            commit("setSectionId", id);
         },
     },
 };

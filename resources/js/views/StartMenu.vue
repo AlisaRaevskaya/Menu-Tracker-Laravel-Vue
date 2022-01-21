@@ -32,7 +32,7 @@
         </div>
       </div>
       <div v-show="isSelected">
-        <div class="choose-table">
+     
         <choose-table
           :chosen_menu="selected.name"
           :shortname="selected.shortname"
@@ -43,7 +43,6 @@
           :menu_name="selected.name"
           :image_name="selected.shortname"
         ></template-image>
-      </div>
     </div>
   </div>
 </template>

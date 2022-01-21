@@ -57,7 +57,7 @@ export default {
     section: {},
   },
   methods: {
-    ...mapActions("modal", ["setSectionId"]),
+    ...mapActions("menu_sections", ["setSectionId"]),
     ...mapActions("modal", ["setModalStatus"]),
 
     setItemClass(arg) {
@@ -71,6 +71,8 @@ export default {
       this.setModalStatus(1);
     },
   },
-  computed: {},
+  computed: {
+       ...mapGetters("menu_sections", [ "getSectionId" ]),
+  },
 };
 </script>
