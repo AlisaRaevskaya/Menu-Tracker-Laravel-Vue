@@ -1,7 +1,18 @@
-.control-label{
-display: block;
+.control-label {
+    display: block;
 }
-.form-control{
+#menu-type .form-control,
+#choose-modal .form-control {
     margin-bottom: 2rem;
-    width:15rem;
+    width: 15rem;
+}
+
+select {
+    background: #f8f8f8;
+    margin-top: 8px;
+    padding: 0 12px 3px;
+    font-size: 12px;
+    border-radius: 0;
+    border: 1px solid #979797;
+    height: 41px;
 }

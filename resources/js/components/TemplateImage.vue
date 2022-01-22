@@ -4,7 +4,7 @@
       <h5>TEMPLATE MENU</h5>
       <h6>{{ menu_name }}</h6>
       <!-- <img :src="addImagePath(image_name)" /> -->
-    <img :src="'storage/images/' + image_name + '.png'" v-bind:alt="image_name">
+    <img :src="'../../../storage/images/MenuThumbnails/' + image_name + '.png'" v-bind:alt="image_name">
       <br />
     </div>
   </div>

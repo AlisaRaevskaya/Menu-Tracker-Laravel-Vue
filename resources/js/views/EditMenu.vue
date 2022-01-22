@@ -16,6 +16,7 @@
     :menu_type="menu_type"
     :menu_name="getMenuName"
   ></component>
+
   <div class="edit-modal">
     <app-modal v-show="ModalStatus" @close="closeModal">
       {{ sectionById(sectionId) }}
@@ -24,7 +25,8 @@
           <div class="form-group">
             <label for="title" class="control-label"
               >Title {{ sectionId }}</label
-            ><input
+            >
+            <input
               class="form-control"
               id="title"
               name="title"
@@ -33,8 +35,8 @@
             />
           </div>
           <div class="form-group">
-            <label for="subtitle" class="control-label">Subtitle</label
-            ><textarea
+            <label for="subtitle" class="control-label">Subtitle</label>
+            <textarea
               class="form-control"
               rows="3"
               id="subtitle"
@@ -42,11 +44,11 @@
               type="text"
             ></textarea>
           </div>
-          <div class="row regular">
-            <div class="col-sm-6">
+          <div class="row justify-space-between">
+            <div class="col-4-sm">
               <div class="form-group">
-                <label for="title" class="control-label">Section Price</label
-                ><input
+                <label for="title" class="control-label">Section Price</label>
+                <input
                   class="form-control"
                   id="section_price"
                   name="section_price"
@@ -55,11 +57,10 @@
                 />
               </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-6-sm">
               <div class="form-group">
-                <label class="control-label selectControlIcon" for="origem"
-                  >Style</label
-                ><select id="style" name="style" class="form-control">
+                <label class="control-label" for="origem">Style</label>
+                <select id="style" name="style" class="form-control">
                   <option value="No_Style">No_Style</option>
                   <option value="No_Style">No_Style</option>
                   <option value="Boxed">Boxed</option>
@@ -75,6 +76,10 @@
           </div>
         </form>
       </template>
+      <template v-slot:footer>
+        <button class="btn btn-default" @click="closeModal">Cancel</button>
+        <button class="btn btn-primary ml-1" @click="ok">Ok</button>
+        </template>
     </app-modal>
   </div>
 
@@ -96,7 +101,7 @@ export default {
     AppActionFooter,
     azulindaHalf,
     azulindaFull,
-    AppModal
+    AppModal,
   },
   data() {
     return {
@@ -109,7 +114,10 @@ export default {
     ...mapActions("modal", ["setModalStatus"]),
     closeModal() {
       this.setModalStatus(0);
-    }
+    },
+    ok() {
+      this.$emit("ok");
+    },
   },
   computed: {
     ...mapGetters("menu_types", ["getTemplateName"]),
@@ -126,8 +134,8 @@ export default {
     this.getMenuSections;
   },
   mounted() {
-    console.log('console' + this.sectionId);
-  }
+    console.log("console" + this.sectionId);
+  },
 };
 </script>
 

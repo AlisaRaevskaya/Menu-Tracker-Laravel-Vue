@@ -18,10 +18,7 @@
         </div>
         <div class="modal-footer" style="display: block">
           <div class="dialog-footer">
-            <slot name="footer"> <div class="dialog-footer-buttons">
-              <button class="btn btn-default" @click="cancel">Cancel</button>
-              <button class="btn btn-primary" @click="ok">Ok</button>
-            </div></slot>
+            <slot name="footer"> This is the deafult footer ! </slot>
           </div>
         </div>
       </div>
@@ -52,12 +49,6 @@ export default {
   methods: {
     close() {
       this.$emit("close");
-    },
-    cancel() {
-      this.$emit("close");
-    },
-    ok() {
-      this.$emit("ok");
     },
   },
 };
