@@ -9,21 +9,21 @@ export default {
 	getters: {
 		all: state => Object.values(state.menus),
 		oneById: state => id => state.menus[id],
-		getMenuName: state=> state.menu_name
+		getMenuName: state=>state.menu_name
 	},
     //computed
 	mutations: {
-		setItems(state, menus){
-			let map = {};
+		// setItems(state, menus){
+		// 	let map = {};
 
-			menus.forEach(pr => {
-				map[pr.id.toString()] = pr;
-			});
+		// 	menus.forEach(pr => {
+		// 		map[pr.id.toString()] = pr;
+		// 	});
 
-			state.items = map;
-		},
+		// 	state.items = map;
+		// },
 
-		updateMenuName(state, menu_name ){
+		addMenu(state, menu_name ){
 			state.menu_name = menu_name;
 		}
 	},
@@ -39,8 +39,15 @@ export default {
 		// }).finally(() => {
 		// 	//Perform action in always
 		// })}
-		updateMenuName: ({ commit }, menu_name) => commit('updateMenuName', menu_name)
-	}
+		addMenu({commit}, menu_object) {
+			axios.post('/menus/store', menu_object)
+			.then((res) => {
+				commit('addMenu', res.data);
+			})
+			.catch((error) => {
+				// error.response.status Check status code
+			}).finally(() => {
+				//Perform action in always
+			})}
+		}
 }
-
-

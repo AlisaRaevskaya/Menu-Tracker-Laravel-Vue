@@ -7,15 +7,13 @@
             <h4>Confirm Meal Period And Name</h4>
             <div>
               <span class="control-label pr-2">Type</span><br />
-              <div class="bg-light-gray p-1 ">
-                {{ chosen_menu }}
+              <div class="bg-light-gray p-1">
+                {{ chosen_menu_type }}
               </div>
             </div>
             <div class="form-group">
               <div class="mt-1 row">
-                <label
-                  class="control-label modal-title pr-2"
-                  for="{{menu_name}}"
+                <label class="control-label modal-title pr-2" for="menu_name"
                   >Name</label
                 >
                 <input
@@ -23,11 +21,12 @@
                   id="menu_name"
                   name="menu_name"
                   class="form-control p-1 modal-field"
-                  v-model="menu_name"
+                  v-model="menu_object.menu_name"
                 />
               </div>
             </div>
-            {{ getMenuName }}
+            {{ menu_object.menu_name }}
+            {{ menu_object.menu_type_id }}
           </div>
         </form>
       </template>
@@ -45,7 +44,7 @@
     <div class="row justify-space-around pb-1">
       <div class="col-4-sm">
         <div class="form-group text-left">
-          <label class="control-label startLabel" for="loja">Create From Template</label>
+          <label class="control-label startLabel">Create From Template</label>
           <button
             type="button"
             name="menu_saved_design_add"
@@ -56,11 +55,9 @@
           </button>
         </div>
       </div>
-      <div class="col-4-sm menu_saved_design_outter" >
+      <div class="col-4-sm menu_saved_design_outter">
         <div class="form-group text-left">
-          <label class="control-label startLabel selectIcon" for="loja"
-            >Create From Saved Design</label
-          >
+          <label class="control-label">Create From Saved Design</label>
           <select
             id="menu_saved_design"
             name="menu_saved_design"
@@ -80,7 +77,8 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   props: {
-    chosen_menu: String,
+    chosen_menu_type: String,
+    chosen_menu_type_id: Number,
     shortname: String,
     branch_name: String,
   },
@@ -89,7 +87,12 @@ export default {
   },
   data() {
     return {
-      menu_name: "",
+      // menu_name: "",
+      menu_object: {
+        menu_name: "",
+        user_id: 1,
+        menu_type_id: "",
+      },
       isShown: false,
     };
   },
@@ -100,19 +103,25 @@ export default {
         params: { branch: this.branch_name, menu_shortname: this.shortname },
       });
     },
-    ...mapActions("menus", ["updateMenuName"]),
-     closeModal() {
+    ...mapActions("menus", ["addMenu"]),
+    closeModal() {
       this.isShown = false;
     },
-      showModal() {
+    showModal() {
       this.isShown = true;
+    },
+    setTypeId(id) {
+      this.menu_object.menu_type_id = id;
     },
   },
   computed: {
-    ...mapGetters("menus", ["getMenuName"]), 
+    ...mapGetters("menus", ["getMenuName"]),
+  },
+  created() {
+    this.setTypeId(this.chosen_menu_type_id);
   },
   updated() {
-    this.updateMenuName(this.menu_name);
+    this.addMenu(this.menu_object);
   },
 };
 </script>

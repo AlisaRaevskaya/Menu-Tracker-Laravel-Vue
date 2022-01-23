@@ -33,9 +33,10 @@
       </div>
       <div v-show="isSelected">
         <choose-table
-          :chosen_menu="selected.name"
+          :chosen_menu_type="selected.name"
           :shortname="selected.shortname"
           :branch_name="this.$route.params.branch"
+          :chosen_menu_type_id ="selected.menu_id"
         ></choose-table>
      
       <template-image
