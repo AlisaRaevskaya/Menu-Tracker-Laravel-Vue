@@ -6,6 +6,7 @@ use App\Http\Controllers\API\BranchController;
 use App\Http\Controllers\API\MenuTypeController;
 use App\Http\Controllers\API\MenuSectionController;
 use App\Http\Controllers\API\MenuItemController;
+use App\Http\Controllers\API\MenuController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,6 +27,7 @@ Route::get('/menu-items/all', [ MenuItemController::class, 'all']);
 Route::resource('menu-sections', MenuSectionController::class);
 Route::resource('menu-types', MenuTypeController::class);
 Route::resource('menu-items', MenuItemController::class);
+Route::resource('menus', MenuController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
