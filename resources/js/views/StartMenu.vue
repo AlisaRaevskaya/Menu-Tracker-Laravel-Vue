@@ -19,7 +19,7 @@
             v-for="menu in menus"
             :key="menu.id"
             :value="{
-              menu_id: setId(menu.id),
+              menu_type_id: setId(menu.id),
               shortname: menu.shortname,
               name: menu.name,
             }"
@@ -28,7 +28,6 @@
           </option>
         </select>
         <div>
-          <span>Chosen: {{ selected.menu_id }}</span>
         </div>
       </div>
       <div v-show="isSelected">
@@ -36,7 +35,7 @@
           :chosen_menu_type="selected.name"
           :shortname="selected.shortname"
           :branch_name="this.$route.params.branch"
-          :chosen_menu_type_id ="selected.menu_id"
+          :chosen_menu_type_id ="selected.menu_type_id"
         ></choose-table>
      
       <template-image

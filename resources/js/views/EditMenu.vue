@@ -2,7 +2,6 @@
   <app-breadcrumbs></app-breadcrumbs>
   <div class="editBlock pb-1">
     <h4>EDIT MENU</h4>
-    <h3>{{ getMenuName }}</h3>
     <p>
       Click to edit the menu title and edit sections, use the icons to edit,
       move items, and delete.<br />
@@ -122,7 +121,6 @@ export default {
   computed: {
     ...mapGetters("menu_types", ["getTemplateName"]),
     ...mapGetters("menu_types", ["getTypeByShortName"]),
-    ...mapGetters("menus", ["getMenuName"]),
     ...mapGetters("menu_sections", { sections: "all" }),
     ...mapGetters("modal", { ModalStatus: "getModalStatus" }),
     ...mapGetters("menu_sections", ["sectionId"]),

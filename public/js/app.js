@@ -32625,7 +32625,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    chosen_menu: String,
+    chosen_menu_type: String,
+    chosen_menu_type_id: Number,
     shortname: String,
     branch_name: String
   },
@@ -32634,8 +32635,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      menu_name: "",
-      isShown: false
+      isShown: false,
+      menu_object: {
+        menu_name: "",
+        user_id: 1,
+        type_id: ""
+      }
     };
   },
   methods: _objectSpread(_objectSpread({
@@ -32648,7 +32653,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("menus", ["updateMenuName"])), {}, {
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("menus", ["addMenu"])), {}, {
     closeModal: function closeModal() {
       this.isShown = false;
     },
@@ -32656,9 +32661,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.isShown = true;
     }
   }),
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("menus", ["getMenuName"])),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("menus", ["getMenuName"])), {}, {
+    setTypeId: function setTypeId() {
+      this.menu_object.type_id = this.chosen_menu_type_id;
+    }
+  }),
   updated: function updated() {
-    this.updateMenuName(this.menu_name);
+    this.addMenu(this.menu_object);
   }
 });
 
@@ -33165,7 +33174,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$emit("ok");
     }
   }),
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_types", ["getTemplateName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_types", ["getTypeByShortName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menus", ["getMenuName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_sections", {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_types", ["getTemplateName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_types", ["getTypeByShortName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_sections", {
     sections: "all"
   })), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("modal", {
     ModalStatus: "getModalStatus"
@@ -33396,7 +33405,7 @@ var _hoisted_8 = {
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "control-label modal-title pr-2",
-  "for": "{{menu_name}}"
+  "for": "menu_name"
 }, "Name", -1
 /* HOISTED */
 );
@@ -33422,13 +33431,12 @@ var _hoisted_14 = {
 };
 
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "control-label startLabel",
-  "for": "loja"
+  "class": "control-label startLabel"
 }, "Create From Template", -1
 /* HOISTED */
 );
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-4-sm menu_saved_design_outter\"><div class=\"form-group text-left\"><label class=\"control-label startLabel selectIcon\" for=\"loja\">Create From Saved Design</label><select id=\"menu_saved_design\" name=\"menu_saved_design\" class=\"form-control\"><option value=\"\" name=\"\">Select One</option></select></div></div>", 1);
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-4-sm menu_saved_design_outter\"><div class=\"form-group text-left\"><label class=\"control-label\">Create From Saved Design</label><select id=\"menu_saved_design\" name=\"menu_saved_design\" class=\"form-control\"><option value=\"\" name=\"\">Select One</option></select></div></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_app_modal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-modal");
@@ -33437,7 +33445,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClose: $options.closeModal
   }, {
     body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_4, _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.chosen_menu), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_4, _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.chosen_menu_type), 1
       /* TEXT */
       )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "text",
@@ -33445,11 +33453,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         name: "menu_name",
         "class": "form-control p-1 modal-field",
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-          return $data.menu_name = $event;
+          return $data.menu_object.menu_name = $event;
         })
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.menu_name]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.getMenuName), 1
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.menu_object.menu_name]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.setTypeId) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.menu_object), 1
       /* TEXT */
       )])])];
     }),
@@ -34426,33 +34434,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = {
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "editBlock pb-1"
-};
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "EDIT MENU", -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "EDIT MENU"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Click to edit the menu title and edit sections, use the icons to edit, move items, and delete."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To edit the header or footer, hover over the item for options. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"editBlock__close js-editBlock-close\">Close</button> ")], -1
 /* HOISTED */
 );
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Click to edit the menu title and edit sections, use the icons to edit, move items, and delete."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To edit the header or footer, hover over the item for options. ")], -1
-/* HOISTED */
-);
-
-var _hoisted_4 = {
+var _hoisted_2 = {
   "class": "edit-modal"
 };
-var _hoisted_5 = {
+var _hoisted_3 = {
   name: "section_edit"
 };
-var _hoisted_6 = {
+var _hoisted_4 = {
   "class": "form-group"
 };
-var _hoisted_7 = {
+var _hoisted_5 = {
   "for": "title",
   "class": "control-label"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
   "class": "form-control",
   id: "title",
   name: "title",
@@ -34462,7 +34465,7 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "form-group"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "subtitle",
@@ -34477,7 +34480,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "row justify-space-between"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-4-sm"
@@ -34532,20 +34535,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_app_action_footer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-action-footer");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.getMenuName), 1
-  /* TEXT */
-  ), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"editBlock__close js-editBlock-close\">Close</button> ")]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.template), {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_breadcrumbs), _hoisted_1, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.template), {
     menu_type: $data.menu_type,
     menu_name: _ctx.getMenuName
   }, null, 8
   /* PROPS */
-  , ["menu_type", "menu_name"])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_modal, {
+  , ["menu_type", "menu_name"])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_modal, {
     onClose: $options.closeModal
   }, {
     body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_7, "Title " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.sectionId), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_5, "Title " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.sectionId), 1
       /* TEXT */
-      ), _hoisted_8]), _hoisted_9, _hoisted_10])];
+      ), _hoisted_6]), _hoisted_7, _hoisted_8])];
     }),
     footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -34675,6 +34676,11 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_6 = ["value"];
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, null, -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_app_breadcrumbs = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-breadcrumbs");
 
@@ -34695,7 +34701,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: menu.id,
       value: {
-        menu_id: $options.setId(menu.id),
+        menu_type_id: $options.setId(menu.id),
         shortname: menu.shortname,
         name: menu.name
       }
@@ -34706,15 +34712,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* KEYED_FRAGMENT */
   ))], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selected]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Chosen: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.selected.menu_id), 1
-  /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_choose_table, {
-    chosen_menu: $data.selected.name,
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selected]]), _hoisted_7]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_choose_table, {
+    chosen_menu_type: $data.selected.name,
     shortname: $data.selected.shortname,
-    branch_name: this.$route.params.branch
+    branch_name: this.$route.params.branch,
+    chosen_menu_type_id: $data.selected.menu_type_id
   }, null, 8
   /* PROPS */
-  , ["chosen_menu", "shortname", "branch_name"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_template_image, {
+  , ["chosen_menu_type", "shortname", "branch_name", "chosen_menu_type_id"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_template_image, {
     menu_name: $data.selected.name,
     image_name: $data.selected.shortname
   }, null, 8
@@ -35260,14 +35265,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   //computed
   mutations: {
-    setItems: function setItems(state, menus) {
-      var map = {};
-      menus.forEach(function (pr) {
-        map[pr.id.toString()] = pr;
-      });
-      state.items = map;
-    },
-    updateMenuName: function updateMenuName(state, menu_name) {
+    // setItems(state, menus){
+    // 	let map = {};
+    // 	menus.forEach(pr => {
+    // 		map[pr.id.toString()] = pr;
+    // 	});
+    // 	state.items = map;
+    // },
+    addMenu: function addMenu(state, menu_name) {
       state.menu_name = menu_name;
     }
   },
@@ -35283,9 +35288,13 @@ __webpack_require__.r(__webpack_exports__);
     // }).finally(() => {
     // 	//Perform action in always
     // })}
-    updateMenuName: function updateMenuName(_ref, menu_name) {
+    addMenu: function addMenu(_ref, menu_object) {
       var commit = _ref.commit;
-      return commit('updateMenuName', menu_name);
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/menus/store', menu_object).then(function (res) {
+        commit('addMenu', res.data);
+      })["catch"](function (error) {// error.response.status Check status code
+      })["finally"](function () {//Perform action in always
+      });
     }
   }
 });

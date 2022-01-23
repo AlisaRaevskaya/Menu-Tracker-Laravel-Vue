@@ -25,8 +25,8 @@
                 />
               </div>
             </div>
-            {{ menu_object.menu_name }}
-            {{ menu_object.menu_type_id }}
+             {{ setTypeId }}
+           {{ menu_object }}
           </div>
         </form>
       </template>
@@ -87,13 +87,12 @@ export default {
   },
   data() {
     return {
-      // menu_name: "",
-      menu_object: {
+      isShown: false,
+      menu_object : {
         menu_name: "",
         user_id: 1,
-        menu_type_id: "",
+        type_id: ""
       },
-      isShown: false,
     };
   },
   methods: {
@@ -110,15 +109,12 @@ export default {
     showModal() {
       this.isShown = true;
     },
-    setTypeId(id) {
-      this.menu_object.menu_type_id = id;
-    },
   },
   computed: {
     ...mapGetters("menus", ["getMenuName"]),
-  },
-  created() {
-    this.setTypeId(this.chosen_menu_type_id);
+     setTypeId() {
+      this.menu_object.type_id = this.chosen_menu_type_id;
+    },
   },
   updated() {
     this.addMenu(this.menu_object);
