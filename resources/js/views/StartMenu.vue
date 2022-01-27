@@ -7,6 +7,7 @@
         <label class="control-label" for="loja">Select Meal Period</label>
         {{ setMenus }}
         {{ getTypeId }}
+        {{getMessage}}
         <select
           id="menu_type"
           name="menu_type"
@@ -76,6 +77,7 @@ export default {
     ...mapGetters("menu_types", { types: "all" }),
     ...mapGetters("menu_types", ["getMenuTypes"]),
     ...mapGetters("menu_types", ["getTypeId"]),
+      ...mapGetters("menus", ["getMessage"]),
 
     // ...mapGetters("branches", ["getBranchName"]),
     ...mapGetters("branches", ["getBranchId"]),

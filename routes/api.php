@@ -27,7 +27,7 @@ Route::get('/menu-items/all', [ MenuItemController::class, 'all']);
 Route::resource('menu-sections', MenuSectionController::class);
 Route::resource('menu-types', MenuTypeController::class);
 Route::resource('menu-items', MenuItemController::class);
-Route::resource('menus', MenuController::class);
+Route::resource('menus', MenuController::class)->except(['index','create']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

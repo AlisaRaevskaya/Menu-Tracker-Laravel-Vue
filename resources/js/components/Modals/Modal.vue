@@ -9,23 +9,41 @@
             </slot>
           </div>
         </div>
-        <div class="modal-body">
-          <div class="dialog-body">
-            <div class="dialog-message">
-              <slot name="body">This is the default body! </slot>
+        <div v-if="hasForm">
+          <form @submit.prevent="submitForm">
+            <div class="modal-body">
+              <div class="dialog-body">
+                <div class="dialog-message">
+                  <slot name="body">This is the default body! </slot>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer" style="display: block">
+              <div class="dialog-footer">
+                <slot name="footer"> This is the deafult footer ! </slot>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div v-else>
+          <div class="modal-body">
+            <div class="dialog-body">
+              <div class="dialog-message">
+                <slot name="body">This is the default body! </slot>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer" style="display: block">
-          <div class="dialog-footer">
-            <slot name="footer"> This is the deafult footer ! </slot>
+          <div class="modal-footer" style="display: block">
+            <div class="dialog-footer">
+              <slot name="footer"> This is the deafult footer ! </slot>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </transition>
 </template>
-
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -42,6 +60,10 @@ library.add(faCopy);
 export default {
   props: {
     section_id: Number,
+    hasForm: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {
     FontAwesomeIcon,
@@ -50,6 +72,12 @@ export default {
     close() {
       this.$emit("close");
     },
+    submitForm() {
+      this.$emit("submitForm");
+    },
+    // hasForm(){
+    //   this.$emit("hasForm")
+    // }
   },
 };
 </script>

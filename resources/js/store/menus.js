@@ -4,12 +4,14 @@ export default {
 	namespaced: true,
 	state: {
 		menus: [],
-		menu_name: ""
+		menu_name: "",
+		message: ""
 	},
 	getters: {
 		all: state => Object.values(state.menus),
 		oneById: state => id => state.menus[id],
-		getMenuName: state=>state.menu_name
+		getMenuName: state=>state.menu_name,
+		getMessage: state=>state.message
 	},
     //computed
 	mutations: {
@@ -23,8 +25,8 @@ export default {
 		// 	state.items = map;
 		// },
 
-		addMenu(state, menu_name ){
-			state.menu_name = menu_name;
+		addMenu(state, message ){
+			state.message = message;
 		}
 	},
     //methods
@@ -40,12 +42,12 @@ export default {
 		// 	//Perform action in always
 		// })}
 		addMenu({commit}, menu_object) {
-			axios.post('/menus/store', menu_object)
-			.then((res) => {
-				commit('addMenu', res.data);
+			axios.post('api/menus/', menu_object)
+			.then((response) => {
+				commit('addMenu', response.data);
 			})
 			.catch((error) => {
-				// error.response.status Check status code
+				 error.response.status;
 			}).finally(() => {
 				//Perform action in always
 			})}
