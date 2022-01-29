@@ -32636,6 +32636,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       isShown: false,
+      message: "",
       menu_object: {
         menu_name: "",
         user_id: 1,
@@ -32643,17 +32644,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  methods: _objectSpread(_objectSpread({
-    redirectPage: function redirectPage() {
-      this.$router.push({
-        name: "menu_edit",
-        params: {
-          branch: this.branch_name,
-          menu_shortname: this.shortname
-        }
-      });
-    }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("menus", ["addMenu"])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("menus", ["addMenu"])), {}, {
     closeModal: function closeModal() {
       this.isShown = false;
     },
@@ -32661,14 +32652,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.isShown = true;
     },
     submitForm: function submitForm(e) {
-      console.log("form submitted"); // this.addMenu(this.menu_object);
-      // this.$router.push({a
-      //   name: "menu_edit",
-      //   params: { branch: this.branch_name, menu_shortname: this.shortname },
-      // });
+      var _this = this;
+
+      console.log("form submitted");
+      this.addMenu(this.menu_object);
+      this.message = this.getMessage;
+      setTimeout(function () {
+        _this.$router.push({
+          name: "menu_edit",
+          params: {
+            branch: _this.branch_name,
+            menu_shortname: _this.shortname
+          }
+        });
+      }, 5000);
     }
   }),
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("menus", ["getMenuName"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("menus", ["getMenuName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("menus", ["getMessage"])), {}, {
     setTypeId: function setTypeId() {
       this.menu_object.type_id = this.chosen_menu_type_id;
     }
@@ -33478,7 +33478,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.menu_object.menu_name]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.setTypeId) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.menu_object), 1
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.menu_object.menu_name]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.setTypeId) + " ", 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.message), 1
       /* TEXT */
       )])];
     }),
@@ -33497,9 +33499,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.showModal && $options.showModal.apply($options, arguments);
     })
-  }, " START "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.getMessage), 1
-  /* TEXT */
-  )])]), _hoisted_16])], 512
+  }, " START ")])]), _hoisted_16])], 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$data.isShown]])], 64
   /* STABLE_FRAGMENT */
@@ -35305,9 +35305,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
-    menus: [],
+    // menus: [],
     menu_name: "",
-    message: ""
+    message: "",
+    menu: {}
   },
   getters: {
     all: function all(state) {
@@ -35334,8 +35335,9 @@ __webpack_require__.r(__webpack_exports__);
     // 	});
     // 	state.items = map;
     // },
-    addMenu: function addMenu(state, message) {
-      state.message = message;
+    addMenu: function addMenu(state, data) {
+      state.message = data.message;
+      state.menu = data.menu;
     }
   },
   //methods
@@ -35352,10 +35354,10 @@ __webpack_require__.r(__webpack_exports__);
     // })}
     addMenu: function addMenu(_ref, menu_object) {
       var commit = _ref.commit;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('api/menus/', menu_object).then(function (response) {
-        commit('addMenu', response.data);
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/menus", menu_object).then(function (response) {
+        commit("addMenu", response.data);
       })["catch"](function (error) {
-        error.response.status;
+        console.log("error");
       })["finally"](function () {//Perform action in always
       });
     }

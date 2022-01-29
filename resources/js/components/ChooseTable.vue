@@ -1,6 +1,11 @@
 <template>
   <div class="choose-modal">
-    <app-modal v-show="isShown" @close="closeModal" :hasForm ="true" @submitForm ="submitForm">
+    <app-modal
+      v-show="isShown"
+      @close="closeModal"
+      :hasForm="true"
+      @submitForm="submitForm"
+    >
       <template v-slot:body>
         <div>
           <h4>Confirm Meal Period And Name</h4>
@@ -24,7 +29,7 @@
             </div>
           </div>
           {{ setTypeId }}
-          {{ menu_object }}
+          <h2>{{ message }}</h2>
         </div>
       </template>
       <template v-slot:footer>
@@ -48,7 +53,6 @@
           >
             START
           </button>
-          <h2>{{ getMessage }}</h2>
         </div>
       </div>
       <div class="col-4-sm menu_saved_design_outter">
@@ -84,6 +88,7 @@ export default {
   data() {
     return {
       isShown: false,
+      message: "",
       menu_object: {
         menu_name: "",
         user_id: 1,
@@ -92,12 +97,12 @@ export default {
     };
   },
   methods: {
-    redirectPage() {
-      this.$router.push({
-        name: "menu_edit",
-        params: { branch: this.branch_name, menu_shortname: this.shortname },
-      });
-    },
+    // redirectPage() {
+    //   this.$router.push({
+    //     name: "menu_edit",
+    //     params: { branch: this.branch_name, menu_shortname: this.shortname },
+    //   });
+    // },
     ...mapActions("menus", ["addMenu"]),
     closeModal() {
       this.isShown = false;
@@ -105,17 +110,22 @@ export default {
     showModal() {
       this.isShown = true;
     },
-   submitForm(e) {
+    submitForm(e) {
       console.log("form submitted");
-      // this.addMenu(this.menu_object);
-      // this.$router.push({a
-      //   name: "menu_edit",
-      //   params: { branch: this.branch_name, menu_shortname: this.shortname },
-      // });
+      this.addMenu(this.menu_object);
+      this.message = this.getMessage;
+      setTimeout(() => {
+        this.$router.push({
+          name: "menu_edit",
+          params: { branch: this.branch_name, menu_shortname: this.shortname },
+        });
+      }, 5000);
     },
   },
   computed: {
     ...mapGetters("menus", ["getMenuName"]),
+    ...mapGetters("menus", ["getMessage"]),
+
     setTypeId() {
       this.menu_object.type_id = this.chosen_menu_type_id;
     },
