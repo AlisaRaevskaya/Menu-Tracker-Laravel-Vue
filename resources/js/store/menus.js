@@ -7,6 +7,7 @@ export default {
         menu_name: "",
         message: "",
         menu: {},
+        errors: {}
     },
     getters: {
         all: (state) => Object.values(state.menus),
@@ -49,12 +50,9 @@ export default {
                 .then((response) => {
                     commit("addMenu", response.data);
                 })
-                .catch((error) => {
-                    console.log("error");
-                })
-                .finally(() => {
-                    //Perform action in always
-                });
+                .catch(e => {
+                    this.errors = e.data.errors;
+                  });
         },
     },
 };
