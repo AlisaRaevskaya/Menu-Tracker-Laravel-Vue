@@ -25,6 +25,7 @@ class CreateMenusTable extends Migration
             $table->string('footer_notice')->nullable();
             $table->string('footer_notice2')->nullable();
             $table->string('watermark');
+            $table->tinyInteger('base_template')->default(0);
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('menu_type_id')->constrained('menu_types')->onDelete('cascade');
             $table->timestamps();

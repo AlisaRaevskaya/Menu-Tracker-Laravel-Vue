@@ -4,15 +4,14 @@ export default {
     namespaced: true,
     state: {
         // menus: [],
-        menu_name: "",
         message: "",
         menu: {},
         errors: {}
     },
     getters: {
-        all: (state) => Object.values(state.menus),
-        oneById: (state) => (id) => state.menus[id],
-        getMenuName: (state) => state.menu_name,
+        // all: (state) => Object.values(state.menus),
+        // oneById: (state) => (id) => state.menus[id],
+        getMenu: (state) => state.menu,
         getMessage: (state) => state.message,
     },
     //computed

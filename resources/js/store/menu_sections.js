@@ -4,21 +4,18 @@ export default {
     namespaced: true,
     state: {
         sections: [],
-        menu: {},
         section_id: Number,
     },
     getters: {
         all: (state) => state.sections,
         indexById: (state) => (id) => state.sections.findIndex((item) => item.id == id),
         sectionById:(state)=>(id)=>state.sections.filter((item) => item.id == id),
-        getMenu: (state) => state.menu,
         sectionId: (state) => state.section_id,
     },
     //computed
     mutations: {
         updateMenuSections(state, data) {
             state.sections = data.sections;
-            state.menu = data.menu;
         },
         setSectionId(state, id) {
             state.section_id = id;
@@ -32,10 +29,20 @@ export default {
                 .get("/api/menu-sections/" + id)
                 .then((response) => {
                     console.log(response);
-                    commit("updateMenuSections", response.data);
+                    commit("updateMenuSections", response.data );
                 })
                 .catch((error) => console.log("Section error"));
         },
+        // getAllMenuSections({ commit }, id) {
+        //     // fetch sections
+        //     axios
+        //         .get("/api/menu-sections/" + id)
+        //         .then((response) => {
+        //             console.log(response);
+        //             commit("updateAllMenuSections", response.data);
+        //         })
+        //         .catch((error) => console.log("Section error"));
+        // },
         setSectionId({ commit }, id) {
             commit("setSectionId", id);
         },

@@ -7,14 +7,14 @@
       move items, and delete.<br />
       To edit the header or footer, hover over the item for options.
     </p>
-    <!-- <button class="editBlock__close js-editBlock-close">Close</button> -->
+    {{template}}
   </div>
 
-  <component
+<component
     v-bind:is="template"
     :menu_type="menu_type"
-    :menu_name="getMenuName"
-  ></component>
+    :menu="getMenu"
+  ></component> 
 
   <div class="edit-modal">
     <app-modal v-show="ModalStatus" @close="closeModal">
@@ -23,8 +23,7 @@
         <form name="section_edit">
           <div class="form-group">
             <label for="title" class="control-label"
-              >Title {{ sectionId }}</label
-            >
+              >Title {{ sectionId }}</label>
             <input
               class="form-control"
               id="title"
@@ -78,7 +77,7 @@
       <template v-slot:footer>
         <button class="btn btn-default" @click="closeModal">Cancel</button>
         <button class="btn btn-primary ml-1" @click="ok">Ok</button>
-        </template>
+      </template>
     </app-modal>
   </div>
 
@@ -106,6 +105,7 @@ export default {
     return {
       template: "",
       menu_type: {},
+      menu: {}
     };
   },
   methods: {
@@ -121,19 +121,23 @@ export default {
   computed: {
     ...mapGetters("menu_types", ["getTemplateName"]),
     ...mapGetters("menu_types", ["getTypeByShortName"]),
+
     ...mapGetters("menu_sections", { sections: "all" }),
+
     ...mapGetters("modal", { ModalStatus: "getModalStatus" }),
-    ...mapGetters("menu_sections", ["sectionId"]),
+
+    // ...mapGetters("menu_sections", ["sectionId"]),
     ...mapGetters("menu_sections", ["sectionById"]),
+    ...mapGetters("menus", ["getMenu"] ),
   },
   created() {
+    this.menu = this.getMenu;
     this.menu_type = this.getTypeByShortName(this.$route.params.menu_shortname);
-    this.template = this.getTemplateName(this.$route.params.menu_shortname);
-    this.getMenuSections;
+    this.template = this.getTemplateName(this.$route.params.menu_shortname); 
   },
-  mounted() {
-    console.log("console" + this.sectionId);
-  },
+  mounted(){
+ this.getMenuSections(this.menu_type.id);
+  }
 };
 </script>
 

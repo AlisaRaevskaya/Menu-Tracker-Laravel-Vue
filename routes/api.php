@@ -22,6 +22,7 @@ use App\Http\Controllers\API\MenuController;
 Route::get('/choose', [BranchController::class, 'index']);
 Route::get('/start/{branch}', [MenuTypeController::class, 'getType']);
 Route::get('/menu-sections/all', [MenuSectionController::class, 'all']);
+Route::get('/menu-items/{id}', [MenuItemController::class, 'getById']);
 Route::get('/menu-sections/{id}', [MenuSectionController::class, 'getById']);
 Route::get('/menu-items/all', [MenuItemController::class, 'all']);
 Route::resource('menu-sections', MenuSectionController::class);

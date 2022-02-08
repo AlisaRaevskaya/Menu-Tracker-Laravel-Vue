@@ -25,7 +25,7 @@ export default {
                     console.log(response);
                     commit("updateAllMenuItems", response.data);
                 })
-                .catch((error) => console.log("all error"));
+                .catch((error) => console.log("all items error"));
         }
     },
 };

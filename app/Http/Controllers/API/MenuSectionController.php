@@ -23,13 +23,10 @@ class MenuSectionController extends Controller
     }
 
     public function getById($id)
-    {
-        $menu = Menu::where('menu_type_id', $id)->firstOrFail();
-        $menu_id = $menu->id;
-        $sections = MenuSection::where('menu_id', $menu_id)->get();
+    {   $template_menu_id = Menu::where('menu_type_id', $id)->where('base_template', 1)->pluck('id')->implode('');
+        $sections = MenuSection::where( 'menu_id',  $template_menu_id )->get();
         return response()->json([
-            'sections' => $sections,
-            'menu' => $menu,
+            'sections' => $sections
         ]);
     }
     // Menu::findOrFail($id);

@@ -8,7 +8,7 @@
               <div class="print-inner">
                 <!-- layout -->
                 <div class="menu-headline">Menu Title: {{ menu_name }}</div>
-                <div class="menu-subtitle">Menu Title 2: {{ menu.title2 }}</div>
+                <!-- <div class="menu-subtitle">Menu Title 2: {{ menu.title2 }}</div> -->
                 <div class="menu-bg">Menu Type: {{ menu_type.name }}</div>
                 <!-- layout.end -->
 
@@ -46,11 +46,10 @@
       <ul class="footer-icons">
         <li>
           <span class="bullet veg"></span>
-          <font-awesome-icon icon="apple-alt" />VEGETARIAN
+          <font-awesome-icon icon="apple-alt"/>VEGETARIAN
         </li>
-        <li><span class="bullet gf"></span>  <font-awesome-icon icon="bread-slice"/>Gluten-free</li>
+        <li><span class="bullet gf"></span><font-awesome-icon icon="bread-slice" /> Gluten-free</li>
       </ul>
-
       <div class="menu_notice_wrap outter-edit rel style1">
         <div class="menu_footer_notice">
           {{ menu.footer_notice }}
@@ -64,11 +63,12 @@
         ></span>
       </div>
 
-      <div class="menu_notice_wrap2 outter-edit rel style1 ">
+      <div class="menu_notice_wrap2 outter-edit rel style1">
         <div class="menu_footer_notice2">
           {{ menu.footer_notice2 }}
           <span class="inner-edit"
-            ><span class="flaticon-write"
+            ><span
+              class="flaticon-write"
               onclick="edit_menu2('12', 'footer_notice2', 'textarea');"
             ></span
           ></span>
@@ -76,9 +76,9 @@
 
         <div class="menu_watermark"> Menu-Watermark: {{ menu.watermark }}</div>
       </div>
-   
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -103,6 +103,7 @@ library.add(faCopy);
 library.add(faAppleAlt);
 library.add(faBreadSlice);
 
+
 export default {
   props: {
     menu_type: {},
@@ -110,7 +111,7 @@ export default {
   },
   components: {
     AppSection,
-     FontAwesomeIcon
+    FontAwesomeIcon
   },
   data() {
     return {
@@ -134,7 +135,7 @@ export default {
   computed: {
     ...mapGetters("menu_sections", { sections: "all" }),
     ...mapGetters("menu_items", { menu_items: "all" }),
-    ...mapGetters("menu_sections", { menu: "getMenu" }),
+    ...mapGetters("menus", { menu: "getMenu" }),
 
     validId() {
       return /^[1-9]+\d*$/.test(this.strId);

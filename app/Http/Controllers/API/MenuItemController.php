@@ -15,7 +15,6 @@ class MenuItemController extends Controller
      */
     public function index()
     {
-      
     }
 
     public function all()
@@ -24,6 +23,12 @@ class MenuItemController extends Controller
         return $items;
     }
 
+
+    public function getById($id)
+    {
+       $menu_item = MenuItem::where('section_id', $id)->get();
+       return $menu_item;
+    }
     /**
      * Show the form for creating a new resource.
      *

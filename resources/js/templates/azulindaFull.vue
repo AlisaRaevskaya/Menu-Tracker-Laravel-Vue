@@ -8,7 +8,7 @@
               <div class="print-inner">
                 <!-- layout -->
                 <div class="menu-headline">Menu Title: {{ menu_name }}</div>
-                <div class="menu-subtitle">Menu Title 2: {{ menu.title2 }}</div>
+                <!-- <div class="menu-subtitle">Menu Title 2: {{ menu.title2 }}</div> -->
                 <div class="menu-bg">Menu Type: {{ menu_type.name }}</div>
                 <!-- layout.end -->
 
@@ -78,6 +78,7 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -134,7 +135,7 @@ export default {
   computed: {
     ...mapGetters("menu_sections", { sections: "all" }),
     ...mapGetters("menu_items", { menu_items: "all" }),
-    ...mapGetters("menu_sections", { menu: "getMenu" }),
+    ...mapGetters("menus", { menu: "getMenu" }),
 
     validId() {
       return /^[1-9]+\d*$/.test(this.strId);
