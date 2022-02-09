@@ -7,32 +7,33 @@
       move items, and delete.<br />
       To edit the header or footer, hover over the item for options.
     </p>
-    {{template}}
   </div>
 
-<component
+  <component
     v-bind:is="template"
     :menu_type="menu_type"
     :menu="getMenu"
-  ></component> 
+    :sections="sections"
+  ></component>
 
   <div class="edit-modal">
-    <app-modal v-show="ModalStatus" @close="closeModal">
-      {{ sectionById(sectionId) }}
+    
+    <app-modal v-show="ModalStatus" @close="closeModal" :hasForm="true"
+      @submitForm="submitForm">
       <template v-slot:body>
-        <form name="section_edit">
           <div class="form-group">
             <label for="title" class="control-label"
-              >Title {{ sectionId }}</label>
+              >Title</label
+            >
             <input
               class="form-control"
               id="title"
               name="title"
               type="text"
-              value="COCKTAILS"
+              :value= section.title
             />
           </div>
-          <div class="form-group">
+           <div class="form-group">
             <label for="subtitle" class="control-label">Subtitle</label>
             <textarea
               class="form-control"
@@ -40,6 +41,7 @@
               id="subtitle"
               name="subtitle"
               type="text"
+              :value= section.subtitle
             ></textarea>
           </div>
           <div class="row justify-space-between">
@@ -51,7 +53,7 @@
                   id="section_price"
                   name="section_price"
                   type="text"
-                  value=""
+                 :value = section.price
                 />
               </div>
             </div>
@@ -72,7 +74,6 @@
               </div>
             </div>
           </div>
-        </form>
       </template>
       <template v-slot:footer>
         <button class="btn btn-default" @click="closeModal">Cancel</button>
@@ -88,7 +89,7 @@
 import AppBreadcrumbs from "../components/Breadcrumbs.vue";
 import AppActionFooter from "../components/ActionFooter.vue";
 import AppModal from "../components/Modals/Modal.vue";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapState } from "vuex";
 
 import azulindaHalf from "../templates/azulindaHalf.vue";
 import azulindaFull from "../templates/azulindaFull.vue";
@@ -105,7 +106,7 @@ export default {
     return {
       template: "",
       menu_type: {},
-      menu: {}
+      menu: {},
     };
   },
   methods: {
@@ -126,18 +127,17 @@ export default {
 
     ...mapGetters("modal", { ModalStatus: "getModalStatus" }),
 
-    // ...mapGetters("menu_sections", ["sectionId"]),
-    ...mapGetters("menu_sections", ["sectionById"]),
-    ...mapGetters("menus", ["getMenu"] ),
+    ...mapGetters("menu_sections", { section: "getSection" }),
+    ...mapGetters("menus", ["getMenu"]),
   },
   created() {
     this.menu = this.getMenu;
     this.menu_type = this.getTypeByShortName(this.$route.params.menu_shortname);
-    this.template = this.getTemplateName(this.$route.params.menu_shortname); 
+    this.template = this.getTemplateName(this.$route.params.menu_shortname);
   },
-  mounted(){
- this.getMenuSections(this.menu_type.id);
-  }
+  mounted() {
+  this.getMenuSections(this.menu_type.id);
+  },
 };
 </script>
 

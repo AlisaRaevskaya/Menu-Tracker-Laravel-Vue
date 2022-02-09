@@ -7,7 +7,7 @@
             <div class="print-lines">
               <div class="print-inner">
                 <!-- layout -->
-                <div class="menu-headline">Menu Title: {{ menu_name }}</div>
+                <div class="menu-headline">Menu Name {{ menu.name }}</div>
                 <!-- <div class="menu-subtitle">Menu Title 2: {{ menu.title2 }}</div> -->
                 <div class="menu-bg">Menu Type: {{ menu_type.name }}</div>
                 <!-- layout.end -->
@@ -107,7 +107,8 @@ library.add(faBreadSlice);
 export default {
   props: {
     menu_type: {},
-    menu_name: "",
+    menu: {},
+    sections:[],
   },
   components: {
     AppSection,
@@ -119,7 +120,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("menu_sections", ["getMenuSections"]),
+    // ...mapActions("menu_sections", ["getMenuSections"]),
     ...mapActions("menu_items", ["getAllMenuItems"]),
 
     setSectionClass(arg) {
@@ -133,7 +134,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("menu_sections", { sections: "all" }),
+    // ...mapGetters("menu_sections", { sections: "all" }),
     ...mapGetters("menu_items", { menu_items: "all" }),
     ...mapGetters("menus", { menu: "getMenu" }),
 
@@ -142,7 +143,7 @@ export default {
     },
   },
   created() {
-    this.getMenuSections(this.menu_type.id);
+    // this.getMenuSections(this.menu_type.id);
     this.getAllMenuItems();
   },
 };

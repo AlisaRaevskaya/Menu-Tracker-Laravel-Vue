@@ -2,7 +2,7 @@
   <div :class="setSectionClass(section.style)">
     <div class="row justify-flex-end">
       <span class="flaticon-write">
-        <font-awesome-icon icon="edit" @click="showModal(section.id)"
+        <font-awesome-icon icon="edit" @click="showModal(section)"
       /></span>
       <span class="flaticon-paper" @click="showModal">
         <font-awesome-icon icon="copy"
@@ -57,7 +57,7 @@ export default {
     section: {},
   },
   methods: {
-    ...mapActions("menu_sections", ["setSectionId"]),
+    ...mapActions("menu_sections", ["setSection"]),
     ...mapActions("modal", ["setModalStatus"]),
 
     setItemClass(arg) {
@@ -66,13 +66,12 @@ export default {
     setSectionClass(arg) {
       return "menu_section_" + arg;
     },
-    showModal(id) {
-      this.setSectionId(id);
+    showModal(section) {
+      this.setSection(section);
       this.setModalStatus(1);
     },
   },
   computed: {
-       ...mapGetters("menu_sections", [ "getSectionId" ]),
   },
 };
 </script>

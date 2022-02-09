@@ -4,21 +4,21 @@ export default {
     namespaced: true,
     state: {
         sections: [],
-        section_id: Number,
+        section: {}
     },
     getters: {
         all: (state) => state.sections,
         indexById: (state) => (id) => state.sections.findIndex((item) => item.id == id),
         sectionById:(state)=>(id)=>state.sections.filter((item) => item.id == id),
-        sectionId: (state) => state.section_id,
+        getSection: (state) => state.section,
     },
     //computed
     mutations: {
         updateMenuSections(state, data) {
             state.sections = data.sections;
         },
-        setSectionId(state, id) {
-            state.section_id = id;
+        setSection(state, section) {
+            state.section = {...section};
         },
     },
     //methods
@@ -43,8 +43,8 @@ export default {
         //         })
         //         .catch((error) => console.log("Section error"));
         // },
-        setSectionId({ commit }, id) {
-            commit("setSectionId", id);
+        setSection({ commit }, section) {
+            commit("setSection", section);
         },
     },
 };
