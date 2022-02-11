@@ -7,7 +7,7 @@
   >
     <template v-slot:body>
       <div class="form-group">
-         <label for="title" class="control-label">Title</label>
+        <label for="title" class="control-label">Title</label>
         <Field
           :value="section.title"
           :rules="isRequired"
@@ -72,13 +72,26 @@ import { Field, ErrorMessage } from "vee-validate";
 import { mapGetters, mapActions, mapState } from "vuex";
 
 export default {
-  props:{
-    section:{}
+  props: {
+    section: {},
   },
   components: {
     AppModal,
     Field,
     ErrorMessage,
+  },
+  data() {
+    return {
+      form: {
+        title: String,
+        subtitle: String,
+        price: Number,
+        style: String,
+        side: String,
+        field_order: String,
+        ordering: Number
+      },
+    };
   },
   methods: {
     closeModal() {

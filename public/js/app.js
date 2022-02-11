@@ -32613,15 +32613,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_Modals_Modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Modals/Modal.vue */ "./resources/js/components/Modals/Modal.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _components_Forms_MenuSaveForm_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Forms/MenuSaveForm.vue */ "./resources/js/components/Forms/MenuSaveForm.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -32632,60 +32630,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     shortname: String,
     branch_name: String
   },
-  components: {
-    AppModal: _components_Modals_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Field: vee_validate__WEBPACK_IMPORTED_MODULE_1__.Field,
-    ErrorMessage: vee_validate__WEBPACK_IMPORTED_MODULE_1__.ErrorMessage
-  },
   data: function data() {
     return {
-      isShown: false,
-      message: "",
-      menu_object: {
-        menu_name: "",
-        user_id: 1,
-        type_id: ""
-      }
+      isShown: false
     };
   },
-  methods: _objectSpread(_objectSpread({
-    isRequired: function isRequired(value) {
-      if (value && value.trim()) {
-        return true;
-      }
-
-      return "This field is required";
-    }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)("menus", ["addMenu"])), {}, {
+  components: {
+    AppMenuSaveForm: _components_Forms_MenuSaveForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
     closeModal: function closeModal() {
       this.isShown = false;
     },
     showModal: function showModal() {
       this.isShown = true;
-    },
-    submitForm: function submitForm() {
-      var _this = this;
-
-      this.addMenu(this.menu_object);
-      setTimeout(function () {
-        _this.redirectPage;
-      }, 1000);
     }
-  }),
-  computed: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menus", ["getMenuName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menus", ["getMessage"])), {}, {
-    setTypeId: function setTypeId() {
-      this.menu_object.type_id = this.chosen_menu_type_id;
-    },
-    redirectPage: function redirectPage() {
-      this.$router.push({
-        name: "menu_edit",
-        params: {
-          branch: this.branch_name,
-          menu_shortname: this.shortname
-        }
-      });
-    }
-  })
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("menus", ["getMenuName"]))
 });
 
 /***/ }),
@@ -32797,6 +32758,91 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Forms/MenuSaveForm.vue?vue&type=script&lang=js":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Forms/MenuSaveForm.vue?vue&type=script&lang=js ***!
+  \************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Modals_Modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Modals/Modal.vue */ "./resources/js/components/Modals/Modal.vue");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    isShown: Boolean,
+    chosen_menu_type: String,
+    chosen_menu_type_id: Number,
+    shortname: String,
+    branch_name: String
+  },
+  components: {
+    AppModal: _Modals_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Field: vee_validate__WEBPACK_IMPORTED_MODULE_1__.Field,
+    ErrorMessage: vee_validate__WEBPACK_IMPORTED_MODULE_1__.ErrorMessage
+  },
+  data: function data() {
+    return {
+      message: "",
+      menu_object: {
+        menu_name: "",
+        user_id: 1,
+        type_id: ""
+      }
+    };
+  },
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)("menus", ["addMenu"])), {}, {
+    isRequired: function isRequired(value) {
+      if (value && value.trim()) {
+        return true;
+      }
+
+      return "This field is required";
+    },
+    // closeModal() {
+    //   this.isShown = false;
+    // },
+    // showModal() {
+    //   this.isShown = true;
+    // },
+    submitForm: function submitForm() {
+      var _this = this;
+
+      this.addMenu(this.menu_object);
+      setTimeout(function () {
+        _this.redirectPage;
+      }, 1000);
+    }
+  }),
+  computed: _objectSpread(_objectSpread({
+    redirectPage: function redirectPage() {
+      this.$router.push({
+        name: "menu_edit",
+        params: {
+          branch: this.branch_name,
+          menu_shortname: this.shortname
+        }
+      });
+    }
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menus", ["getMessage"])), {}, {
+    setTypeId: function setTypeId() {
+      this.menu_object.type_id = this.chosen_menu_type_id;
+    }
+  })
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Forms/SectionForm.vue?vue&type=script&lang=js":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Forms/SectionForm.vue?vue&type=script&lang=js ***!
@@ -32825,6 +32871,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     AppModal: _components_Modals_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Field: vee_validate__WEBPACK_IMPORTED_MODULE_1__.Field,
     ErrorMessage: vee_validate__WEBPACK_IMPORTED_MODULE_1__.ErrorMessage
+  },
+  data: function data() {
+    return {
+      form: {
+        title: String,
+        subtitle: String,
+        price: Number,
+        style: String,
+        side: String,
+        field_order: String,
+        ordering: Number
+      }
+    };
   },
   methods: _objectSpread({
     closeModal: function closeModal() {
@@ -33443,121 +33502,53 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "choose-modal"
 };
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Confirm Meal Period And Name", -1
-/* HOISTED */
-);
-
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "control-label pr-2"
-}, "Type", -1
-/* HOISTED */
-);
-
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
-/* HOISTED */
-);
-
-var _hoisted_5 = {
-  "class": "bg-light-gray p-1"
-};
-var _hoisted_6 = {
-  "class": "form-group"
-};
-var _hoisted_7 = {
-  "class": "mt-1 row"
-};
-
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "control-label pr-2"
-}, "Name", -1
-/* HOISTED */
-);
-
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "btn btn-primary",
-  type: "submit"
-}, "Get Started", -1
-/* HOISTED */
-);
-
-var _hoisted_10 = {
+var _hoisted_2 = {
   "class": "col-12-lg bordered mt-2"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
   "class": "pt-1"
 }, "CHOOSE HOW TO BUILD YOUR MENU", -1
 /* HOISTED */
 );
 
-var _hoisted_12 = {
+var _hoisted_4 = {
   "class": "row justify-space-around pb-1"
 };
-var _hoisted_13 = {
+var _hoisted_5 = {
   "class": "col-4-sm"
 };
-var _hoisted_14 = {
+var _hoisted_6 = {
   "class": "form-group text-left"
 };
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "control-label startLabel"
 }, "Create From Template", -1
 /* HOISTED */
 );
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-4-sm menu_saved_design_outter\"><div class=\"form-group text-left\"><label class=\"control-label\">Create From Saved Design</label><select id=\"menu_saved_design\" name=\"menu_saved_design\" class=\"form-control\"><option value=\"\" name=\"\">Select One</option></select></div></div>", 1);
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-4-sm menu_saved_design_outter\"><div class=\"form-group text-left\"><label class=\"control-label\">Create From Saved Design</label><select id=\"menu_saved_design\" name=\"menu_saved_design\" class=\"form-control\"><option value=\"\" name=\"\">Select One</option></select></div></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_Field = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Field");
+  var _component_app_menu_save_form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-menu-save-form");
 
-  var _component_ErrorMessage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ErrorMessage");
-
-  var _component_app_modal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-modal");
-
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_modal, {
-    onClose: $options.closeModal,
-    hasForm: true,
-    onSubmitForm: $options.submitForm
-  }, {
-    body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.chosen_menu_type), 1
-      /* TEXT */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
-        modelValue: $data.menu_object.menu_name,
-        "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-          return $data.menu_object.menu_name = $event;
-        }),
-        rules: $options.isRequired,
-        type: "text",
-        name: "menu_field",
-        "class": "form-control p-1"
-      }, null, 8
-      /* PROPS */
-      , ["modelValue", "rules"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
-        name: "menu_field",
-        "class": "pr-1 display-block color-red"
-      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.setTypeId) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.getMessage), 1
-      /* TEXT */
-      )])];
-    }),
-    footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"btn btn-primary\" type=\"submit\" @click=\"redirectPage\"> <-- "), _hoisted_9];
-    }),
-    _: 1
-    /* STABLE */
-
-  }, 8
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_menu_save_form, {
+    chosen_menu_type: $props.chosen_menu_type,
+    isShown: $data.isShown,
+    branch_name: $props.branch_name,
+    shortname: $props.shortname,
+    chosen_menu_type_id: $props.chosen_menu_type_id
+  }, null, 8
   /* PROPS */
-  , ["onClose", "onSubmitForm"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isShown]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  , ["chosen_menu_type", "isShown", "branch_name", "shortname", "chosen_menu_type_id"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     name: "menu_saved_design_add",
     "class": "btn btn-default btn-block biggerBtn",
-    onClick: _cache[1] || (_cache[1] = function () {
+    onClick: _cache[0] || (_cache[0] = function () {
       return $options.showModal && $options.showModal.apply($options, arguments);
     })
-  }, " START ")])]), _hoisted_16])], 512
+  }, " START ")])]), _hoisted_8])], 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$data.isShown]])], 64
   /* STABLE_FRAGMENT */
@@ -33721,6 +33712,103 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVN
 var _hoisted_3 = [_hoisted_2];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("footer", _hoisted_1, _hoisted_3);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Forms/MenuSaveForm.vue?vue&type=template&id=1e47c3ea":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Forms/MenuSaveForm.vue?vue&type=template&id=1e47c3ea ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": function() { return /* binding */ render; }
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Confirm Meal Period And Name", -1
+/* HOISTED */
+);
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "control-label pr-2"
+}, "Type", -1
+/* HOISTED */
+);
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_4 = {
+  "class": "bg-light-gray p-1"
+};
+var _hoisted_5 = {
+  "class": "form-group"
+};
+var _hoisted_6 = {
+  "class": "mt-1 row"
+};
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "control-label pr-2"
+}, "Name", -1
+/* HOISTED */
+);
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "btn btn-primary",
+  type: "submit"
+}, "Get Started", -1
+/* HOISTED */
+);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_Field = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Field");
+
+  var _component_ErrorMessage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ErrorMessage");
+
+  var _component_app_modal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-modal");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_app_modal, {
+    onClose: _ctx.closeModal,
+    hasForm: true,
+    onSubmitForm: $options.submitForm
+  }, {
+    body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.chosen_menu_type), 1
+      /* TEXT */
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+        modelValue: $data.menu_object.menu_name,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+          return $data.menu_object.menu_name = $event;
+        }),
+        rules: $options.isRequired,
+        type: "text",
+        name: "menu_field",
+        "class": "form-control p-1"
+      }, null, 8
+      /* PROPS */
+      , ["modelValue", "rules"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
+        name: "menu_field",
+        "class": "pr-1 display-block color-red"
+      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.setTypeId) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.getMessage), 1
+      /* TEXT */
+      )])];
+    }),
+    footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"btn btn-primary\" type=\"submit\" @click=\"redirectPage\"> <-- "), _hoisted_8];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["onClose", "onSubmitForm"])), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $props.isShown]]);
 }
 
 /***/ }),
@@ -61593,6 +61681,31 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/Forms/MenuSaveForm.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Forms/MenuSaveForm.vue ***!
+  \********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MenuSaveForm_vue_vue_type_template_id_1e47c3ea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MenuSaveForm.vue?vue&type=template&id=1e47c3ea */ "./resources/js/components/Forms/MenuSaveForm.vue?vue&type=template&id=1e47c3ea");
+/* harmony import */ var _MenuSaveForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MenuSaveForm.vue?vue&type=script&lang=js */ "./resources/js/components/Forms/MenuSaveForm.vue?vue&type=script&lang=js");
+/* harmony import */ var _Users_macbook_Desktop_Pet_projects_menu_vue_laravel_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Users_macbook_Desktop_Pet_projects_menu_vue_laravel_app_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_MenuSaveForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_MenuSaveForm_vue_vue_type_template_id_1e47c3ea__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Forms/MenuSaveForm.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ __webpack_exports__["default"] = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/Forms/SectionForm.vue":
 /*!*******************************************************!*\
   !*** ./resources/js/components/Forms/SectionForm.vue ***!
@@ -62070,6 +62183,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Forms/MenuSaveForm.vue?vue&type=script&lang=js":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/Forms/MenuSaveForm.vue?vue&type=script&lang=js ***!
+  \********************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MenuSaveForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]; }
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MenuSaveForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./MenuSaveForm.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Forms/MenuSaveForm.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/Forms/SectionForm.vue?vue&type=script&lang=js":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/Forms/SectionForm.vue?vue&type=script&lang=js ***!
@@ -62402,6 +62531,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Footer_vue_vue_type_template_id_61a7c374__WEBPACK_IMPORTED_MODULE_0__.render; }
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Footer_vue_vue_type_template_id_61a7c374__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Footer.vue?vue&type=template&id=61a7c374 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Footer.vue?vue&type=template&id=61a7c374");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Forms/MenuSaveForm.vue?vue&type=template&id=1e47c3ea":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/Forms/MenuSaveForm.vue?vue&type=template&id=1e47c3ea ***!
+  \**************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MenuSaveForm_vue_vue_type_template_id_1e47c3ea__WEBPACK_IMPORTED_MODULE_0__.render; }
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MenuSaveForm_vue_vue_type_template_id_1e47c3ea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./MenuSaveForm.vue?vue&type=template&id=1e47c3ea */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Forms/MenuSaveForm.vue?vue&type=template&id=1e47c3ea");
 
 
 /***/ }),
