@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-flex-end">
-    <span class="flaticon-write" >
+    <!-- <span class="flaticon-write" >
       <font-awesome-icon icon="edit"
     /></span>
     <span class="flaticon-paper">
@@ -14,7 +14,7 @@
     <span
       class="flaticon-rubbish-bin"
       ><font-awesome-icon icon="trash-alt"
-    /></span>
+    /></span> -->
   </div>
   <div class="item-title">
     <p>{{ menu_item.title }}</p>
