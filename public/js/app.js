@@ -32864,30 +32864,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    section: {}
-  },
   components: {
     AppModal: _components_Modals_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Field: vee_validate__WEBPACK_IMPORTED_MODULE_1__.Field,
     ErrorMessage: vee_validate__WEBPACK_IMPORTED_MODULE_1__.ErrorMessage
   },
   data: function data() {
-    return {
-      form: {
-        title: String,
-        subtitle: String,
-        price: Number,
-        style: String,
-        side: String,
-        field_order: String,
-        ordering: Number
-      }
+    return {// section: {},
     };
   },
   methods: _objectSpread({
     closeModal: function closeModal() {
       this.setModalStatus(0);
+    },
+    isRequired: function isRequired(value) {
+      if (value && value.trim()) {
+        return true;
+      }
+
+      return "This field is required";
     },
     ok: function ok() {
       this.$emit("ok");
@@ -32896,8 +32891,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       //   this.setModalStatus(0);
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)("modal", ["setModalStatus"])),
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("modal", {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("modal", {
     ModalStatus: "getModalStatus"
+  })), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menu_sections", {
+    section: "getSection"
   }))
 });
 
@@ -33301,10 +33298,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)("menu_sections", ["getMenuSections"])),
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_types", ["getTemplateName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_types", ["getTypeByShortName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_sections", {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_types", ["getTemplateName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_types", ["getTypeByShortName"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_sections", {
     sections: "all"
-  })), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menu_sections", {
-    section: "getSection"
   })), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("menus", ["getMenu"])),
   created: function created() {
     this.menu = this.getMenu;
@@ -33848,56 +33843,89 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_5 = ["value"];
-var _hoisted_6 = {
+var _hoisted_5 = {
   "class": "row justify-space-between"
 };
-var _hoisted_7 = {
+var _hoisted_6 = {
   "class": "col-4-sm"
 };
-var _hoisted_8 = {
+var _hoisted_7 = {
   "class": "form-group"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "title",
   "class": "control-label"
 }, "Section Price", -1
 /* HOISTED */
 );
 
-var _hoisted_10 = ["value"];
-
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_9 = {
   "class": "col-6-sm"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_10 = {
   "class": "form-group"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "control-label",
   "for": "origem"
-}, "Style"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-  id: "style",
-  name: "style",
-  "class": "form-control"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+}, "Style", -1
+/* HOISTED */
+);
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "No_Style",
+  disabled: ""
+}, "No_Style", -1
+/* HOISTED */
+);
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "No_Style"
-}, "No_Style"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  value: "No_Style"
-}, "No_Style"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+}, "No_Style", -1
+/* HOISTED */
+);
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "Boxed"
-}, "Boxed"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+}, "Boxed", -1
+/* HOISTED */
+);
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "Orange_Box"
-}, "Orange_Box"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+}, "Orange_Box", -1
+/* HOISTED */
+);
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "Side_by_Side"
-}, "Side_by_Side"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+}, "Side_by_Side", -1
+/* HOISTED */
+);
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "Small_Title"
-}, "Small_Title"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+}, "Small_Title", -1
+/* HOISTED */
+);
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "Short_Spaces"
-}, "Short_Spaces"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+}, "Short_Spaces", -1
+/* HOISTED */
+);
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "BoxedCocktails"
-}, "BoxedCocktails"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+}, "BoxedCocktails", -1
+/* HOISTED */
+);
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "BoxedSweets"
-}, "BoxedSweets")])])], -1
+}, "BoxedSweets", -1
 /* HOISTED */
 );
 
@@ -33914,35 +33942,52 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSubmitForm: $options.submitSectionForm
   }, {
     body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
-        value: $props.section.title,
-        rules: _ctx.isRequired,
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.section.title) + " ", 1
+      /* TEXT */
+      ), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+        value: _ctx.section.title,
+        rules: $options.isRequired,
         type: "text",
         name: "section_title",
         "class": "form-control"
       }, null, 8
       /* PROPS */
       , ["value", "rules"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
-        name: "menu_field",
+        name: "section_title",
         "class": "pr-1 display-block color-red"
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-        "class": "form-control",
-        rows: "3",
-        id: "subtitle",
-        name: "subtitle",
-        type: "text",
-        value: $props.section.subtitle
+      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+        type: "textarea",
+        value: _ctx.section.subtitle,
+        name: "section_subtitle",
+        "class": "form-control"
       }, null, 8
       /* PROPS */
-      , _hoisted_5)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        "class": "form-control",
-        id: "section_price",
+      , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
+        name: "section_subtitle",
+        "class": "pr-1 display-block color-red"
+      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+        value: _ctx.section.price,
+        rules: $options.isRequired,
+        type: "text",
         name: "section_price",
-        type: "text",
-        value: $props.section.price
+        "class": "form-control"
       }, null, 8
       /* PROPS */
-      , _hoisted_10)])]), _hoisted_11])];
+      , ["value", "rules"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
+        name: "section_price",
+        "class": "pr-1 display-block color-red"
+      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+        name: "style",
+        as: "select",
+        "class": "form-control"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_12, _hoisted_13, _hoisted_14, _hoisted_15, _hoisted_16, _hoisted_17, _hoisted_18, _hoisted_19, _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <option v-for=\"drink in drinks\" :key=\"drink\" :value=\"drink\" :selected=\"value && value.includes(drink)\">{{ drink }}</option> ")];
+        }),
+        _: 1
+        /* STABLE */
+
+      })])])])];
     }),
     footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -34792,11 +34837,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     sections: _ctx.sections
   }, null, 8
   /* PROPS */
-  , ["menu_type", "menu", "sections"])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_section_form, {
-    section: _ctx.section
-  }, null, 8
-  /* PROPS */
-  , ["section"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_action_footer)], 64
+  , ["menu_type", "menu", "sections"])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_section_form)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_action_footer)], 64
   /* STABLE_FRAGMENT */
   );
 }

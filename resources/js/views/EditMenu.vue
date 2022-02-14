@@ -17,7 +17,7 @@
   ></component>
 
   <div class="edit-modal">
-    <app-section-form :section="section"></app-section-form>
+    <app-section-form></app-section-form>
   </div>
 
   <app-action-footer></app-action-footer>
@@ -56,7 +56,7 @@ export default {
 
     ...mapGetters("menu_sections", { sections: "all" }),
 
-    ...mapGetters("menu_sections", { section: "getSection" }),
+    // ...mapGetters("menu_sections", { section: "getSection" }),
     ...mapGetters("menus", ["getMenu"]),
   },
   created() {

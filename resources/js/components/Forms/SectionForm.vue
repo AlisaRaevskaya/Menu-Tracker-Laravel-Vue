@@ -7,7 +7,9 @@
   >
     <template v-slot:body>
       <div class="form-group">
-        <label for="title" class="control-label">Title</label>
+           {{ section.title }}
+        <label for="title" class="control-label"
+          >Title</label>
         <Field
           :value="section.title"
           :rules="isRequired"
@@ -15,37 +17,48 @@
           name="section_title"
           class="form-control"
         />
-        <ErrorMessage name="menu_field" class="pr-1 display-block color-red" />
+
+        <ErrorMessage
+          name="section_title"
+          class="pr-1 display-block color-red"
+        />
       </div>
       <div class="form-group">
         <label for="subtitle" class="control-label">Subtitle</label>
-        <textarea
-          class="form-control"
-          rows="3"
-          id="subtitle"
-          name="subtitle"
-          type="text"
+        <Field
+          type="textarea"
           :value="section.subtitle"
-        ></textarea>
+          name="section_subtitle"
+          class="form-control"
+        />
+        <ErrorMessage
+          name="section_subtitle"
+          class="pr-1 display-block color-red"
+        />
       </div>
       <div class="row justify-space-between">
         <div class="col-4-sm">
           <div class="form-group">
             <label for="title" class="control-label">Section Price</label>
-            <input
-              class="form-control"
-              id="section_price"
-              name="section_price"
-              type="text"
+
+            <Field
               :value="section.price"
+              :rules="isRequired"
+              type="text"
+              name="section_price"
+              class="form-control"
+            />
+            <ErrorMessage
+              name="section_price"
+              class="pr-1 display-block color-red"
             />
           </div>
         </div>
         <div class="col-6-sm">
           <div class="form-group">
             <label class="control-label" for="origem">Style</label>
-            <select id="style" name="style" class="form-control">
-              <option value="No_Style">No_Style</option>
+            <Field name="style" as="select" class="form-control">
+              <option value="No_Style" disabled>No_Style</option>
               <option value="No_Style">No_Style</option>
               <option value="Boxed">Boxed</option>
               <option value="Orange_Box">Orange_Box</option>
@@ -54,7 +67,8 @@
               <option value="Short_Spaces">Short_Spaces</option>
               <option value="BoxedCocktails">BoxedCocktails</option>
               <option value="BoxedSweets">BoxedSweets</option>
-            </select>
+              <!-- <option v-for="drink in drinks" :key="drink" :value="drink" :selected="value && value.includes(drink)">{{ drink }}</option> -->
+            </Field>
           </div>
         </div>
       </div>
@@ -72,9 +86,6 @@ import { Field, ErrorMessage } from "vee-validate";
 import { mapGetters, mapActions, mapState } from "vuex";
 
 export default {
-  props: {
-    section: {},
-  },
   components: {
     AppModal,
     Field,
@@ -82,20 +93,18 @@ export default {
   },
   data() {
     return {
-      form: {
-        title: String,
-        subtitle: String,
-        price: Number,
-        style: String,
-        side: String,
-        field_order: String,
-        ordering: Number
-      },
+      // section: {},
     };
   },
   methods: {
     closeModal() {
       this.setModalStatus(0);
+    },
+    isRequired(value) {
+      if (value && value.trim()) {
+        return true;
+      }
+      return "This field is required";
     },
     ok() {
       this.$emit("ok");
@@ -108,6 +117,7 @@ export default {
   },
   computed: {
     ...mapGetters("modal", { ModalStatus: "getModalStatus" }),
+    ...mapGetters("menu_sections",  { section: "getSection" }),
   },
 };
 </script>
