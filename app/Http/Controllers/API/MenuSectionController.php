@@ -54,11 +54,22 @@ class MenuSectionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Responses
      */
     public function store(Request $request)
     {
-        //
+        $section = new MenuSection();
+        $section->title = $request->title;
+       $section->subtitle = $request->subtitle;
+       $section->price = $request->price;
+       $section->style= $request->style;
+       $section->menu_type_id = $request->menu_type_id;
+       $section->menu_id = $request->menu_id;
+       $section->save();
+        
+        $message = 'Success';
+
+        return response()->json(['message'=> $message, 'section' => $section]);
     }
 
     /**

@@ -58,6 +58,12 @@ export default {
 
     // ...mapGetters("menu_sections", { section: "getSection" }),
     ...mapGetters("menus", ["getMenu"]),
+    // setMenuTypeId(){
+    //   return parseInt(this.menu_type.id);
+    // },
+    // setMenuId(){
+    //   return parseInt(this.menu.id);
+    // }
   },
   created() {
     this.menu = this.getMenu;

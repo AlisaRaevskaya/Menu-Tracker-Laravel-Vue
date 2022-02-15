@@ -4,7 +4,8 @@ export default {
     namespaced: true,
     state: {
         sections: [],
-        section: {}
+        section: {},
+        message: ""
     },
     getters: {
         all: (state) => state.sections,
@@ -20,6 +21,9 @@ export default {
         setSection(state, section) {
             state.section = {...section};
         },
+        saveSection(state, data){
+            state.message = data.message;
+        }
     },
     //methods
     actions: {
@@ -33,18 +37,19 @@ export default {
                 })
                 .catch((error) => console.log("Section error"));
         },
-        // getAllMenuSections({ commit }, id) {
-        //     // fetch sections
-        //     axios
-        //         .get("/api/menu-sections/" + id)
-        //         .then((response) => {
-        //             console.log(response);
-        //             commit("updateAllMenuSections", response.data);
-        //         })
-        //         .catch((error) => console.log("Section error"));
-        // },
+     
         setSection({ commit }, section) {
             commit("setSection", section);
+        },
+        saveSection({ commit }, section){
+            axios
+                .post("/api/menu-sections/", section)
+                .then((response) => {
+                    commit("saveSection", response.data);
+                })
+                .catch(e => {
+                    this.errors = e.data.errors;
+                  });
         },
     },
 };

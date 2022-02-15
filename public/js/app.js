@@ -32864,6 +32864,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    menu_type_id: Object,
+    menu_id: Object
+  },
   components: {
     AppModal: _components_Modals_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Field: vee_validate__WEBPACK_IMPORTED_MODULE_1__.Field,
@@ -32873,7 +32877,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {// section: {},
     };
   },
-  methods: _objectSpread({
+  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)("modal", ["setModalStatus"])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)("menu_sections", ["saveSection"])), {}, {
     closeModal: function closeModal() {
       this.setModalStatus(0);
     },
@@ -32887,10 +32891,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ok: function ok() {
       this.$emit("ok");
     },
-    submitSectionForm: function submitSectionForm() {// this.saveMenu(this.menu_object);
-      //   this.setModalStatus(0);
+    submitSectionForm: function submitSectionForm(value) {// this.saveSection(value);
+      // this.closeModal();
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)("modal", ["setModalStatus"])),
+  }),
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("modal", {
     ModalStatus: "getModalStatus"
   })), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("menu_sections", {
@@ -33945,35 +33949,44 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.section.title) + " ", 1
       /* TEXT */
       ), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
-        value: _ctx.section.title,
+        modelValue: _ctx.section.title,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+          return _ctx.section.title = $event;
+        }),
         rules: $options.isRequired,
         type: "text",
         name: "section_title",
         "class": "form-control"
       }, null, 8
       /* PROPS */
-      , ["value", "rules"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
+      , ["modelValue", "rules"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
         name: "section_title",
         "class": "pr-1 display-block color-red"
       })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
         type: "textarea",
-        value: _ctx.section.subtitle,
+        modelValue: _ctx.section.subtitle,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return _ctx.section.subtitle = $event;
+        }),
         name: "section_subtitle",
         "class": "form-control"
       }, null, 8
       /* PROPS */
-      , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
         name: "section_subtitle",
         "class": "pr-1 display-block color-red"
       })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
-        value: _ctx.section.price,
+        modelValue: _ctx.section.price,
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return _ctx.section.price = $event;
+        }),
         rules: $options.isRequired,
         type: "text",
         name: "section_price",
         "class": "form-control"
       }, null, 8
       /* PROPS */
-      , ["value", "rules"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
+      , ["modelValue", "rules"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
         name: "section_price",
         "class": "pr-1 display-block color-red"
       })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
@@ -33987,17 +34000,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1
         /* STABLE */
 
-      })])])])];
+      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Field\n          v-model=\"menu_type_id\"\n          type=\"text\"\n          class=\"form-control display-none\"\n        />\n        <Field\n          v-model=\"menu_id\"\n          type=\"text\"\n          class=\"form-control display-none\"\n        /> ")])];
     }),
     footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         "class": "btn btn-default",
-        onClick: _cache[0] || (_cache[0] = function () {
+        onClick: _cache[3] || (_cache[3] = function () {
           return $options.closeModal && $options.closeModal.apply($options, arguments);
         })
       }, "Cancel"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         "class": "btn btn-primary ml-1",
-        onClick: _cache[1] || (_cache[1] = function () {
+        onClick: _cache[4] || (_cache[4] = function () {
           return $options.ok && $options.ok.apply($options, arguments);
         })
       }, "Ok")];
@@ -35352,7 +35365,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   namespaced: true,
   state: {
     sections: [],
-    section: {}
+    section: {},
+    message: ""
   },
   getters: {
     all: function all(state) {
@@ -35383,6 +35397,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     setSection: function setSection(state, section) {
       state.section = _objectSpread({}, section);
+    },
+    saveSection: function saveSection(state, data) {
+      state.message = data.message;
     }
   },
   //methods
@@ -35397,19 +35414,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return console.log("Section error");
       });
     },
-    // getAllMenuSections({ commit }, id) {
-    //     // fetch sections
-    //     axios
-    //         .get("/api/menu-sections/" + id)
-    //         .then((response) => {
-    //             console.log(response);
-    //             commit("updateAllMenuSections", response.data);
-    //         })
-    //         .catch((error) => console.log("Section error"));
-    // },
     setSection: function setSection(_ref2, section) {
       var commit = _ref2.commit;
       commit("setSection", section);
+    },
+    saveSection: function saveSection(_ref3, section) {
+      var _this = this;
+
+      var commit = _ref3.commit;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/menu-sections/", section).then(function (response) {
+        commit("saveSection", response.data);
+      })["catch"](function (e) {
+        _this.errors = e.data.errors;
+      });
     }
   }
 }); // async  showData({commit}) {

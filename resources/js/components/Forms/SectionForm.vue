@@ -7,11 +7,10 @@
   >
     <template v-slot:body>
       <div class="form-group">
-           {{ section.title }}
-        <label for="title" class="control-label"
-          >Title</label>
+        {{ section.title }}
+        <label for="title" class="control-label">Title</label>
         <Field
-          :value="section.title"
+          v-model="section.title"
           :rules="isRequired"
           type="text"
           name="section_title"
@@ -27,7 +26,7 @@
         <label for="subtitle" class="control-label">Subtitle</label>
         <Field
           type="textarea"
-          :value="section.subtitle"
+          v-model="section.subtitle"
           name="section_subtitle"
           class="form-control"
         />
@@ -42,7 +41,7 @@
             <label for="title" class="control-label">Section Price</label>
 
             <Field
-              :value="section.price"
+              v-model="section.price"
               :rules="isRequired"
               type="text"
               name="section_price"
@@ -71,6 +70,16 @@
             </Field>
           </div>
         </div>
+        <!-- <Field
+          v-model="menu_type_id"
+          type="text"
+          class="form-control display-none"
+        />
+        <Field
+          v-model="menu_id"
+          type="text"
+          class="form-control display-none"
+        /> -->
       </div>
     </template>
     <template v-slot:footer>
@@ -86,6 +95,10 @@ import { Field, ErrorMessage } from "vee-validate";
 import { mapGetters, mapActions, mapState } from "vuex";
 
 export default {
+  props: {
+    menu_type_id: Object,
+    menu_id: Object,
+  },
   components: {
     AppModal,
     Field,
@@ -97,6 +110,8 @@ export default {
     };
   },
   methods: {
+    ...mapActions("modal", ["setModalStatus"]),
+    ...mapActions("menu_sections", ["saveSection"]),
     closeModal() {
       this.setModalStatus(0);
     },
@@ -109,15 +124,14 @@ export default {
     ok() {
       this.$emit("ok");
     },
-    submitSectionForm() {
-      // this.saveMenu(this.menu_object);
-      //   this.setModalStatus(0);
+    submitSectionForm(value) {
+      // this.saveSection(value);
+      // this.closeModal();
     },
-    ...mapActions("modal", ["setModalStatus"]),
   },
   computed: {
     ...mapGetters("modal", { ModalStatus: "getModalStatus" }),
-    ...mapGetters("menu_sections",  { section: "getSection" }),
+    ...mapGetters("menu_sections", { section: "getSection" }),
   },
 };
 </script>
